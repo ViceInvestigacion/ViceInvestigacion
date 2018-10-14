@@ -10,58 +10,20 @@ INSERT INTO  accesoBE VALUES('ADMIN-INICIO',1,1,1);
 --Insert Tipo Asistente
 INSERT INTO  tipoAsistenteBE VALUES('GENERAL',1);
 
---Insert Facultad
-INSERT INTO  facultadBE VALUES(
-  id_Facu INT NOT NULL,
-  nombre_Facu varchar(100) NOT NULL,
-  PRIMARY KEY (id_Facu)
-) ;
---Creacion escuelaBE--
---descripcion: Todas las escuelas de la UNJFSC
---
-INSERT INTO  escuelaBE VALUES(
-  id_Escuela INT NOT NULL,
-  nombre_Escuela varchar(100) NOT NULL,
-  facultadId_Escuela INT NOT NULL,
-  PRIMARY KEY (id_Escuela),
-  CONSTRAINT fk_EscuelaBE_FacultadBE1 FOREIGN KEY (facultadId_Escuela) REFERENCES facultadBE (id_Facu)
-) ;
---Creacion personalBE--
---descripcion: nombre del pesonal que estará a cargo de la cuenta de usuario
---
-INSERT INTO  personalBE VALUES(
-  id_Personal INT NOT NULL,
-  dni_Personal varchar(8) NOT NULL,
-  nombres_Personal varchar(45) NOT NULL,
-  fecNac_Personal date NOT NULL,
-  apellidos_Personal varchar(45) NOT NULL,
-  estado_Personal INT NOT NULL,
-  fecRegistro_Personal date NOT NULL,
-  usuReg_Personal INT DEFAULT NULL,
-  escuela_Personal INT DEFAULT NULL,
-  PRIMARY KEY (id_Personal),
-  CONSTRAINT fk_PersonalBE_EscuelaBE1 FOREIGN KEY (escuela_Personal) REFERENCES escuelaBE (id_escuela)
-) ;
---Creacion usuarioBE--
---descripcion: usuarios para acceder al sistema
---
+--Insert Personal--
+INSERT INTO  personalBE VALUES('75119312','Ruben rodrigo','01/08/1996','Huaranga Carreño',1,GETDATE(),null,null);
+
+--Insert Usuario--
 INSERT INTO  usuarioBE VALUES(
-  id_Usu INT NOT NULL,
-  nombre_Usu varchar(45) NOT NULL,
-  clave_Usu varchar(45) NOT NULL,
-  estado_Usu INT NOT NULL,
-  fecReg_Usu date NOT NULL,
-  usuReg_Usu INT DEFAULT NULL,
-  personal_Usu INT NOT NULL,
-  perfil_Usu INT NOT NULL,
-  RolBE_id_rol INT NOT NULL,
-  PRIMARY KEY (id_Usu),
-  CONSTRAINT fk_UsuarioBE_PersonalBE1 FOREIGN KEY (personal_Usu) REFERENCES personalBE (id_personal),
-  CONSTRAINT fk_UsuarioBE_RolBE1 FOREIGN KEY (RolBE_id_rol) REFERENCES rolBE (id_rol)
+  'ROD',
+  '123',
+  1,
+  GETDATE(),
+  null,
+  1,
+  1
 ) ;
---Creacion asistenteBE--
---descripcion: asistentes a los eventos
---
+--insert Asistente--
 INSERT INTO  asistenteBE VALUES(
   id_Asis INT NOT NULL,
   dni_Asis varchar(8) NOT NULL,
