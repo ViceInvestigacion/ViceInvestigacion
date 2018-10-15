@@ -21,6 +21,7 @@ INSERT INTO  usuarioBE VALUES(
   GETDATE(),
   null,
   1,
+  0,--perfilUsu ya no va (eliminar)
   1
 ) ;
 --insert Asistente--
@@ -78,20 +79,21 @@ INSERT INTO  comunidadProyBE VALUES(
   CONSTRAINT fk_ComunidadProyBE_ComunidadAutoBE1 FOREIGN KEY (comunidad_CP) REFERENCES comunidadautoBE (id_ca),
   CONSTRAINT fk_ComunidadProyBE_ProyectoBE1 FOREIGN KEY (proyecto_CP) REFERENCES proyectoBE (id_proyecto)
 ) ;
---Creacion convocatoriaBE--
---descripcion: Convocatorias a concursos 
---
-INSERT INTO  convocatoriaBE VALUES(
-  id_Conv INT NOT NULL,
-  descripcion_Conv varchar(45) NOT NULL,
-  imagen_Conv varbinary(max) NOT NULL,
-  fecha_Conv date NOT NULL,
-  estado_Conv INT NOT NULL,
-  usuReg_Conv INT NOT NULL,
-  fecReg_Conv date NOT NULL,
-  PRIMARY KEY (id_Conv),
-  CONSTRAINT fk_ConvocatoriaBE_UsuarioBE1 FOREIGN KEY (usuReg_Conv) REFERENCES usuarioBE (id_usu)
-) ;
+--Insert Convocatoria
+INSERT INTO [DB_VicerrectoradoInv].[dbo].[convocatoriaBE]
+           ([descripcion_Conv]
+           ,[imagen_Conv]
+           ,[fecha_Conv]
+           ,[estado_Conv]
+           ,[usuReg_Conv]
+           ,[fecReg_Conv])
+     VALUES(
+           'Concurso Investigacion'
+           ,(SELECT * FROM OPENROWSET(BULK N'C:\Users\USER\Pictures\GetImage-5.jpg', SINGLE_BLOB)AS imagen_Conv),'17-10-2018'
+           ,1
+           ,1
+           ,GETDATE()
+           );
 --Creacion entidadColaBE--
 --descripcion: entidades Colaboradoras de los proyectos
 --

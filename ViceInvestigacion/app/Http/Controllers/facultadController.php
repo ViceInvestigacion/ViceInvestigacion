@@ -9,7 +9,6 @@ class facultadController extends Controller
 {
     public function index()
     {
-        return facultadBE::all();
-        
+      return facultadBE::all();
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 
 use app\facultadBE;
+use App\convocatoriaBE;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-/*Route::get('facultades', function() {
-    // If the Content-Type and Accept headers are set to 'application/json', 
-    // this will return a JSON structure. This will be cleaned up later.
-    return facultadBE::all();
-});*/
-
+//Rutas de FacultadBE 
 Route::get('facultades', 'facultadController@index');
+
+
+//Rutas de ConvocatoriaBE
+Route::get('convocatorias', 'convocatoriaController@index');
