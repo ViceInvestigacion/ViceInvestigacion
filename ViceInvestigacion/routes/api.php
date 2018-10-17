@@ -19,10 +19,18 @@ use App\convocatoriaBE;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-//Rutas de FacultadBE 
-Route::get('facultades', 'facultadController@index');
+//Rutas de accesoBE 
+//Rutas de accesoBE
+//Rutas de accesoBE
+//Rutas de accesoBE
+//Rutas de accesoBE
+//Rutas de accesoBE
+//Rutas de accesoBE
 
 
 //Rutas de ConvocatoriaBE
 Route::get('convocatorias', 'convocatoriaController@index');
+//Rutas de FacultadBE 
+Route::get('facultades', 'facultadController@index');
+
+

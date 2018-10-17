@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\convocatoriaBE;
+use App\helpers;
 
 class convocatoriaController extends Controller
 {
     public function index()
     {
         $datos = convocatoriaBE::all();
-        foreach ($datos as $conv => $imagen_Conv) {
-            $imagen_Conv = base64_encode ($imagen_Conv);
-        }
-        unset($imagen_Conv);
-        return $datos;
+        
+      
+        $filtered = $datos->map(function ($conv) {
+            return collect($conv->toArray())
+                ->only( ['descripcion_Conv','fecha_Conv','estado_Conv','usuReg_Conv','fecReg_Conv'])
+                ->all();
+        });
+        return $filtered;
     }
 }
