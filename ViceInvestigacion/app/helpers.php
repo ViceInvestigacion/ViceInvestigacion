@@ -7,7 +7,7 @@ class helpers
         return $string;
     }
     public function byteToString($byte){
-        $string ;
+        $string ='hola';
         return $string;
     }
     public function stringToByte($string){
