@@ -9,6 +9,14 @@ class tipoEventoController extends Controller
 {
     public function index()
     {
-        return tipoEventoBE::all();
+        $datos = tipoEventoBE::all();
+    
+        $filtered = $datos->map(function ($te) {
+           return collect($te->toArray())
+               ->only( ['descripcion_TipoEv','estado_TipoEv'])
+               ->all();
+       });
+       
+       return $filtered;
     }
 }

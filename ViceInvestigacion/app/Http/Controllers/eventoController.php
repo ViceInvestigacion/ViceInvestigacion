@@ -10,22 +10,11 @@ class eventoController extends Controller
     public function index()
     {
         $datos = eventoBE::all();
-        /* $filtered = $datos->map
-       [nombre_Evento]
-           ,[descripcion_Evento]
-           ,[tipo_Evento]
-           ,[duracion_Evento]
-           ,[fecInicio_Evento]
-           ,[fecFin_Evento]
-           ,[horaInicio_Evento]
-           ,[horaFin_Evento]
-           ,[cstGSnCertificado_Evento]
-           ,[cstGCnCertificado_Evento]
-           ,[cstFCnCertificado_Evento]
-           ,[detalle_Evento]
-           ,[imagen_Evento]
-           ,[usuReg_Evento]
-           ,[fecReg_Evento])*/
-           return $datos;
+        $filtered = $datos->map(function ($eve) {
+            return collect($eve->toArray())
+                ->only( ['nombre_Evento','descripcion_Evento','tipo_Evento','duracion_Evento','fecInicio_Evento','fecFin_Evento','horaInicio_Evento','horaFin_Evento','cstGSnCertificado_Evento','cstGCnCertificado_Evento','cstFCnCertificado_Evento'/*,'imagen_Evento'*/])
+                ->all();
+        });
+        return $datos;
     }
 }

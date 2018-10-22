@@ -1,5 +1,5 @@
 <?php
-
+namespace App;
 class helpers 
 {
     public function arrayToString($array){

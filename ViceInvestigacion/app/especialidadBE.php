@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class especialidadBE extends Model
 {
-    protected $table = 'escuelaBE';
+    protected $table = 'especialidadBE';
     public $timestamps = false;
-    protected $fillable = ['nombre_Escuela','facultadId_Escuela'];
+    protected $fillable = ['descripcion_Espe','estado_Espe'];
 }

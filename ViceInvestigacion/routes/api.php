@@ -43,39 +43,40 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Rutas de asistenteBE
 //Rutas de comunidadAutoBE
 //Rutas de convocatoriaBE
-Route::get('convocatorias','convocatoriaController@index');
+Route::get('convocatorias','convocatoriaController@index');//ok
 //Rutas de entidadBE
 //Rutas de escuelaBE
-Route::get('escuelas', 'escuelaController@index');
+Route::get('escuelas', 'escuelaController@index');//ok
 //Rutas de especialidadBE
-Route::get('especialidades','especialidadController@index');
+Route::get('especialidades','especialidadController@index');//ok
 //Rutas de eventoBE .
-Route::get('eventos', 'eventoController@index');
+Route::get('eventos', 'eventoController@index');//ok
 //Rutas de facultadBE
-Route::get('facultades', 'facultadController@index');
+Route::get('facultades', 'facultadController@index');//ok
 //Rutas de noticiaBE
-Route::get('noticias', 'noticiaController@index');
+Route::get('noticias', 'noticiaController@index');//ok
 //Rutas de objetivoBE
 //Rutas de pagoBE
 //Rutas de personalBE
-Route::get('personal', 'personalController@index');
+
 //Rutas de ponenteBE
-Route::get('ponentes', 'ponenteController@index');
+
 //Rutas de profesionBE
-Route::get('profesiones', 'profesionController@index');
+Route::get('profesiones', 'profesionController@index');//ok
 //Rutas de proyectoBE
 //Rutas de resolucionBE
-Route::get('resoluciones', 'resolucionController@index');
+Route::get('resoluciones', 'resolucionController@index');//ok
 //Rutas de resultadoBE
-Route::get('resultados', 'resultadoController@index');
+Route::get('resultados', 'resultadoController@index');//ok
 //Rutas de suscriptorBE
+Route::post('suscriptor', 'suscriptorController@insert');
 //Rutas de tesisBE
 //Rutas de tipoAsistenteBE
 Route::get('tipoAsistentes', 'tipoAsistenteController@index');
 //Rutas de tipoEventoBE
-Route::get('tipoEvento', 'tipoEventoController@index');
+Route::get('tipoEvento', 'tipoEventoController@index');//ok
 //Rutas de universidadBE 
-Route::get('universidades', 'universidadController@index');
+
 //Rutas de usuarioBE
 
 

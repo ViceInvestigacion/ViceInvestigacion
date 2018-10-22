@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\convocatoriaBE;
-include "$_SERVER[DOCUMENT_ROOT]/app/helpers.php";
+use App\helpers;
 
 class convocatoriaController extends Controller
 {
@@ -13,22 +13,13 @@ class convocatoriaController extends Controller
     {
         $helper = new helpers();
         $datos = convocatoriaBE::all();
-        
-        foreach ($datos as $clave => $valor) {
-           if($clave == 'imagen_Conv')
-           {
-             $valor = $helper->byteToString($valor);
-           }
-        }
-        
-        
-      
-       /* $filtered = $datos->map(function ($conv) {
+    
+         $filtered = $datos->map(function ($conv) {
             return collect($conv->toArray())
-                ->only( ['descripcion_Conv','fecha_Conv','estado_Conv','usuReg_Conv','fecReg_Conv'])
+                ->only( ['descripcion_Conv',/*'imagen_Conv',*/'fecha_Conv','estado_Conv','usuReg_Conv','fecReg_Conv'])
                 ->all();
-        });*/
+        });
         
-        return $datos;
+        return $filtered;
     }
 }
