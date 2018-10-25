@@ -69,7 +69,9 @@ Route::get('resoluciones', 'resolucionController@index');//ok
 //Rutas de resultadoBE
 Route::get('resultados', 'resultadoController@index');//ok
 //Rutas de suscriptorBE
-Route::post('suscriptor', 'suscriptorController@insert');
+Route::post('suscriptores', 'suscriptorController@insert');
+Route::put('suscriptores/{id}', 'suscriptorController@update');
+Route::delete('suscriptores/{id}', 'suscriptorController@delete');
 //Rutas de tesisBE
 //Rutas de tipoAsistenteBE
 Route::get('tipoAsistentes', 'tipoAsistenteController@index');

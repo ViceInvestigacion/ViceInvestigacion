@@ -13,10 +13,12 @@ class convocatoriaController extends Controller
     {
         $helper = new helpers();
         $datos = convocatoriaBE::all();
-    
+        foreach ($datos as $conv ) {
+            $conv->imagen_Conv = base64_encode($conv->imagen_Conv);
+        }
          $filtered = $datos->map(function ($conv) {
             return collect($conv->toArray())
-                ->only( ['descripcion_Conv',/*'imagen_Conv',*/'fecha_Conv','estado_Conv','usuReg_Conv','fecReg_Conv'])
+                ->only( ['descripcion_Conv','imagen_Conv','fecha_Conv','estado_Conv','usuReg_Conv','fecReg_Conv'])
                 ->all();
         });
         
