@@ -64,6 +64,8 @@ Route::get('noticias', 'noticiaController@index');//ok
 //Rutas de profesionBE
 Route::get('profesiones', 'profesionController@index');//ok
 //Rutas de proyectoBE
+Route::get('proyectos', 'proyectoController@index');//ok
+Route::get('proyectos/{id}','proyectoController@find_Escuela');
 //Rutas de resolucionBE
 Route::get('resoluciones', 'resolucionController@index');//ok
 //Rutas de resultadoBE
