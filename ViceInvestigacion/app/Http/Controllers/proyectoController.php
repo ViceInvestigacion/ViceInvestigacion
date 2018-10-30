@@ -14,11 +14,45 @@ class proyectoController extends Controller
     }
     public function find_Escuela($id)
     {
-       return  proyectoBE::where('escuelaId_Proyecto', $id)->get();
+        if($id !='all')
+        {
+            if(intval($id)!='')
+            {
+                $strlen = strlen($id);
+                $id= intval($id);
+                if($strlen==strlen($id))
+                {
+                    return  proyectoBE::where('escuelaId_Proyecto', $id)->get();
+                }   
+            }
+        }
+        else{
+           
+            return proyectoBE::all();
+        }  
        
     }
-    public function find_Titulo (Request $titulo)
+    public function find_Titulo ($id,$title)
     {
-        return  proyectoBE::where('titulo_Proyecto', 'LIKE', '%'.$titulo.'%')->get();
+        if($id !='all')
+        {
+            if(intval($id)!='')
+            {
+                $strlen = strlen($id);
+                $id= intval($id);
+                if($strlen==strlen($id))
+                {
+                    return  proyectoBE::where([
+                        ['escuelaId_Proyecto', $id],
+                        ['titulo_Proyecto', 'LIKE', '%'.$title.'%']
+                    ])->get();
+                }   
+            }
+        }
+        else{
+           
+            return  proyectoBE::where('titulo_Proyecto', 'LIKE', '%'.$title.'%')->get();
+        }
+       
     }
 }

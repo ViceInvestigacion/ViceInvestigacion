@@ -41,6 +41,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //Rutas de accesoBE 
 //Rutas de asistenteBE
+Route::post('asistentes', 'asistenteController@insert');
 //Rutas de comunidadAutoBE
 //Rutas de convocatoriaBE
 Route::get('convocatorias','convocatoriaController@index');//ok
@@ -57,6 +58,7 @@ Route::get('facultades', 'facultadController@index');//ok
 Route::get('noticias', 'noticiaController@index');//ok
 //Rutas de objetivoBE
 //Rutas de pagoBE
+Route::get('pagos/{id}/','pagoController@find_Pago');
 //Rutas de personalBE
 
 //Rutas de ponenteBE
@@ -65,7 +67,8 @@ Route::get('noticias', 'noticiaController@index');//ok
 Route::get('profesiones', 'profesionController@index');//ok
 //Rutas de proyectoBE
 Route::get('proyectos', 'proyectoController@index');//ok
-Route::get('proyectos/{id}','proyectoController@find_Escuela');
+Route::get('proyectos/{id}','proyectoController@find_Escuela');//ok
+Route::get('proyectos/{id}/{title}','proyectoController@find_Titulo');//ok
 //Rutas de resolucionBE
 Route::get('resoluciones', 'resolucionController@index');//ok
 //Rutas de resultadoBE
