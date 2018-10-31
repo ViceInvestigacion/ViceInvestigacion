@@ -7,7 +7,7 @@ use App\asistenteBE;
 use App\eventoAsistenteBE;
 use App\pagoBE;
 
-class asistenteController extends Controller
+class asistenteController  extends helpers
 {
     public function index ()
     {
@@ -16,10 +16,9 @@ class asistenteController extends Controller
     }
     public function insert(Request $request)
     {
-
-       //$asistente = asistenteBE::create($request->getContent());
-        $request= json_decode($request->getContent(), true);
-        return $request[0]['dni_Asis']; //sacar los campos que se necesitan para insercion 
+         $asistente =  helpers::toAsistenteBE($request);
+        return asistenteBE::create($asistente->toArray());
+        //return $asistente->toArray();
        /*  if($asistente!='')
        {
           $eventoAsistente =  eventoAsistenteBE::create(['evento_EventoAsis' => $request->evento_EventoAsis],['asistente_EventoAsis' =>$asistente->asistente_EventoAsis]);
