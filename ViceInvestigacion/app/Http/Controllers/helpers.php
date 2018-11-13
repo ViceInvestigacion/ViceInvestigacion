@@ -17,7 +17,6 @@ class helpers extends Controller
         $asistente->fecNac_Asis          = $request[0]['fecNac_Asis'];
         $asistente->correo_Asis          = $request[0]['correo_Asis'];
         $asistente->telefono_Asis        = $request[0]['telefono_Asis'];
-        $asistente->tipoAsis_Asis        = $request[0]['tipoAsis_Asis'];
         $asistente->fecReg_Asis          = date("Y-m-d");
         $asistente->usuReg_Asis          = 1;
         $asistente->tipoAsis_Asis        = 1;
@@ -26,19 +25,19 @@ class helpers extends Controller
     public function toPagoBE($request){
         $pago = new pagoBE();
         $request= json_decode($request->getContent(), true);
-        $pago->imagen_Pago     = $request[0]['imagen_Pago'];
+        $pago->imagen_Pago     = '101';//$request[0]['imagen_Pago'];
         $pago->eventoAsis_Pago = $request[0]['eventoAsis_Pago'];
-        $pago->estado_Pago     = $request[0]['estado_Pago'];
-        $pago->usuApr_Pago     = $request[0]['usuApr_Pago'];
-        $pago->fecha_Pago      = $request[0]['fecha_Pago'];
-        $pago->fechaApr_Pago   = $request[0]['fechaApr_Pago'];
+        $pago->estado_Pago     = 1;
+        $pago->usuApr_Pago     = 1;
+        $pago->fecha_Pago      = date("Y-m-d");
+        $pago->fechaApr_Pago   = date("Y-m-d");
         return $pago;
     }
-    public function toEventoAsistente($request){
+    public function toEventoAsistente($request,$idAsis){
         $eventoAsistente = new eventoAsistenteBE();
         $request= json_decode($request->getContent(), true);
-        $eventoAsistente->evento_EventoAsis      = $request[0]['evento_EventoAsis'];
-        $eventoAsistente->asistente_EventoAsis   = $request[0]['asistente_EventoAsis'];
+        $eventoAsistente->evento_EventoAsis      = $request[0]['id_Evento'];
+        $eventoAsistente->asistente_EventoAsis   = $idAsis;
         return $eventoAsistente;
     }
 }
