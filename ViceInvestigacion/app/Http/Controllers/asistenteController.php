@@ -14,23 +14,22 @@ class asistenteController  extends helpers
         return asistenteBE::all();
 
     }
-    public function insert(Request $request)
+    public function insert_asistente(Request $request)
     {
+        //El asistente se registra ingresando sus datos personales
          $asistente =  helpers::toAsistenteBE($request);
-        return asistenteBE::create($asistente->toArray());
-        //return $asistente->toArray();
-       /*  if($asistente!='')
-       {
-          $eventoAsistente =  eventoAsistenteBE::create(['evento_EventoAsis' => $request->evento_EventoAsis],['asistente_EventoAsis' =>$asistente->asistente_EventoAsis]);
-           if($eventoAsistente!='')
-           {
-               $pago =  pagoBE::create(['id_EventoAsis' =>  $eventoAsistente->id_EventoAsis],$request);
-               if($pago!='')
-               {
-                return response()->json("Created",201);
-               }
-           }
-       }
-       return response()->json("Bad Request",400);  */
+         $a         = asistenteBE::create($asistente->toArray());
+         return  $a;
+    }
+
+    public function insert_Pago(Request $request)
+    {
+        // pago
+        $pago =  helpers::toPagoBE($request);
+        $pago->imagen_Pago = base64_encode( $pago->imagen_Pago);
+        $p    =  pagoBE::create($pago->toArray());
+        //asistente pago 
+        $eventoAsistente = helpers::toEventoAsistente($request);
+        $ea = pagoBE::create($eventoAsistente->toArray());
     }
 }

@@ -7,20 +7,8 @@ class helpers extends Controller
 {
 
     public function toAsistenteBE($request){
-        $asistente = new asistenteBE();
-        //$asistente=array('');
+        $asistente = new asistenteBE(); 
         $request= json_decode($request->getContent(), true);
-        /*/array_push($asistente, "dni_Asis:"+$request[0]['dni_Asis']);
-        array_push($asistente, "nombres_Asis:"+$request[0]['nombres_Asis']);
-        array_push($asistente, "apellidos_Asis:"+$request[0]['apellidos_Asis']);
-        array_push($asistente, "especialidad_Asis:"+$request[0]['especialidad_Asis']);
-        array_push($asistente, "universidadProc_Asis:"+$request[0]['universidadProc_Asis']);
-        array_push($asistente, "fecNac_Asis:"+$request[0]['fecNac_Asis']);
-        array_push($asistente, "correo_Asis:"+$request[0]['correo_Asis']);
-        array_push($asistente, "telefono_Asis:"+$request[0]['telefono_Asis']);
-        array_push($asistente, "tipoAsis_Asis:"+$request[0]['tipoAsis_Asis']);*/
-
-
         $asistente->dni_Asis             = $request[0]['dni_Asis'];
         $asistente->nombres_Asis         = $request[0]['nombres_Asis'];
         $asistente->apellidos_Asis       = $request[0]['apellidos_Asis'];
@@ -30,9 +18,8 @@ class helpers extends Controller
         $asistente->correo_Asis          = $request[0]['correo_Asis'];
         $asistente->telefono_Asis        = $request[0]['telefono_Asis'];
         $asistente->tipoAsis_Asis        = $request[0]['tipoAsis_Asis'];
-
-        $asistente->fecReg_Asis        = '31/10/2018';
-        $asistente->usuReg_Asis        = 1;
+        $asistente->fecReg_Asis          = date("Y-m-d");
+        $asistente->usuReg_Asis          = 1;
         $asistente->tipoAsis_Asis        = 1;
         return $asistente;
     }
@@ -48,7 +35,7 @@ class helpers extends Controller
         return $pago;
     }
     public function toEventoAsistente($request){
-        $eventoAsistente = new asistenteBE();
+        $eventoAsistente = new eventoAsistenteBE();
         $request= json_decode($request->getContent(), true);
         $eventoAsistente->evento_EventoAsis      = $request[0]['evento_EventoAsis'];
         $eventoAsistente->asistente_EventoAsis   = $request[0]['asistente_EventoAsis'];

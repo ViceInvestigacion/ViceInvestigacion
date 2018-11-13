@@ -41,7 +41,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //Rutas de accesoBE 
 //Rutas de asistenteBE
-Route::post('asistentes', 'asistenteController@insert');
+Route::post('asistentes', 'asistenteController@insert_asistente');
 //Rutas de comunidadAutoBE
 //Rutas de convocatoriaBE
 Route::get('convocatorias','convocatoriaController@index');//ok
