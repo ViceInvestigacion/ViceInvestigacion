@@ -1,6 +1,6 @@
 (function(){
 
-// Objeto con propiedades de Tab
+// Objeto con propiedades de Tab para eventos
 var propTabs = {
 
 	primer_encabezado: document.getElementById('encabezado_evento').firstElementChild,
