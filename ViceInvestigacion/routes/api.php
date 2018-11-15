@@ -2,8 +2,28 @@
 
 use Illuminate\Http\Request;
 
-use app\facultadBE;
+use App\accesoBE;
+use App\asistenteBE;
+use App\comunidadAutoBE;
+use App\comunidadProyBE;
 use App\convocatoriaBE;
+use App\entidadColaBE;
+use App\facultadBE;
+use App\noticiaBE;
+use App\objetivoBE;
+use App\pagoBE;
+use App\personalBE;
+use App\ponenteBE;
+use App\profesionBE;
+use App\proyectoBE;
+use App\resolucionBE;
+use App\resultadoBE;
+use App\suscriptorBE;
+use App\tesisBE;
+use App\tipoAsistenteBE;
+use App\tipoEventoBE;
+use App\universidadBE;
+use App\usuarioBE;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +40,53 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 //Rutas de accesoBE 
-//Rutas de accesoBE
-//Rutas de accesoBE
-//Rutas de accesoBE
-//Rutas de accesoBE
-//Rutas de accesoBE
-//Rutas de accesoBE
+//Rutas de asistenteBE
+Route::post('asistentes', 'asistenteController@insert_asistente');
+Route::post('asistentesPago', 'asistenteController@insert_pago');
+//Rutas de comunidadAutoBE
+//Rutas de convocatoriaBE
+Route::get('convocatorias','convocatoriaController@index');//ok
+//Rutas de entidadBE
+//Rutas de escuelaBE
+Route::get('escuelas', 'escuelaController@index');//ok
+//Rutas de especialidadBE
+Route::get('especialidades','especialidadController@index');//ok
+//Rutas de eventoBE .
+Route::get('eventos', 'eventoController@index');//ok
+//Rutas de facultadBE
+Route::get('facultades', 'facultadController@index');//ok
+//Rutas de noticiaBE
+Route::get('noticias', 'noticiaController@index');//ok
+//Rutas de objetivoBE
+//Rutas de pagoBE
+Route::get('pagos/{id}/','pagoController@find_Pago');
+//Rutas de personalBE
+
+//Rutas de ponenteBE
+
+//Rutas de profesionBE
+Route::get('profesiones', 'profesionController@index');//ok
+//Rutas de proyectoBE
+Route::get('proyectos', 'proyectoController@index');//ok
+Route::get('proyectos/{id}','proyectoController@find_Escuela');//ok
+Route::get('proyectos/{id}/{title}','proyectoController@find_Titulo');//ok
+//Rutas de resolucionBE
+Route::get('resoluciones', 'resolucionController@index');//ok
+//Rutas de resultadoBE
+Route::get('resultados', 'resultadoController@index');//ok
+//Rutas de suscriptorBE
+Route::post('suscriptores', 'suscriptorController@insert');
+Route::put('suscriptores/{id}', 'suscriptorController@update');
+Route::delete('suscriptores/{id}', 'suscriptorController@delete');
+//Rutas de tesisBE
+//Rutas de tipoAsistenteBE
+Route::get('tipoAsistentes', 'tipoAsistenteController@index');
+//Rutas de tipoEventoBE
+Route::get('tipoEvento', 'tipoEventoController@index');//ok
+//Rutas de universidadBE 
+
+//Rutas de usuarioBE
 
 
-//Rutas de ConvocatoriaBE
-Route::get('convocatorias', 'convocatoriaController@index');
-//Rutas de FacultadBE 
-Route::get('facultades', 'facultadController@index');
 
 
