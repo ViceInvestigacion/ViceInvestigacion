@@ -19,14 +19,15 @@ class asistenteController  extends helpers
         /*
             [
                 {
-                    "dni_Asis" :"75119312",
+                     "dni_Asis" :"75119312",
                     "nombres_Asis":"huaranga",
                     "apellidos_Asis":"Carreño",
                     "especialidad_Asis":"Sistemas",
                     "universidadProc_Asis":"1",
                     "fecNac_Asis":"01/08/1996",
                     "correo_Asis":"roviseis@gmail.com",
-                    "telefono_Asis":"931697515"
+                    "telefono_Asis":"931697515",
+                    "id_Evento":"3"
                 }
             ]
         */
@@ -36,23 +37,34 @@ class asistenteController  extends helpers
          $eventoAsistente   = helpers::toEventoAsistente($request,$a->id);
          $ea  = eventoAsistenteBE::create($eventoAsistente->toArray());
          return response()->json($ea, 200); 
+        /*
+            [
+                {
+                    "evento_EventoAsis": "3",
+                    "asistente_EventoAsis": 20,
+                    "id": 3
+                }
+            ]
+        */
+
     }
 
     public function insert_Pago(Request $request)
     {
-        // pago
-        //$pago =  helpers::toPagoBE($request);
-        //$pago->imagen_Pago = base64_encode( $pago->imagen_Pago);
-        //$p    =  pagoBE::create($pago->toArray());
-        //asistente pago 
-        //$eventoAsistente = helpers::toEventoAsistente($request);
-        //$eventoAsistente->evento_EventoAsis = $p->eventoAsis_Pago;
-        //$ea = pagoBE::create($eventoAsistente->toArray());
+       
     }
-    public function find_eventoPagoPendiente(Request $request)
+    public function find_asistente($correo)
     {
-        $request= json_decode($request->getContent(), true);
-        $correoAsistente->evento_EventoAsis      = $request[0]['correo_Asis'];
+        return  asistenteBE::where('correo_Asis', $correo)->get();
+        
+    }
+    public function find_asistentePago($correo)
+    {
+        return  DB::table('asistenteBE')->join('eventoAsistenteBE', 'asistenteBE.id_Asis', '=', 'eventoAsistenteBE.id_Asis')
+        ->join('pagoBE', 'eventoAsistenteBErs.id_Pago', '=', 'pagoBE.id_Pago')
+        ->select('eventoAsistenteBE.*')
+        ->get();
+       
         
     }
 
