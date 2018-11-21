@@ -49,9 +49,42 @@ class asistenteController  extends helpers
 
     }
 
-    public function insert_Pago(Request $request)
+    public function insert_Pago(Request $request,$correo,$id_EventoAsistente)
     {
-       
+        //localhost:8000/api/asistentes/roviseis@gmail.com/Pago/3
+        /* body 
+            [
+                {
+                    "imagen_Pago" :"75119312"
+                }
+            ]
+        */
+        $pago   = helpers::toPagoBE($request);
+        $pago->eventoAsis_Pago=$id_EventoAsistente;
+        $p      = pagoBE::create($pago->toArray());
+        $resultado = eventoAsistenteBE::join('eventoBE', 'eventoAsistenteBE.evento_EventoAsis', '=', 'eventoBE.id_Evento')
+        ->join('pagoBE', 'pagoBE.eventoAsis_Pago', '=', 'eventoAsistenteBE.id_EventoAsis')
+        ->join('asistenteBE','eventoAsistenteBE.asistente_EventoAsis','=','asistenteBE.id_Asis')
+        ->select(
+            'asistenteBE.nombres_Asis',
+            'asistenteBE.apellidos_Asis', 
+            'asistenteBE.dni_Asis', 
+            'asistenteBE.correo_Asis', 
+            'eventoBE.nombre_Evento', 
+            'eventoBE.fecInicio_Evento', 
+            'eventoBE.fecFin_Evento', 
+            'pagoBE.fecha_Pago', 
+            'pagoBE.imagen_Pago'
+        )
+        ->where([
+            ['pagoBE.id_Pago',$p->id]
+        ])
+        ->get();  
+
+
+        return response()->json($resultado, 200); 
+    
+    
     }
     public function find_asistente($correo)
     {
@@ -60,12 +93,24 @@ class asistenteController  extends helpers
     }
     public function find_asistentePago($correo)
     {
-        return  DB::table('asistenteBE')->join('eventoAsistenteBE', 'asistenteBE.id_Asis', '=', 'eventoAsistenteBE.id_Asis')
-        ->join('pagoBE', 'eventoAsistenteBErs.id_Pago', '=', 'pagoBE.id_Pago')
-        ->select('eventoAsistenteBE.*')
-        ->get();
-       
-        
+        return  asistenteBE::join('eventoAsistenteBE', 'asistenteBE.id_Asis', '=', 'eventoAsistenteBE.asistente_EventoAsis')
+        ->Leftjoin('pagoBE', 'eventoAsistenteBE.id_EventoAsis', '=', 'pagoBE.eventoAsis_Pago')
+        ->join('eventoBE','eventoAsistenteBE.evento_EventoAsis','=','eventoBE.id_Evento')
+        ->select(
+            'eventoBE.nombre_Evento',
+            'eventoBE.fecInicio_Evento', 
+            'asistenteBE.apellidos_Asis', 
+            'asistenteBE.nombres_Asis', 
+            'asistenteBE.dni_Asis', 
+            'asistenteBE.telefono_Asis', 
+            'eventoAsistenteBE.id_EventoAsis'
+        )
+        ->where([
+            ['pagoBE.id_Pago',null],
+            ['asistenteBE.correo_Asis', $correo],
+            ['eventoBE.fecInicio_Evento','<',date("Y-m-d")],
+        ])
+        ->get();  
     }
 
 }

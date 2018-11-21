@@ -42,14 +42,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Rutas de accesoBE 
 //Rutas de asistenteBE
 Route::post('asistentes', 'asistenteController@insert_asistente');
-Route::post('asistentesPago', 'asistenteController@insert_pago');
+Route::post('asistentes/{correo}/Pago/{id_EventoAsistente}', 'asistenteController@insert_pago');
 Route::get('asistentes/{correo}','asistenteController@find_asistente');//ok
+Route::get('asistentes/{correo}/Pago','asistenteController@find_asistentePago');//ok
 //Rutas de comunidadAutoBE
 //Rutas de convocatoriaBE
 Route::get('convocatorias','convocatoriaController@index');//ok
 //Rutas de entidadBE
 //Rutas de escuelaBE
 Route::get('escuelas', 'escuelaController@index');//ok
+Route::get('escuelas/{facultad}', 'escuelaController@find_escuelas');//ok
 //Rutas de especialidadBE
 Route::get('especialidades','especialidadController@index');//ok
 //Rutas de eventoBE .
@@ -70,15 +72,13 @@ Route::get('profesiones', 'profesionController@index');//ok
 //Rutas de proyectoBE
 Route::get('proyectos', 'proyectoController@index');//ok
 Route::get('proyectos/{id}','proyectoController@find_Escuela');//ok
-Route::get('proyectos/{id}/{title}','proyectoController@find_Titulo');//ok
+Route::get('proyectos/{id}/{titulo}','proyectoController@find_Titulo');//ok
 //Rutas de resolucionBE
 Route::get('resoluciones', 'resolucionController@index');//ok
 //Rutas de resultadoBE
 Route::get('resultados', 'resultadoController@index');//ok
 //Rutas de suscriptorBE
 Route::post('suscriptores', 'suscriptorController@insert');
-Route::put('suscriptores/{id}', 'suscriptorController@update');
-Route::delete('suscriptores/{id}', 'suscriptorController@delete');
 //Rutas de tesisBE
 //Rutas de tipoAsistenteBE
 Route::get('tipoAsistentes', 'tipoAsistenteController@index');

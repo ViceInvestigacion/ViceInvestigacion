@@ -32,7 +32,7 @@ class proyectoController extends Controller
         }  
        
     }
-    public function find_Titulo ($id,$title)
+    public function find_Titulo ($id,$titulo)
     {
         if($id !='all')
         {
@@ -44,14 +44,14 @@ class proyectoController extends Controller
                 {
                     return  proyectoBE::where([
                         ['escuelaId_Proyecto', $id],
-                        ['titulo_Proyecto', 'LIKE', '%'.$title.'%']
+                        ['titulo_Proyecto', 'LIKE', '%'.$titulo.'%']
                     ])->get();
                 }   
             }
         }
         else{
            
-            return  proyectoBE::where('titulo_Proyecto', 'LIKE', '%'.$title.'%')->get();
+            return  proyectoBE::where('titulo_Proyecto', 'LIKE', '%'.$titulo.'%')->get();
         }
        
     }

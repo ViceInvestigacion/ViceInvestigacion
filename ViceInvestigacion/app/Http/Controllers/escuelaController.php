@@ -12,4 +12,9 @@ class escuelaController extends Controller
         return escuelaBE::all();
     }
 
+    public function find_escuelas($facultad)
+    {
+        return  escuelaBE::where('facultadId_Escuela',$facultad)->get();
+    }
+
 }

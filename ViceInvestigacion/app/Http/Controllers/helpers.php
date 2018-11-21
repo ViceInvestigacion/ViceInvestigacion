@@ -25,8 +25,8 @@ class helpers extends Controller
     public function toPagoBE($request){
         $pago = new pagoBE();
         $request= json_decode($request->getContent(), true);
-        $pago->imagen_Pago     = '101';//$request[0]['imagen_Pago'];
-        $pago->eventoAsis_Pago = $request[0]['eventoAsis_Pago'];
+        $pago->imagen_Pago     = 01010101;//$request[0]['imagen_Pago'];
+        $pago->eventoAsis_Pago = '';
         $pago->estado_Pago     = 1;
         $pago->usuApr_Pago     = 1;
         $pago->fecha_Pago      = date("Y-m-d");
