@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\suscriptorBE;
-//include("conexion_sis.php");
 
 class suscriptorController extends Controller
 {

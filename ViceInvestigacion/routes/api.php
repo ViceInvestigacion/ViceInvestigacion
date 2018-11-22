@@ -77,6 +77,7 @@ Route::get('proyectos/{id}/{titulo}','proyectoController@find_Titulo');//ok
 Route::get('resoluciones', 'resolucionController@index');//ok
 //Rutas de resultadoBE
 Route::get('resultados', 'resultadoController@index');//ok
+Route::get('resultados/{idConvocatoria}', 'resultadoController@find_Resultado');//ok
 //Rutas de suscriptorBE
 Route::post('suscriptores', 'suscriptorController@insert');
 //Rutas de tesisBE

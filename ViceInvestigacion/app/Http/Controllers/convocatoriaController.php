@@ -16,7 +16,7 @@ class convocatoriaController extends Controller
         }
          $filtered = $datos->map(function ($conv) {
             return collect($conv->toArray())
-                ->only( ['descripcion_Conv','imagen_Conv','fecha_Conv','estado_Conv','usuReg_Conv','fecReg_Conv'])
+                ->only( ['descripcion_Conv','fecha_Conv','imagen_Conv'])
                 ->all();
         });
         
