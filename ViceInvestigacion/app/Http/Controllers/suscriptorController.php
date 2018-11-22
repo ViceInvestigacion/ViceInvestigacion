@@ -5,23 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\suscriptorBE;
 
-class suscriptorController extends Controller
+class suscriptorController extends helpers
 {
     public function insert(Request $request)
     {
+        $suscriptor   = helpers::toSuscriptor($request);
         $flag=0;
         $suscriptores = suscriptorBE::all();
         foreach ($suscriptores as $susc) {
-          if($request->correo_Susc==$susc->correo_Susc)
+          if($suscriptor->correo_Susc==$susc->correo_Susc)
           {
             $flag=1;
           }  
         }
         if($flag==0)
         {
-          suscriptorBE::create($request->all());
+          suscriptorBE::create($suscriptor->toArray());
+          return response()->json("OK",201);
         }
-        return response()->json("OK",201);
+        else{
+          return response()->json("ya se encuentra suscrito",201);
+        }
     }
 
     public function update(Request $request,$id)
