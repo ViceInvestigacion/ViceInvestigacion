@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\asistenteBE;
 use App\eventoAsistenteBE;
 use App\pagoBE;
+use App\suscriptorBE;
 class helpers extends Controller
 {
 
@@ -39,5 +40,17 @@ class helpers extends Controller
         $eventoAsistente->evento_EventoAsis      = $request[0]['id_Evento'];
         $eventoAsistente->asistente_EventoAsis   = $idAsis;
         return $eventoAsistente;
+    }
+
+    public function toSuscriptor($request){
+        $suscriptor = new suscriptorBE();
+        $request= json_decode($request->getContent(), true);
+        $suscriptor->nombres_Susc      = $request[0]['nombres_Susc'];
+        $suscriptor->apellidos_Susc    = $request[0]['apellidos_Susc'];
+        $suscriptor->correo_Susc       = $request[0]['correo_Susc'];
+        $suscriptor->estado_Susc       = '1';
+        $suscriptor->entidad_Susc      = '1';
+        $suscriptor->profesion_Susc    = '1';//cambiar 
+        return $suscriptor;
     }
 }

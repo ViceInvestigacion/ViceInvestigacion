@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\noticiaBE;
-use App\helpers;
 
 class noticiaController extends Controller
 {
@@ -12,10 +11,12 @@ class noticiaController extends Controller
     {
         $helper = new helpers();
         $datos = noticiaBE::all();
-    
+        foreach ($datos as $noti ) {
+            $noti->imagen_Noticia = base64_encode($noti->imagen_Noticia);
+        }
          $filtered = $datos->map(function ($not) {
             return collect($not->toArray())
-                ->only( ['descripcion_Noticia','fecha_Noticia','estado_Noticia','imagen_Noticia','usuReg_Noticia','fecReg_Noticia'])
+                ->only( ['descripcion_Noticia','fecha_Noticia','imagen_Noticia'])
                 ->all();
         });
         
