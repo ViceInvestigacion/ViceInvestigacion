@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\asistenteBE;
 use App\eventoAsistenteBE;
 use App\pagoBE;
+use App\eventoBE;
 
 class asistenteController  extends helpers
 {
@@ -16,37 +17,39 @@ class asistenteController  extends helpers
     }
     public function insert_asistente(Request $request)
     {
-        /*
-            [
-                {
-                     "dni_Asis" :"75119312",
-                    "nombres_Asis":"huaranga",
-                    "apellidos_Asis":"Carreño",
-                    "especialidad_Asis":"Sistemas",
-                    "universidadProc_Asis":"1",
-                    "fecNac_Asis":"01/08/1996",
-                    "correo_Asis":"roviseis@gmail.com",
-                    "telefono_Asis":"931697515",
-                    "id_Evento":"3"
-                }
-            ]
-        */
-        //El asistente se registra ingresando sus datos personales
-         $asistente   = helpers::toAsistenteBE($request);
-         $a           = asistenteBE::create($asistente->toArray());
-         $eventoAsistente   = helpers::toEventoAsistente($request,$a->id);
-         $ea  = eventoAsistenteBE::create($eventoAsistente->toArray());
-         return response()->json($ea, 200); 
-        /*
-            [
-                {
-                    "evento_EventoAsis": "3",
-                    "asistente_EventoAsis": 20,
-                    "id": 3
-                }
-            ]
-        */
-
+         $abe;  
+         $id_asistente;
+         $asistente         = helpers::toAsistenteBE($request);
+         $a                 = asistenteBE::where('correo_Asis',$asistente->correo_Asis)->get();
+         if($a=="[]")
+         {
+            $a              = asistenteBE::create($asistente->toArray());
+            $id_asistente = $a->id;
+         }
+         else
+         {  
+            $id_asistente = $a[0]->id_Asis;
+         }
+         $eventoAsistente   = helpers::toEventoAsistente($request, $id_asistente);
+         $eabe              = eventoAsistenteBE::where([['evento_EventoAsis',$eventoAsistente->evento_EventoAsis],['asistente_EventoAsis',$eventoAsistente->asistente_EventoAsis]])->get();
+         if($eabe=="[]")
+         {
+            $evento = eventoBE::where('id_Evento',$eventoAsistente->evento_EventoAsis)->get();
+            if($evento[0]->capacidadD_Evento>=1)
+            {
+                $eabe           = eventoAsistenteBE::create($eventoAsistente->toArray());
+                // eventoBE::update()
+                return response()->json($eabe, 200);
+            }
+            else
+            {
+                return response()->json("No hay cupos disponibles", 200);
+            }
+         }
+         else{
+            return response()->json("Correo ya se encuentra registrado en este evento", 200);
+         }
+            return response()->json("No se pudo registrar al evento", 200);
     }
 
     public function insert_Pago(Request $request,$correo,$id_EventoAsistente)
