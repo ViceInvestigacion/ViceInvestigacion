@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Poppins" rel="stylesheet">
 	<link rel="stylesheet" href="css/estilos.css">
-	<!--<script src="js/jquery.js"></script>-->
+	<!-- <script src="js/jquery.js"></script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
@@ -47,7 +47,7 @@
 		<div class="menu-bar-movil">
 			<a href="#" class="logo"><img src="img/logo.png" alt=""></a>
 
-			<div class="burger-menu" id="burger-menu">
+			<div class="burger-menu" id="burger_menu">
 				<i class="fa fa-bars" aria-hidden="true"></i>
 			</div>
 
@@ -138,27 +138,33 @@
 
 		<!-- convocatorias -->
 		<section class="convocatoria">
-				<div class="concursos" id="id_divConcurso">
-					<div class="slider" id="slider">
-						<div class="slide foto1"></div>
-					</div>
+			<div class="container">
+			<div class="slider" id="slider">
+					<div class="slide foto1"></div>	
+			</div>
+			<div class="slider" id="slider">
+					<div class="slide foto1"></div>
+			</div>
+			<div class="slider" id="slider">
+					<div class="slide foto1"></div>
+			</div>
+			</div>
+		</section>
+		<section class="convocatoria">
+		<div class="container">	
+			<div class="concursos">
 					<h2>CONCURSOS</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad sit nesciunt suscipit laudantium atque. Dolorem, atque rem quibusdam sint adipisci! Animi doloribus itaque ducimus autem veniam eos modi, ab eaque!.</p>
-				</div>
-				<!--<div class="concursos">
-					<div class="slider" id="slider">
-						<div class="slide foto1"></div>
-					</div>
+					<p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, dicta atque illo ratione corporis molestias, nihil earum libero odit quod tempora, quaerat explicabo officiis magnam in pariatur ullam, ipsum accusantium?</p>
+			</div>
+			<div class="concursos">
 					<h2>CONCURSOS</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi numquam perspiciatis dolore atque? Deserunt eum voluptates vero rem quibusdam, quo aliquam facere totam ipsa esse, sunt obcaecati commodi doloribus blanditiis?</p>
-				</div>
-				<div class="concursos">
-					<div class="slider" id="slider">
-						<div class="slide foto1"></div>
-					</div>
+					<p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, nemo. Officia expedita ea, nulla, repellendus ducimus provident mollitia aut dignissimos optio deleniti aspernatur recusandae adipisci nostrum totam suscipit dolores tenetur.</p>
+			</div>
+			<div class="concursos">
 					<h2>CONCURSOS</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem magni inventore maiores sed assumenda aliquam, dolorem, earum nulla repudiandae, ex asperiores quasi esse quas corrupti quod perspiciatis alias molestiae voluptates!</p>
-				</div>-->
+					<p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus culpa modi assumenda commodi distinctio recusandae a, voluptate maiores eaque illum. Ab dicta neque porro quibusdam nulla ipsa error repellat omnis.</p>
+			</div>
+		</div>	
 		</section>
 		<!-- convocatorias -->
 
@@ -170,7 +176,7 @@
 				</div>
 
 				<div class="contenedor-evento">
-					<ul id="contenedor-evento" class="encabezado-evento">
+					<ul id="encabezado_evento" class="encabezado-evento">
 						<li class="active"><a href="#evento1">Evento1</a></li>
 						<li><a href="#evento2">Evento2</a></li>
 					</ul>
@@ -226,7 +232,7 @@
 									<p>Maecenas iaculis aliquam lectus, in sodales ligula. Nulla facilisis magna.</p>
 								</div>
 								<div class="col der">
-									<p class="precio">$4</p>
+									<p class="precio">fecha2</p>
 								</div>
 							</div>
 
@@ -236,7 +242,7 @@
 									<p>Vestibulum euismod neque id est ultricies pretium. Sed rutrum risus at congue suscipit.</p>
 								</div>
 								<div class="col der">
-									<p class="precio">$6</p>
+									<p class="precio">fecha2</p>
 								</div>
 							</div>
 
@@ -246,7 +252,7 @@
 									<p>Etiam aliquet at mi in aliquet. Duis in arcu sodales, gravida lorem quis.</p>
 								</div>
 								<div class="col der">
-									<p class="precio">$5</p>
+									<p class="precio">fecha2</p>
 								</div>
 							</div>
 
@@ -256,7 +262,7 @@
 									<p>Praesent ac pellentesque urna, ut lacinia erat. Donec in euismod erat. Mauris eu.</p>
 								</div>
 								<div class="col der">
-									<p class="precio">$8</p>
+									<p class="precio">fecha2</p>
 								</div>
 							</div>
 						</div> <!-- Menu Evento2 -->
@@ -268,6 +274,7 @@
 
 		<!-- Publicaciones -->
 		<section id="publicaciones" class="publicaciones">
+			<div class="container">
 			<div id="articulos" class="articulos">
 				<article class="article">
 					<div class="slider" id="slider">
@@ -314,12 +321,27 @@
 					<a href="#">Leer más...</a>
 				</article>
 			</div>
+			</div>
 		</section>
 		<!-- Publicaciones -->
 			
 		<!-- investigaciones-->
-		<section id="investigacion" class="investigacion">
-			
+		<section id="publicaciones" class="investigacion">
+			<div class="container">
+			<div id="articulos" class="articulos">
+				<article class="article">
+					<div class="slider" id="slider">
+						<div class="slide foto1"></div>
+						<div class="slide foto2"></div>
+						<div class="slide foto3"></div>
+					</div>
+					<h3>INVESTIGACIONES</h3>
+					<h2>Título de la Investigación</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quidem ipsam eum corporis, cum temporibus vitae odit a ut nesciunt expedita tempora molestias, ducimus nihil excepturi. Atque sint, quasi amet.</p>
+					<a href="#">Leer más...</a>
+				</article>
+			</div>
+			</div>
 		</section>
 		<!-- investigaciones-->
 
@@ -388,7 +410,7 @@
 			</div>
 	</footer> <!-- Pie de página -->
 		<!-- scripts -->
-	<script src="js/lightbox.js"></script>
+	<!-- <script src="js/lightbox.js"></script> -->
 	<script src="js/bgParallax.js"></script>
 	<script src="js/formulario.js"></script> 
 	<script src="js/menuMovil.js"></script>
