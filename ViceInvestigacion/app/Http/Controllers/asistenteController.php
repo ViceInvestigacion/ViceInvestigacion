@@ -17,10 +17,15 @@ class asistenteController  extends helpers
     }
     public function insert_asistente(Request $request)
     {
-         $abe;  
-         $id_asistente;
-         $asistente         = helpers::toAsistenteBE($request);
-         $a                 = asistenteBE::where('correo_Asis',$asistente->correo_Asis)->get();
+        asistenteBE::beginTransaction();
+        eventoAsistenteBE::beginTransaction();
+        eventoBE::beginTransaction();
+        try{
+            $abe;  
+            $id_asistente;
+            $asistente         = helpers::toAsistenteBE($request);
+            $a                 = asistenteBE::where('correo_Asis',$asistente->correo_Asis)->get();
+
          if($a=="[]")
          {
             $a              = asistenteBE::create($asistente->toArray());
@@ -38,18 +43,39 @@ class asistenteController  extends helpers
             if($evento[0]->capacidadD_Evento>=1)
             {
                 $eabe           = eventoAsistenteBE::create($eventoAsistente->toArray());
-                // eventoBE::update()
+                $evento[0]->capacidadD_Evento = ($evento->capacidadD_Evento)-1; 
+                $evento->save(); 
+                asistenteBE::commit();
+                eventoAsistenteBE::commit();
+                eventoBE::commit();
                 return response()->json($eabe, 200);
             }
             else
             {
+                asistenteBE::rollBack();
+                eventoAsistenteBE::rollBack();
+                eventoBE::rollBack();
                 return response()->json("No hay cupos disponibles", 200);
             }
          }
          else{
+            asistenteBE::rollBack();
+            eventoAsistenteBE::rollBack();
+            eventoBE::rollBack();
             return response()->json("Correo ya se encuentra registrado en este evento", 200);
          }
+            asistenteBE::rollBack();
+            eventoAsistenteBE::rollBack();
+            eventoBE::rollBack();
             return response()->json("No se pudo registrar al evento", 200);
+        } 
+        catch(\Exception $e){
+            asistenteBE::rollBack();
+            eventoAsistenteBE::rollBack();
+            eventoBE::rollBack();
+            return response()->json($e, 200);
+        }
+        
     }
 
     public function insert_Pago(Request $request,$correo,$id_EventoAsistente)
