@@ -7,6 +7,7 @@ use App\asistenteBE;
 use App\eventoAsistenteBE;
 use App\pagoBE;
 use App\eventoBE;
+use DB;
 
 class asistenteController  extends helpers
 {
@@ -17,9 +18,7 @@ class asistenteController  extends helpers
     }
     public function insert_asistente(Request $request)
     {
-        asistenteBE::beginTransaction();
-        eventoAsistenteBE::beginTransaction();
-        eventoBE::beginTransaction();
+        DB::beginTransaction();
         try{
             $abe;  
             $id_asistente;
@@ -35,45 +34,38 @@ class asistenteController  extends helpers
          {  
             $id_asistente = $a[0]->id_Asis;
          }
+         $asistente         = asistenteBE::where('id_Asis',$id_asistente)->first();
          $eventoAsistente   = helpers::toEventoAsistente($request, $id_asistente);
          $eabe              = eventoAsistenteBE::where([['evento_EventoAsis',$eventoAsistente->evento_EventoAsis],['asistente_EventoAsis',$eventoAsistente->asistente_EventoAsis]])->get();
          if($eabe=="[]")
          {
-            $evento = eventoBE::where('id_Evento',$eventoAsistente->evento_EventoAsis)->get();
-            if($evento[0]->capacidadD_Evento>=1)
+            $evento = eventoBE::where('id_Evento',$eventoAsistente->evento_EventoAsis)->first();
+             if($evento->capacidadD_Evento>=1)
             {
                 $eabe           = eventoAsistenteBE::create($eventoAsistente->toArray());
-                $evento[0]->capacidadD_Evento = ($evento->capacidadD_Evento)-1; 
+                $evento->capacidadD_Evento = ($evento->capacidadD_Evento)-1; 
                 $evento->save(); 
-                asistenteBE::commit();
-                eventoAsistenteBE::commit();
-                eventoBE::commit();
-                return response()->json($eabe, 200);
+                DB::commit();
+                Mail::to($asistente->correo_Asis)->send(new MessagesList($call));
+                return response()->json('registrado: ', 200);
             }
             else
             {
-                asistenteBE::rollBack();
-                eventoAsistenteBE::rollBack();
-                eventoBE::rollBack();
+                DB::rollBack();
                 return response()->json("No hay cupos disponibles", 200);
             }
+            return response()->json(($evento->capacidadD_Evento)-1, 200);
          }
          else{
-            asistenteBE::rollBack();
-            eventoAsistenteBE::rollBack();
-            eventoBE::rollBack();
+            DB::rollBack();
             return response()->json("Correo ya se encuentra registrado en este evento", 200);
          }
-            asistenteBE::rollBack();
-            eventoAsistenteBE::rollBack();
-            eventoBE::rollBack();
+            DB::rollBack();
             return response()->json("No se pudo registrar al evento", 200);
         } 
-        catch(\Exception $e){
-            asistenteBE::rollBack();
-            eventoAsistenteBE::rollBack();
-            eventoBE::rollBack();
-            return response()->json($e, 200);
+        catch(\Exceptions $e){
+            DB::rollBack();
+            return response()->json('Error inesperado', 200);
         }
         
     }
