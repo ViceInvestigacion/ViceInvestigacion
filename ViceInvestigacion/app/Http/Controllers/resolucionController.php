@@ -10,15 +10,18 @@ class resolucionController extends Controller
 {
     public function index()
     {
-        $helper = new helpers();
-        $datos = resolucionBE::all();
-    
-         $filtered = $datos->map(function ($not) {
+        try {
+            $helper = new helpers();
+            $datos = resolucionBE::all();
+            $filtered = $datos->map(function ($not) {
             return collect($not->toArray())
                 ->only( ['descripcion_Resolucion'/*,'archivo_Resolucion'*/])
                 ->all();
-        });
-        
-        return $filtered;
+            });
+            return $filtered;
+        }  catch (\Exception $e) {
+            return response()->json('Ocurrió un Error Inesperado', 200);  
+        }
+           
     }
 }

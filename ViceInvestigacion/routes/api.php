@@ -80,6 +80,7 @@ Route::get('resultados', 'resultadoController@index');//ok
 Route::get('resultados/{idConvocatoria}', 'resultadoController@find_Resultado');//ok
 //Rutas de suscriptorBE
 Route::post('suscriptores', 'suscriptorController@insert');
+Route::post('suscriptores/Desusc', 'suscriptorController@update');
 //Rutas de tesisBE
 //Rutas de tipoAsistenteBE
 Route::get('tipoAsistentes', 'tipoAsistenteController@index');

@@ -9,50 +9,61 @@ class proyectoController extends Controller
 {
     public function index()
     {
-        return proyectoBE::all();
-        
+        try {
+         return proyectoBE::all();
+        }  catch (\Exception $e) {
+            return response()->json('Ocurrió un Error Inesperado', 200);  
+        }
     }
     public function find_Escuela($id)
     {
-        if($id !='all')
-        {
-            if(intval($id)!='')
+        try {
+            if($id !='all')
             {
-                $strlen = strlen($id);
-                $id= intval($id);
-                if($strlen==strlen($id))
+                if(intval($id)!='')
                 {
-                    return  proyectoBE::where('escuelaId_Proyecto', $id)->get();
-                }   
+                    $strlen = strlen($id);
+                    $id= intval($id);
+                    if($strlen==strlen($id))
+                    {
+                        return  proyectoBE::where('escuelaId_Proyecto', $id)->get();
+                    }   
+                }
             }
+            else{
+            
+                return proyectoBE::all();
+            }  
+        }  catch (\Exception $e) {
+            return response()->json('Ocurrió un Error Inesperado', 200);  
         }
-        else{
-           
-            return proyectoBE::all();
-        }  
-       
     }
     public function find_Titulo ($id,$titulo)
     {
-        if($id !='all')
-        {
-            if(intval($id)!='')
+        try {
+            if($id !='all')
             {
-                $strlen = strlen($id);
-                $id= intval($id);
-                if($strlen==strlen($id))
+                if(intval($id)!='')
                 {
-                    return  proyectoBE::where([
-                        ['escuelaId_Proyecto', $id],
-                        ['titulo_Proyecto', 'LIKE', '%'.$titulo.'%']
-                    ])->get();
-                }   
+                    $strlen = strlen($id);
+                    $id= intval($id);
+                    if($strlen==strlen($id))
+                    {
+                        return  proyectoBE::where([
+                            ['escuelaId_Proyecto', $id],
+                            ['titulo_Proyecto', 'LIKE', '%'.$titulo.'%']
+                        ])->get();
+                    }   
+                }
             }
+            else{
+            
+                return  proyectoBE::where('titulo_Proyecto', 'LIKE', '%'.$titulo.'%')->get();
+            }
+        }  catch (\Exception $e) {
+            return response()->json('Ocurrió un Error Inesperado', 200);  
         }
-        else{
-           
-            return  proyectoBE::where('titulo_Proyecto', 'LIKE', '%'.$titulo.'%')->get();
-        }
+        
        
     }
 }

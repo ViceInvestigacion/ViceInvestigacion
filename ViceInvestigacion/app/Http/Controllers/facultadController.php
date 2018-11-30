@@ -9,6 +9,11 @@ class facultadController extends Controller
 {
     public function index()
     {
-      return facultadBE::all();
+      try {
+         return facultadBE::all();
+      }  catch (\Exception $e) {
+          return response()->json('Ocurrió un Error Inesperado', 200);  
+      }
+     
     }
 }

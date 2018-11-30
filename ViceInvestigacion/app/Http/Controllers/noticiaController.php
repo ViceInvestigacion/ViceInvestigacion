@@ -9,8 +9,9 @@ class noticiaController extends Controller
 {
     public function index()
     {
+        try {
         $helper = new helpers();
-        $datos = noticiaBE::all();
+        $datos = noticiaBE::where('id_Noticia',1)->get();
         foreach ($datos as $noti ) {
             $noti->imagen_Noticia = base64_encode($noti->imagen_Noticia);
         }
@@ -21,5 +22,8 @@ class noticiaController extends Controller
         });
         
         return $filtered;
+        }  catch (\Exception $e) {
+            return response()->json('Ocurrió un Error Inesperado', 200);  
+        }
     }
 }

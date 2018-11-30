@@ -9,6 +9,7 @@ class eventoController extends Controller
 {
     public function index()
     {
+        try {
         $datos = eventoBE::all();
         $filtered = $datos->map(function ($eve) {
             return collect($eve->toArray())
@@ -16,5 +17,9 @@ class eventoController extends Controller
                 ->all();
         });
         return $datos;
+        }  catch (\Exception $e) {
+            return response()->json('Ocurrió un Error Inesperado', 200);  
+        }
+        
     }
 }
