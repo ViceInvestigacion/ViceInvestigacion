@@ -53,4 +53,10 @@ class helpers extends Controller
         $suscriptor->profesion_Susc    = '1';//cambiar 
         return $suscriptor;
     }
+
+    // try {
+    //     
+    // }  catch (\Exception $e) {
+    //     return response()->json('Ocurrió un Error Inesperado', 200);  
+    // }
 }
