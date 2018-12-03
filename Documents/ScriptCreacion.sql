@@ -436,7 +436,22 @@ CREATE TABLE suscriptorBE (
   PRIMARY KEY (id_Susc),
   CONSTRAINT fk_SuscriptorBE_ProfesionBE1 FOREIGN KEY (profesion_Susc) REFERENCES profesionBE (id_prof)
 ) ;
-
+create table fondoGobBE
+(
+	id_fondoGob int primary key identity(1,1),
+	descripcion_fondoGob varchar(50), 
+	estado_fondoGob int
+)
+;
+create table fondoGProyBE
+(
+	id_FGP int primary key identity(1,1),
+	idProy int ,
+	idFondo int 
+	foreign key(idProy) references dbo.proyectoBE(id_Proyecto),
+	foreign key(idFondo) references fondoGobBE(id_fondoGob)
+)
+;
 
 
 

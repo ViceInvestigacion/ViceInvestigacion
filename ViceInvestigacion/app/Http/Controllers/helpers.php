@@ -59,13 +59,5 @@ class helpers extends Controller
     // }  catch (\Exception $e) {
     //     return response()->json('Ocurrió un Error Inesperado', 200);  
     // }
-    /*select count(titulo_Proyecto)as Nro_Proyectos,nombre_Facu ,nombre_CA
-    from proyectoBE inner join dbo.comunidadProyBE
-    on comunidadProyBE.proyecto_CP = proyectoBE.id_Proyecto inner join dbo.comunidadAutoBE
-    on comunidadAutoBE.id_CA = comunidadProyBE.comunidad_CP inner join dbo.escuelaBE
-    on proyectoBE.escuelaId_Proyecto = escuelaBE.id_Escuela inner join facultadBE
-    on facultadBE.id_Facu = escuelaBE.facultadId_Escuela
-    where estado_Proyecto  = 1 
-    group by nombre_Facu,nombre_CA
-     */
+   
 }
