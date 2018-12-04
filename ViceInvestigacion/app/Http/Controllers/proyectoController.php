@@ -68,7 +68,7 @@ class proyectoController extends Controller
         
        
     }
-    public function estadistica($entidad) //FOCAM o FEDU 
+    public function estadistica() //FOCAM o FEDU 
     {
         try {
             $resultado;

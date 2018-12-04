@@ -91,7 +91,7 @@ Route::get('tipoEvento', 'tipoEventoController@index');//ok
 //Rutas de usuarioBE
 
 //Rutas de estadisticas
-Route::get('estadisticas/proyectos/{entidad}','proyectoController@estadistica');
+Route::get('estadisticas/proyectos','proyectoController@estadistica');
 
 
 
