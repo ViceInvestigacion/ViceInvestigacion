@@ -8,6 +8,10 @@ class universidadController extends Controller
 {
     public function index()
     {
-        return universidadBE::all();
+        try {
+            return universidadBE::all();
+        }  catch (\Exception $e) {
+            return response()->json('Ocurrió un Error Inesperado', 200);  
+        }
     }
 }

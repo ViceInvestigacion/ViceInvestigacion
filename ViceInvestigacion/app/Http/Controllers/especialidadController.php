@@ -9,6 +9,11 @@ class especialidadController extends Controller
 {
     public function index()
     {
+        try {
         return especialidadBE::all();
+        }  catch (\Exception $e) {
+            return response()->json('Ocurrió un Error Inesperado', 200);  
+        }
+        
     }
 }

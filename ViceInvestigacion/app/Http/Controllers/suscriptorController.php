@@ -9,35 +9,48 @@ class suscriptorController extends helpers
 {
     public function insert(Request $request)
     {
-        $suscriptor   = helpers::toSuscriptor($request);
-        $flag=0;
-        $suscriptores = suscriptorBE::all();
-        foreach ($suscriptores as $susc) {
-          if($suscriptor->correo_Susc==$susc->correo_Susc)
+        try {
+          $suscriptor   = helpers::toSuscriptor($request);
+          $flag=0;
+          $suscriptores = suscriptorBE::where('correo_Susc',$suscriptor->correo_Susc)->first();
+          if(empty($suscriptores))
           {
-            $flag=1;
+            suscriptorBE::create($suscriptor->toArray());
+            return response()->json("OK",201);    
           }  
+          else{
+            if($suscriptores->estado_Susc==0)
+            {
+              $suscriptores->estado_Susc =1;
+              $suscriptores->save();
+              return response()->json("OK",201);   
+            }
+            else{
+              return response()->json("ya se encuentra suscrito",201);
+            }
+          }
+        }  catch (\Exception $e) {
+            return response()->json( $e, 200);  
         }
-        if($flag==0)
+    }
+
+    public function update(Request $request)
+    {
+      try {
+        $request= json_decode($request->getContent(), true);
+        $suscriptor   = suscriptorBE::where('correo_Susc',$request[0]['correo_Susc'])->first();
+        if(!empty($suscriptor))
         {
-          suscriptorBE::create($suscriptor->toArray());
-          return response()->json("OK",201);
+          $suscriptor->estado_Susc = 0;
+          $suscriptor->save();
+          return response()->json( 'desuscripcion correcta', 200);  
         }
         else{
-          return response()->json("ya se encuentra suscrito",201);
+          return response()->json( 'Correo no se encuentra registrado', 200);  
         }
-    }
-
-    public function update(Request $request,$id)
-    {
-        $suscriptor = suscriptorBE::findOrFail($id);
-        $suscriptor->update($request->all());
-        return response()->json($suscriptor, 200);
-    }
-
-    public function delete(Request $request,$id)
-    {
-        $suscriptor = suscriptorBE::findOrFail($id);
-        $suscriptor->delete();
+      }  catch (\Exception $e) {
+        return response()->json('Ocurrió un Error Inesperado', 200);  
+      }
+     
     }
 }

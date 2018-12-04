@@ -41,7 +41,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //Rutas de accesoBE 
 //Rutas de asistenteBE
-Route::post('asistentes', 'asistenteController@insert_asistente');
+Route::post('asistentes', 'asistenteController@insert_asistente');//ok
 Route::post('asistentes/{correo}/Pago/{id_EventoAsistente}', 'asistenteController@insert_pago');
 Route::get('asistentes/{correo}','asistenteController@find_asistente');//ok
 Route::get('asistentes/{correo}/Pago','asistenteController@find_asistentePago');//ok
@@ -80,6 +80,7 @@ Route::get('resultados', 'resultadoController@index');//ok
 Route::get('resultados/{idConvocatoria}', 'resultadoController@find_Resultado');//ok
 //Rutas de suscriptorBE
 Route::post('suscriptores', 'suscriptorController@insert');
+Route::post('suscriptores/Desusc', 'suscriptorController@update');
 //Rutas de tesisBE
 //Rutas de tipoAsistenteBE
 Route::get('tipoAsistentes', 'tipoAsistenteController@index');
@@ -88,6 +89,10 @@ Route::get('tipoEvento', 'tipoEventoController@index');//ok
 //Rutas de universidadBE 
 
 //Rutas de usuarioBE
+
+//Rutas de estadisticas
+Route::get('estadisticas/proyectos','proyectoController@estadistica');
+
 
 
 

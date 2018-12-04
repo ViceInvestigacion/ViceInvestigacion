@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\asistenteBE;
 use App\eventoAsistenteBE;
 use App\pagoBE;
+use App\eventoBE;
+use DB;
 
 class asistenteController  extends helpers
 {
@@ -16,84 +18,119 @@ class asistenteController  extends helpers
     }
     public function insert_asistente(Request $request)
     {
-        /*
-            [
-                {
-                     "dni_Asis" :"75119312",
-                    "nombres_Asis":"huaranga",
-                    "apellidos_Asis":"Carreño",
-                    "especialidad_Asis":"Sistemas",
-                    "universidadProc_Asis":"1",
-                    "fecNac_Asis":"01/08/1996",
-                    "correo_Asis":"roviseis@gmail.com",
-                    "telefono_Asis":"931697515",
-                    "id_Evento":"3"
-                }
-            ]
-        */
-        //El asistente se registra ingresando sus datos personales
-         $asistente   = helpers::toAsistenteBE($request);
-         $a           = asistenteBE::create($asistente->toArray());
-         $eventoAsistente   = helpers::toEventoAsistente($request,$a->id);
-         $ea  = eventoAsistenteBE::create($eventoAsistente->toArray());
-         return response()->json($ea, 200); 
-        /*
-            [
-                {
-                    "evento_EventoAsis": "3",
-                    "asistente_EventoAsis": 20,
-                    "id": 3
-                }
-            ]
-        */
+        DB::beginTransaction();
+        try{
+            $abe;  
+            $id_asistente;
+            $asistente         = helpers::toAsistenteBE($request);
+            $a                 = asistenteBE::where('correo_Asis',$asistente->correo_Asis)->get();
 
+         if($a=="[]")
+         {
+            $a              = asistenteBE::create($asistente->toArray());
+            $id_asistente = $a->id;
+         }
+         else
+         {  
+            $id_asistente = $a[0]->id_Asis;
+         }
+         $asistente         = asistenteBE::where('id_Asis',$id_asistente)->first();
+         $eventoAsistente   = helpers::toEventoAsistente($request, $id_asistente);
+         $eabe              = eventoAsistenteBE::where([['evento_EventoAsis',$eventoAsistente->evento_EventoAsis],['asistente_EventoAsis',$eventoAsistente->asistente_EventoAsis]])->get();
+         if($eabe=="[]")
+         {
+            $evento = eventoBE::where('id_Evento',$eventoAsistente->evento_EventoAsis)->first();
+             if($evento->capacidadD_Evento>=1)
+            {
+                $eabe           = eventoAsistenteBE::create($eventoAsistente->toArray());
+                $evento->capacidadD_Evento = ($evento->capacidadD_Evento)-1; 
+                $evento->save(); 
+                DB::commit();
+               // Mail::to($asistente->correo_Asis)->send(new MessagesList($call));
+                return response()->json('registrado: ', 200);
+            }
+            else
+            {
+                DB::rollBack();
+                return response()->json("No hay cupos disponibles", 200);
+            }
+            return response()->json(($evento->capacidadD_Evento)-1, 200);
+         }
+         else{
+            DB::rollBack();
+            return response()->json("Correo ya se encuentra registrado en este evento", 200);
+         }
+            DB::rollBack();
+            return response()->json("No se pudo registrar al evento", 200);
+        } 
+        catch(\Exception $e){
+            DB::rollBack();
+            return response()->json('Error inesperado', 200);
+        }
+        
     }
 
     public function insert_Pago(Request $request,$correo,$id_EventoAsistente)
     {
-        //localhost:8000/api/asistentes/roviseis@gmail.com/Pago/3
-        /* body 
-            [
+        DB::beginTransaction();
+        try {
+            $pago   = helpers::toPagoBE($request);
+            $pago->eventoAsis_Pago=$id_EventoAsistente;
+           
+            $var1  = eventoAsistenteBE::Where('id_EventoAsis',$id_EventoAsistente)->first();
+            if ($var1)
+            {
+                $var = pagoBe::Where('eventoAsis_Pago',$id_EventoAsistente)->first();
+                if(empty($var))
                 {
-                    "imagen_Pago" :"75119312"
+                    $p      = pagoBE::create($pago->toArray());
+                    $resultado = eventoAsistenteBE::join('eventoBE', 'eventoAsistenteBE.evento_EventoAsis', '=', 'eventoBE.id_Evento')
+                    ->join('pagoBE', 'pagoBE.eventoAsis_Pago', '=', 'eventoAsistenteBE.id_EventoAsis')
+                    ->join('asistenteBE','eventoAsistenteBE.asistente_EventoAsis','=','asistenteBE.id_Asis')
+                    ->select(
+                        'asistenteBE.nombres_Asis',
+                        'asistenteBE.apellidos_Asis', 
+                        'asistenteBE.dni_Asis', 
+                        'asistenteBE.correo_Asis', 
+                        'eventoBE.nombre_Evento', 
+                        'eventoBE.fecInicio_Evento', 
+                        'eventoBE.fecFin_Evento', 
+                        'pagoBE.fecha_Pago', 
+                        'pagoBE.imagen_Pago'
+                    )
+                    ->where([
+                        ['pagoBE.id_Pago',$p->id]
+                    ])
+                    ->get(); 
+                    DB::commit(); 
+                    return response()->json($resultado, 200);
                 }
-            ]
-        */
-        $pago   = helpers::toPagoBE($request);
-        $pago->eventoAsis_Pago=$id_EventoAsistente;
-        $p      = pagoBE::create($pago->toArray());
-        $resultado = eventoAsistenteBE::join('eventoBE', 'eventoAsistenteBE.evento_EventoAsis', '=', 'eventoBE.id_Evento')
-        ->join('pagoBE', 'pagoBE.eventoAsis_Pago', '=', 'eventoAsistenteBE.id_EventoAsis')
-        ->join('asistenteBE','eventoAsistenteBE.asistente_EventoAsis','=','asistenteBE.id_Asis')
-        ->select(
-            'asistenteBE.nombres_Asis',
-            'asistenteBE.apellidos_Asis', 
-            'asistenteBE.dni_Asis', 
-            'asistenteBE.correo_Asis', 
-            'eventoBE.nombre_Evento', 
-            'eventoBE.fecInicio_Evento', 
-            'eventoBE.fecFin_Evento', 
-            'pagoBE.fecha_Pago', 
-            'pagoBE.imagen_Pago'
-        )
-        ->where([
-            ['pagoBE.id_Pago',$p->id]
-        ])
-        ->get();  
-
-
-        return response()->json($resultado, 200); 
-    
-    
+                else
+                {
+                    return response()->json('Pago ya registrado', 200);
+                }
+            }
+            else{
+                return response()->json('Evento-Asistente No existe', 200);
+            }   
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json('Ocurrió un Error Inesperado', 200);
+        }
     }
+
     public function find_asistente($correo)
     {
-        return  asistenteBE::where('correo_Asis', $correo)->get();
-        
+        try {
+            return  asistenteBE::where('correo_Asis', $correo)->get();   
+        }  catch (\Exception $e) {
+            return response()->json('Ocurrió un Error Inesperado', 200);  
+        }
     }
     public function find_asistentePago($correo)
     {
-        return  asistenteBE::join('eventoAsistenteBE', 'asistenteBE.id_Asis', '=', 'eventoAsistenteBE.asistente_EventoAsis')
+        try {
+            return  asistenteBE::join('eventoAsistenteBE', 'asistenteBE.id_Asis', '=', 'eventoAsistenteBE.asistente_EventoAsis')
         ->Leftjoin('pagoBE', 'eventoAsistenteBE.id_EventoAsis', '=', 'pagoBE.eventoAsis_Pago')
         ->join('eventoBE','eventoAsistenteBE.evento_EventoAsis','=','eventoBE.id_Evento')
         ->select(
@@ -111,6 +148,10 @@ class asistenteController  extends helpers
             ['eventoBE.fecInicio_Evento','<',date("Y-m-d")],
         ])
         ->get();  
+        }  catch (\Exception $e) {
+            return response()->json('Ocurrió un Error Inesperado', 200);  
+        }
+       
     }
 
 }
