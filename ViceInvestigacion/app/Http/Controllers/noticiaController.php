@@ -11,19 +11,10 @@ class noticiaController extends Controller
     {
         try {
         $helper = new helpers();
-        $datos = noticiaBE::where('id_Noticia',1)->get();
-        foreach ($datos as $noti ) {
-            $noti->imagen_Noticia = base64_encode($noti->imagen_Noticia);
-        }
-         $filtered = $datos->map(function ($not) {
-            return collect($not->toArray())
-                ->only( ['descripcion_Noticia','fecha_Noticia','imagen_Noticia'])
-                ->all();
-        });
-        
-        return $filtered;
+        $datos = noticiaBE::where('estado_Noticia',1)->get();
+        return response()->json( $datos , 200);  
         }  catch (\Exception $e) {
-            return response()->json('Ocurrió un Error Inesperado', 200);  
+            return response()->json( $e, 200);  
         }
     }
 }
