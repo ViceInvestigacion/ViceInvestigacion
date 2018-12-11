@@ -11,9 +11,6 @@ class convocatoriaController extends Controller
     {
         try {
             $datos = convocatoriaBE::where('estado_Conv',1)->get();
-            foreach ($datos as $conv ) {
-                $conv->imagen_Conv = base64_encode($conv->imagen_Conv);
-            }
              $filtered = $datos->map(function ($conv) {
                 return collect($conv->toArray())
                     ->only( ['descripcion_Conv','fecha_Conv','imagen_Conv'])

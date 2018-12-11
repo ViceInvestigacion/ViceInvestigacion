@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class nosotrosBE extends Model
 {
-    protected $table = 'escuelaBE';
+    protected $table = 'nosotrosBE';
     public $timestamps = false;
-    protected $fillable = ['nombre_Escuela','facultadId_Escuela'];
+    protected $fillable = ['descripcion_Nos','vision_Nos','mision_Nos','organigrama_Nos','directorio_Nos'];
 }

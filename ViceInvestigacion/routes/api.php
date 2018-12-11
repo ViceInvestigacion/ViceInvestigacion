@@ -58,6 +58,8 @@ Route::get('especialidades','especialidadController@index');//ok
 Route::get('eventos', 'eventoController@index');//ok
 //Rutas de facultadBE
 Route::get('facultades', 'facultadController@index');//ok
+//Rutas Nosotros
+Route::get('nosotros', 'nosotrosController@index');//ok
 //Rutas de noticiaBE
 Route::get('noticias', 'noticiaController@index');//ok
 //Rutas de objetivoBE
