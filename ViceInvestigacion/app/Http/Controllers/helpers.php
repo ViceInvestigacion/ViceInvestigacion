@@ -4,6 +4,8 @@ use App\asistenteBE;
 use App\eventoAsistenteBE;
 use App\pagoBE;
 use App\suscriptorBE;
+use App\messageBE;
+
 class helpers extends Controller
 {
 
@@ -53,7 +55,14 @@ class helpers extends Controller
         $suscriptor->profesion_Susc    = '1';//cambiar 
         return $suscriptor;
     }
-
+    public function toMessage($request){
+        $message = new messageBE();
+        $request = json_decode($request->getContent(), true);
+        $message->name     = $request[0]['name'];
+        $message->email    = $request[0]['email'];
+        $message->message  = $request[0]['message'];
+        return $message;
+    }
     // try {
     //     
     // }  catch (\Exception $e) {

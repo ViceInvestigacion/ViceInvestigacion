@@ -94,6 +94,8 @@ Route::get('tipoEvento', 'tipoEventoController@index');//ok
 
 //Rutas de estadisticas
 Route::get('estadisticas/proyectos','proyectoController@estadistica');
+//Rutas Mensajes
+Route::post('message', 'messageController@send_message');//ok
 
 
 
