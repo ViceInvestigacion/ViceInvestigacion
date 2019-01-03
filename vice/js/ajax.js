@@ -1,16 +1,20 @@
 
 $(document).ready(function(){
 	
+	$.when( 
 		$.ajax({
-		  url: "http://localhost:8000/api/convocatorias",
-		  method: "GET",
-		}).done(function(data) {
-		  $.each( data, function( key, value ) {
+			url: "http://localhost:8000/api/convocatorias",
+			method: "GET",
+		  }).done(function(data) {
 			
-				$('.desc').html(value["descripcion_Conv"]);
-				$("#foto1").css("background-image", "url('../ViceAdmin/images/convocatoria/"+value["imagen_Conv"]+"')");
-			});
-		});
+			$.each( data, function( key, value ) {
+				  // $('.desc').html(value["descripcion_Conv"]);
+				  $(".slides").append('<li style="position: relative"><img src="../ViceAdmin/images/convocatoria/'+value["imagen_Conv"]+'"/><div style="position: absolute;bottom: 8px;left: 16px;color: white;">'+value["descripcion_Conv"] +'</div></li>');
+			  });
+		  })
+	).then(function( data, textStatus, jqXHR ) {
+		$('.blueberry').blueberry();
+	});
 
 		$.ajax({
 		  url: "http://localhost:8000/api/nosotros",
