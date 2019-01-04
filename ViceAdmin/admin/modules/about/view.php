@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <i class="fa fa-bell icon-title"></i> Nosotros
+    <i class="fa fa-envira icon-title"></i> Nosotros
     <a class="btn btn-primary btn-social pull-right" href="?module=form_about&form=add">
       <i class="fa fa-plus"></i> Agregar
     </a>
@@ -102,7 +102,7 @@
                       <td width='150'>$data[directorio_Nos]</td>
                       <td width='150'>$data[fecMod_Nos]</td>
                       <td width='200' class='center'>
-                        <img src='../images/about/$data[organigrama_Nos]' height='150'>
+                        <img  src='../images/about/$data[organigrama_Nos]' height='150' alt='$data[organigrama_Nos]'>
                       </td>
                       <td class='center' width='80'>
                         <div>
@@ -110,16 +110,17 @@
                               <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
                           </a>";
             ?>
-                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/about/proses.php?act=delete&id_Nos=<?php echo $data['id_Nos'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
-                              <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
-                          </a>
+                          <a style='color: ' data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/about/proses.php?act=delete&id_Nos=<?php echo $data['id_Nos'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
+                              <i style="color:#fff" class="glyphicon glyphicon-trash"></i></a>
             <?php
               echo "    </div>
                       </td>
+
                     </tr>";
               $no++;
             }
             ?>
+ 
             </tbody>
           </table>
         </div><!-- /.box-body -->

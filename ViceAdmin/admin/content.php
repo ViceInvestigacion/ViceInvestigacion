@@ -31,32 +31,9 @@ else {
 	// -----------------------------------------------------------------------------
 	
 	// Si el contenido es service llamar la vista correspondiente
-	elseif ($_GET['module'] == 'service') {
-		include "modules/service/view.php";
-	}
-	// -----------------------------------------------------------------------------
-	
-	// Si el contenido es portfolio llamar la vista correspondiente
-	elseif ($_GET['module'] == 'portfolio') {
-		include "modules/portfolio/view.php";
-	}
 
-	// Si el contenido es form_portfolio llamar la vista correspondiente
-	elseif ($_GET['module'] == 'form_portfolio') {
-		include "modules/portfolio/form.php";
-	}
 	// -----------------------------------------------------------------------------
 
-
-		// Si el contenido es revista llamar la vista correspondiente
-	elseif ($_GET['module'] == 'revista') {
-		include "modules/revista/view.php";
-	}
-
-	// Si el contenido es form_revista llamar la vista correspondiente
-	elseif ($_GET['module'] == 'form_revista') {
-		include "modules/revista/form.php";
-	}
 	// -----------------------------------------------------------------------------
 
 		// Si el contenido es resolucion llamar la vista correspondiente
@@ -114,7 +91,16 @@ else {
 		include "modules/message/form.php";
 	}
 	// -----------------------------------------------------------------------------
+	// Si el contenido es proyecto llamar la vista correspondiente
+	elseif ($_GET['module'] == 'proyecto') {
+		include "modules/proyecto/view.php";
+	}
 
+	// Si el contenido es form_proyecto llamar la vista correspondiente
+	elseif ($_GET['module'] == 'form_proyecto') {
+		include "modules/proyecto/form.php";
+	}
+	// -----------------------------------------------------------------------------
 	// Si el contenido es password llamar la vista correspondiente
 	elseif ($_GET['module'] == 'password') {
 		include "modules/password/view.php";
@@ -122,6 +108,18 @@ else {
 
 	elseif ($_GET['module'] == 'password') {
 		include "modules/evento/view.php";
+	}
+	// -----------------------------------------------------------------------------
+	// Si el contenido es suscriptor llamar la vista correspondiente
+	elseif ($_GET['module'] == 'suscriptor') {
+		include "modules/suscriptor/view.php";
+	}
+
+	elseif ($_GET['module'] == 'suscriptor') {
+		include "modules/suscriptor/view.php";
+	}
+	elseif ($_GET['module'] == 'suscriptor') {
+		include "modules/suscriptor/reporte.php";
 	}
 }
 ?>

@@ -79,7 +79,7 @@ elseif ($_GET['form']=='edit') {
       $data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
     }
 ?>
-  <!-- tampilan form add data -->
+  <!-- form add data -->
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>

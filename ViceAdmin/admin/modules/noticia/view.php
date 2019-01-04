@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <i class="fa fa-bell icon-title"></i> Noticias
+    <i class="fa fa-newspaper-o icon-title"></i> Noticias
     <a class="btn btn-primary btn-social pull-right" href="?module=form_noticia&form=add">
       <i class="fa fa-plus"></i> Agregar
     </a>
@@ -98,7 +98,7 @@
                       <td width='150'>$data[descripcion_Noticia]</td>
                       <td width='150'>$data[fecha_Noticia]</td>
                       <td width='200' class='center'>
-                        <img src='../images/noticia/$data[imagen_Noticia]' height='150'>
+                        <img src='../images/noticia/$data[imagen_Noticia]' height='150' alt='$data[imagen_Noticia]'>
                       </td>
                       <td class='center' width='80'>
                         <div>

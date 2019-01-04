@@ -38,6 +38,9 @@ if ($_GET['form']=='add') { ?>
               <br>
 
               <div class="form-group">
+                <a class="btn btn-info pull-right" href="?module=form_evento&form=addTipo">
+                <i class="fa fa-plus"></i> Tipo Evento
+                </a>
                 <label class="col-sm-1 control-label">Tipo Evento</label>
                 <div class="col-sm-8">
                   <select style="width: 795px" name="selectTipo" required  title="Seleccione">
@@ -167,7 +170,7 @@ elseif ($_GET['form']=='edit') {
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i style="margin-right:7px" class="fa fa-edit"></i> Editar Convocatoria
+      <i style="margin-right:7px" class="fa fa-edit"></i> Editar Proyecto
     </h1>
     <ol class="breadcrumb">
       <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
@@ -340,7 +343,8 @@ elseif ($_GET['form']=='edit') {
   </section><!-- /.content -->
 <?php
 }
-
+////Add TipoEvento
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 elseif ($_GET['form']=='addTipo') { 
 
 ?>
@@ -398,10 +402,7 @@ elseif ($_GET['form']=='addTipo') {
             <?php  
             $no = 1;
 
-            // funciones de consulta para mostrar los datos en la tabla 
-           /* $query = sqlsrv_query($mysqli, "SELECT * FROM eventoBE ORDER BY id_Evento DESC")
-                                            or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));*/
-            
+            // funciones de consulta para mostrar los datos en la tabla       
 $query = sqlsrv_query($mysqli, "SELECT * FROM tipoEventoBE ORDER BY id_TipoEv DESC")
                                             or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
             // almacena en un array data
@@ -412,7 +413,9 @@ $query = sqlsrv_query($mysqli, "SELECT * FROM tipoEventoBE ORDER BY id_TipoEv DE
                       <td width='150'>$data[descripcion_TipoEv]</td>
                       <td class='center' width='80'>
                         <div>
-                          
+                           <a data-toggle='tooltip' data-placement='top' title='Editar' style='margin-right:5px' class='btn btn-warning btn-sm' href='?module=form_evento&form=editTipo&id=$data[id_TipoEv]'>
+                              <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
+                          </a>
                           ";
             ?>
                           
@@ -432,8 +435,72 @@ $query = sqlsrv_query($mysqli, "SELECT * FROM tipoEventoBE ORDER BY id_TipoEv DE
           </table>
         </div><!-- /.box-body -->
   </section><!-- /.content -->
+<!--/. -->
+<?php
+}  
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+elseif ($_GET['form']=='editTipo') { 
+  if (isset($_GET['id'])) {
+
+      // funcion de consulta para mostrar los datos de la tabla convocatoria
+     $query = sqlsrv_query($mysqli, "SELECT * FROM tipoEventoBE  where id_TipoEv='$_GET[id]';")
+                                            or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
+            // almacena en un array data
+          $data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
+    } 
+?>
+<!-- tampilan form add data -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i style="margin-right:7px" class="fa fa-edit"></i> Editar Tipo Evento
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
+      <li><a href="?module=evento"> Evento</a></li>
+       <li><a href="?module=form_evento&form=addTipo"> Tipo Evento </a></li>
+      <li class="active"> Editar Tipo Evento </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" class="form-horizontal" method="POST" action="modules/evento/proses.php?act=updateTipo" method="POST" enctype="multipart/form-data">
+            <div class="box-body">
+              
+              <input type="hidden" name="id_TipoEv" value="<?php echo $data['id_TipoEv']; ?>">
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Descripcion</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="descripcion" value="<?php echo $data['descripcion_TipoEv']?>" autocomplete="off" placeholder="Tipo Evento" required>
+                </div>
+              </div>
+
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-11">
+                  <input type="submit" class="btn btn-primary btn-submit" name="save" value="Guardar">
+                  <a href="?module=form_evento&form=addTipo" class="btn btn-default btn-reset">Cancelar</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+  </section><!-- /.content -->
+
 <?php
 }   
+//////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 elseif ($_GET['form']=='addDet') { 
 
 ?>
@@ -468,7 +535,7 @@ elseif ($_GET['form']=='addDet') {
               </div>
 
               <div class="form-group">
-                <a class="btn btn-default  pull-right" href="?module=form_evento&form=addPon">
+                <a class="btn btn-info pull-right" href="?module=form_evento&form=addPon">
                 <i class="fa fa-plus"></i> Ponente
                 </a>
                 <label class="col-sm-1 control-label">Ponente</label>
@@ -493,6 +560,9 @@ elseif ($_GET['form']=='addDet') {
               <br>
 
               <div class="form-group">
+                <a class="btn btn-info  pull-right" href="?module=form_evento&form=add">
+                <i class="fa fa-plus"></i>   Evento
+                </a>
                 <label class="col-sm-1 control-label">Evento</label>
                 <div class="col-sm-8">
                   <select style="width: 795px" name="selectEvento" required  title="Seleccione">
@@ -579,7 +649,8 @@ FROM eventoDetalleBE INNER JOIN EventoBE ON eventoDetalleBE.evento_EventoDet = e
   </section><!-- /.content -->
 <?php
 }  
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 elseif ($_GET['form']=='editDet') { 
   if (isset($_GET['id'])) {
 
@@ -589,6 +660,7 @@ elseif ($_GET['form']=='editDet') {
             // almacena en un array data
           $data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
     } 
+
 ?>
 <!-- tampilan form add data -->
   <!-- Content Header (Page header) -->
@@ -599,6 +671,7 @@ elseif ($_GET['form']=='editDet') {
     <ol class="breadcrumb">
       <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
       <li><a href="?module=evento"> Evento</a></li>
+       <li><a href="?module=form_evento&form=addDet"> Detalle Ev </a></li>
       <li class="active"> Editar Evento Detalle </li>
     </ol>
   </section>
@@ -696,7 +769,7 @@ elseif ($_GET['form']=='editDet') {
               <div class="form-group">
                 <div class="col-sm-offset-1 col-sm-11">
                   <input type="submit" class="btn btn-primary btn-submit" name="save" value="Guardar">
-                  <a href="?module=evento" class="btn btn-default btn-reset">Cancelar</a>
+                  <a href="?module=form_evento&form=addDet" class="btn btn-default btn-reset">Cancelar</a>
                 </div>
               </div>
             </div><!-- /.box footer -->
@@ -709,7 +782,7 @@ elseif ($_GET['form']=='editDet') {
 }
 elseif ($_GET['form']=='addPon') { 
 ?>
-<!-- tampilan form add data -->
+<!--  form add data -->
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
@@ -735,24 +808,24 @@ elseif ($_GET['form']=='addPon') {
               <div class="form-group">
                 <label class="col-sm-1 control-label">Nombres </label>
                 <div class="col-sm-8">
-                  <input placeholder="Nombres" type="text" class="form-control" name="nombre" autocomplete="off" required>
+                  <input placeholder="Nombres" type="text" class="form-control" name="nombre" autocomplete="off" required pattern="[A-Za-z0-9]+">
                 </div>                
               </div>
               <div class="form-group">
                 <label class="col-sm-1 control-label">Apellidos </label>
                 <div class="col-sm-8">
-                  <input placeholder="Apellidos" type="text" class="form-control" name="apellido" autocomplete="off" required>
+                  <input placeholder="Apellidos" type="text" class="form-control" name="apellido" autocomplete="off" required pattern="[A-Za-z0-9]+">
                 </div>                
               </div>
               <div class="form-group">
                 <label class="col-sm-1 control-label">Doc Identificacion</label>
                 <div class="col-sm-8">
-                  <input placeholder="0-0-0-0-0-0-0-0-0-0-0-0-0-0-0"  min="0" max="999999999999999"  type="number" class="form-control" name="dni" autocomplete="off" required>
+                  <input placeholder="0-0-0-0-0-0-0-0-0-0-0-0-0-0-0" maxlength="15"   type="text" class="form-control" name="dni" autocomplete="off" required pattern="[A-Za-z0-9]{0,15}">
                 </div>                
               </div>
 
               <div class="form-group">
-                <a class="btn btn-success  pull-right" href="?module=form_evento&form=#">
+                <a class="btn btn-success  pull-right" href="?module=form_evento&form=addEsp">
                 <i class="fa fa-plus"></i> Especialidad
                 </a>
                 <label class="col-sm-1 control-label">Especialidad</label>
@@ -778,7 +851,7 @@ elseif ($_GET['form']=='addPon') {
               <br>
 
               <div class="form-group">
-                <a class="btn btn-success  pull-right" href="?module=form_evento&form=#">
+                <a class="btn btn-success  pull-right" href="?module=form_evento&form=addUni">
                 <i class="fa fa-plus"></i> Universidad
                 </a>
                 <label class="col-sm-1 control-label">Universidad</label>
@@ -894,5 +967,567 @@ elseif ($_GET['form']=='addPon') {
   </section><!-- /.content -->
 <?php
 }  
+elseif ($_GET['form']=='editPon') { 
+  if (isset($_GET['id'])) {
+
+      // funcion de consulta para mostrar los datos de la tabla convocatoria
+     $query = sqlsrv_query($mysqli, "SELECT * FROM ponenteBE INNER JOIN especialidadBE ON ponenteBE.especialidad_Ponente = especialidadBE.id_Espe JOIN universidadBE ON ponenteBE.univProc_Ponente=universidadBE.id_Uni where id_Ponente='$_GET[id]';")
+                                            or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
+            // almacena en un array data
+          $data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
+    } 
+?>
+<!-- tampilan form add data -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i style="margin-right:7px" class="fa fa-edit"></i> Editar Ponente Detalle
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
+      <li><a href="?module=evento"> Evento</a></li>
+      <li class="active"> Editar Ponente Detalle </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" class="form-horizontal" method="POST" action="modules/evento/proses.php?act=updatePon" method="POST" enctype="multipart/form-data">
+            <div class="box-body">
+              
+              <input type="hidden" name="id_Ponente" value="<?php echo $data['id_Ponente']; ?>">
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Nombres</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="nombre" value="<?php echo $data['nombres_Ponente']?>" autocomplete="off" placeholder="Nombres" required>
+                </div>
+              </div>
+              <br>
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Apellidos</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="apellido" value="<?php echo $data['apellidos_Ponente']?>" autocomplete="off" placeholder="Apellidos" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-1 control-label">DNI</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="dni" value="<?php echo $data['dni_Ponente']?>" autocomplete="off" placeholder="DNI" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Especialidad</label>
+                  
+
+                <div class="col-sm-8">
+                  <select style="width: 795px" required name="selectEsp"  title="Seleccione">
+                    <?php
+                    $ss=$data['id_Espe'];
+                    $query = sqlsrv_query($mysqli, "SELECT * FROM  especialidadBE where id_Espe='$ss' ORDER BY id_Espe DESC") or die('Hubo un error en la consulta de los datos : '.sqlsrv_errors($mysqli));
+                    while ($exp  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)){
+                    echo "<option value=";
+                    echo $exp['id_Espe'];
+                    echo ">";
+                   echo $exp['descripcion_Espe']; 
+                    echo "</option>";
+                    }
+                    ?>
+
+                    <?php
+                    $query = sqlsrv_query($mysqli, "SELECT * FROM  especialidadBE ORDER BY id_Espe DESC") or die('Hubo un error en la consulta de los datos : '.sqlsrv_errors($mysqli));
+                    while ($data2  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)){
+                    echo "<option value=";
+                    echo $data2['id_Espe'];
+                    echo ">";
+                   echo $data2['descripcion_Espe']; 
+                    echo "</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
+             
+
+               <div class="form-group">
+                <label class="col-sm-1 control-label">Universidad</label>
+                <div class="col-sm-8">
+                  <select onclick="Seleccione" style="width: 795px"  name="selectUni"  title="Seleccione">
+                    <?php
+                    $dd=$data['id_Uni'];
+                    $query = sqlsrv_query($mysqli, "SELECT * FROM  universidadBE where id_Uni='$dd' ORDER BY id_Uni DESC") or die('Hubo un error en la consulta de los datos : '.sqlsrv_errors($mysqli));
+                    while ($o  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)){
+                    echo "<option value=";
+                    echo $o['id_Uni'];
+                    echo ">";
+                   echo $o['nombre_Uni']; 
+                    echo "</option>";
+                    }
+                    ?>
+                   
+
+                    <?php
+                    
+                    $query = sqlsrv_query($mysqli, "SELECT * FROM  universidadBE  ORDER BY id_Uni DESC") or die('Hubo un error en la consulta de los datos : '.sqlsrv_errors($mysqli));
+                    while ($data2  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)){
+                    echo "<option value=";
+                    echo $data2['id_Uni'];
+                    echo ">";
+                   echo $data2['nombre_Uni']; 
+                    echo "</option>";
+                    }
+
+                    ?>
+
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Fecha Nacimiento</label>
+                <div class="col-sm-8">
+                  <input type="date" class="form-control" name="fech_nac" value="<?php echo $data['fecNac_Ponente']?>" autocomplete="off" placeholder="00/00/0000" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Correo</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="correo" value="<?php echo $data['correo_Ponente']?>" autocomplete="off" placeholder="Correo Electronico" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Telefono</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="telefono" value="<?php echo $data['telefono_Ponente']?>" autocomplete="off" placeholder="Telefono de Contacto" required>
+                </div>
+              </div>
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-11">
+                  <input type="submit" class="btn btn-primary btn-submit" name="save" value="Guardar">
+                  <a href="?module=form_evento&form=addPon" class="btn btn-default btn-reset">Cancelar</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+  </section><!-- /.content -->
+<?php
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+elseif ($_GET['form']=='addEsp') { 
+
 
 ?>
+
+
+<!-- form add data -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i style="margin-right:7px" class="fa fa-edit"></i> Especialidad Ponente
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
+      <li><a href="?module=evento"> Evento </a></li>
+       <li><a href="?module=form_evento&form=addPon"> Ponente </a></li>
+      <li class="active">Especialidad Ponente </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+            <form role="form" class="form-horizontal"  action="modules/evento/proses.php?act=insertEsp" method="POST" enctype="multipart/form-data">
+            <div class="box-body">
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Descripcion</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="descripcion" autocomplete="off" required>
+                </div>                
+              </div>
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-11">
+                  <input type="submit" class="btn btn-primary btn-submit"  name="save" value="Guardar">
+                  <a href="?module=form_evento&form=addPon" class="btn btn-default btn-reset">Cancelar</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+          <div class="box box-primary">
+          <table id="dataTables1" class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="center">No.</th>
+                <th class="center">Descripcion Especialidad</th>
+                <th class="center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php  
+            $no = 1;
+
+            // funciones de consulta para mostrar los datos en la tabla       
+$query = sqlsrv_query($mysqli, "SELECT * FROM especialidadBE ORDER BY id_Espe DESC")
+                                            or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
+            // almacena en un array data
+            while ($data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+              // mostrar los datos
+              echo "<tr>
+                      <td width='40' class='center'>$no</td>
+                      <td width='150'>$data[descripcion_Espe]</td>
+                      <td class='center' width='80'>
+                        <div>
+                           <a data-toggle='tooltip' data-placement='top' title='Editar' style='margin-right:5px' class='btn btn-warning btn-sm' href='?module=form_evento&form=editEsp&id=$data[id_Espe]'>
+                              <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
+                          </a>
+                          ";
+            ?>
+                          
+                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/evento/proses.php?act=deleteEsp&id_Espe=<?php echo $data['id_Espe'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
+                              <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
+                          </a>
+            <?php
+              echo "    </div>
+                      </td>
+                    </tr>";
+              $no++;
+            }
+            ?>
+            </tbody>
+          </table>
+        </div><!-- /.box-body -->
+  </section><!-- /.content -->
+<!--/. -->
+<?php
+}  
+elseif ($_GET['form']=='editEsp') { 
+  if (isset($_GET['id'])) {
+
+      // funcion de consulta para mostrar los datos de la tabla convocatoria
+     $query = sqlsrv_query($mysqli, "SELECT * FROM especialidadBE  where id_Espe='$_GET[id]';")
+                                            or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
+            // almacena en un array data
+          $data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
+    } 
+?>
+<!-- form add data -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i style="margin-right:7px" class="fa fa-edit"></i> Editar Especialidad Ponente
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
+      <li><a href="?module=evento"> Evento</a></li>
+       <li><a href="?module=form_evento&form=addPon"> Ponente </a></li>
+      <li class="active"> Editar Especialidad Ponente </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" class="form-horizontal" method="POST" action="modules/evento/proses.php?act=updateEsp" method="POST" enctype="multipart/form-data">
+            <div class="box-body">
+              
+              <input type="hidden" name="id_Espe" value="<?php echo $data['id_Espe']; ?>">
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Descripcion</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="descripcion" value="<?php echo $data['descripcion_Espe']?>" autocomplete="off" placeholder="Especialidad Ponente" required>
+                </div>
+              </div>
+
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-11">
+                  <input type="submit" class="btn btn-primary btn-submit" name="save" value="Guardar">
+                  <a href="?module=form_evento&form=addEsp" class="btn btn-default btn-reset">Cancelar</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+  </section><!-- /.content -->
+
+<?php
+}   
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+elseif ($_GET['form']=='addUni') { 
+
+?>
+<!-- form add data -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i style="margin-right:7px" class="fa fa-edit"></i> Universidad Ponente
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
+      <li><a href="?module=evento"> Evento </a></li>
+      <li><a href="?module=form_evento&form=addPon"> Ponente </a></li>
+      <li class="active">Universidad Ponente </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+            <form role="form" class="form-horizontal" action="modules/evento/proses.php?act=insertUni" method="POST" enctype="multipart/form-data">
+            <div class="box-body">
+
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Nombre Universidad</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="nombre" autocomplete="off" required>
+                </div>                
+              </div>
+
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-11">
+                  <input type="submit" class="btn btn-primary btn-submit" name="save" value="Guardar">
+                  <a href="?module=form_evento&form=addPon" class="btn btn-default btn-reset">Cancelar</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+          <div class="box box-primary">
+          <table id="dataTables1" class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="center">No.</th>
+                <th class="center">Nombre Universidad</th>
+                <th class="center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php  
+            $no = 1;
+
+            // funciones de consulta para mostrar los datos en la tabla       
+$query = sqlsrv_query($mysqli, "SELECT * FROM universidadBE ORDER BY id_Uni DESC")
+                                            or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
+            // almacena en un array data
+            while ($data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+              // mostrar los datos
+              echo "<tr>
+                      <td width='40' class='center'>$no</td>
+                      <td width='150'>$data[nombre_Uni]</td>
+                      <td class='center' width='80'>
+                        <div>
+                           <a data-toggle='tooltip' data-placement='top' title='Editar' style='margin-right:5px' class='btn btn-warning btn-sm' href='?module=form_evento&form=editUni&id=$data[id_Uni]'>
+                              <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
+                          </a>
+                          ";
+            ?>
+                          
+                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/evento/proses.php?act=deleteUni&id_Uni=<?php echo $data['id_Uni'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
+                              <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
+                          </a>
+            <?php
+              echo "    </div>
+                      </td>
+                    </tr>";
+              $no++;
+            }
+            ?>
+            </tbody>
+          </table>
+        </div><!-- /.box-body -->
+  </section><!-- /.content -->
+<!--/. -->
+<?php
+}  
+elseif ($_GET['form']=='editUni') { 
+  if (isset($_GET['id'])) {
+
+      // funcion de consulta para mostrar los datos de la tabla convocatoria
+     $query = sqlsrv_query($mysqli, "SELECT * FROM universidadBE  where id_Uni='$_GET[id]';")
+                                            or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
+            // almacena en un array data
+          $data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
+    } 
+?>
+<!--  form add data -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i style="margin-right:7px" class="fa fa-edit"></i> Editar Universidad Ponente
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
+      <li><a href="?module=evento"> Evento</a></li>
+       <li><a href="?module=form_evento&form=addPon"> Ponente </a></li>
+      <li class="active"> Editar Universidad Ponente </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" class="form-horizontal" method="POST" action="modules/evento/proses.php?act=updateUni" method="POST" enctype="multipart/form-data">
+            <div class="box-body">
+              
+              <input type="hidden" name="id_Uni" value="<?php echo $data['id_Uni']; ?>">
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Nombre Universidad</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="nombre" value="<?php echo $data['nombre_Uni']?>" autocomplete="off" placeholder="Especialidad Ponente" required>
+                </div>
+              </div>
+
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-11">
+                  <input type="submit" class="btn btn-primary btn-submit" name="save" value="Guardar">
+                  <a href="?module=form_evento&form=addUni" class="btn btn-default btn-reset">Cancelar</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+  </section><!-- /.content -->
+
+<?php
+}   
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+elseif ($_GET['form']=='addPag') { 
+
+?>
+<!-- form add data -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i style="margin-right:7px" class="fa fa-money"></i> Detalle Pago
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
+      <li><a href="?module=evento"> Evento </a></li>
+      <li class="active">Detalle Pago </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+          <div class="box box-primary">
+          <table id="dataTables1" class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="center">No.</th>
+                <th class="center">Asistente</th>
+                <th class="center">DNI</th>
+                <th class="center">Correo</th>
+                <th class="center">Telefono</th>
+                <th class="center">Evento</th>
+                <th class="center">Imagen Pago</th>
+                <th class="center">Fecha</th>
+                <th class="center">Estado</th>
+                <th class="center">Fecha de Aprobacion</th>
+                <th class="center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php  
+            $no = 1;
+
+            // funciones de consulta para mostrar los datos en la tabla       
+$query = sqlsrv_query($mysqli, "SELECT * from pagoBE inner join eventoAsistenteBE 
+    on pagoBE.eventoAsis_Pago=eventoAsistenteBE.id_EventoAsis
+    inner join asistenteBE on eventoAsistenteBE.asistente_EventoAsis=asistenteBE.id_Asis
+    inner join eventoBE on eventoAsistenteBE.evento_EventoAsis=eventoBE.id_Evento order by id_Pago desc")
+                                            or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
+            // almacena en un array data
+            while ($data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+
+                            if ($data['estado_Pago']<1)
+                   {
+                        $cond='<span style="color: red; text-align: center">Desaprobado</apan>';
+                       
+                   }
+                   elseif ($data['estado_Pago']==1) {
+                        $cond='<b><span style="color: blue; text-align: center">Aprobado</apan>';
+                       }
+
+
+              // mostrar los datos
+              echo "<tr>
+                      <td width='40' class='center'>$no</td>
+                      <td width='150'>$data[nombres_Asis].$data[apellidos_Asis]</td>
+                      <td width='150'>$data[dni_Asis]</td>
+                      <td width='150'>$data[correo_Asis]</td>
+                      <td width='150'>$data[telefono_Asis]</td>
+                      <td width='150'>$data[nombre_Evento]</td>
+                      <td width='200' class='center'>
+                        <img  src='../images/pago/$data[imagen_Pago]' height='150' alt='$data[imagen_Pago]'>
+                      </td>
+                      <td width='150'>$data[fecha_Pago]</td>
+                      <td width='150'>$cond</td>
+                      <td width='150'>$data[fechaApr_Pago]</td>
+                      <td class='center' width='80'>
+                        <div>
+                           <a data-toggle='tooltip' data-placement='top' title='Validar' style='margin-right:5px' class='btn btn-success btn-sm' href='?module=form_evento&form=editPag&id=$data[id_Pago]'>
+                              <i style='color:#fff' class='glyphicon glyphicon-check'></i>
+                          </a>
+                          ";
+            ?>
+                          
+            <?php
+              echo "    </div>
+                      </td>
+                    </tr>";
+              $no++;
+            }
+            ?>
+            </tbody>
+          </table>
+        </div><!-- /.box-body -->
+  </section><!-- /.content -->
+<!--/. -->
+<?php
+}  

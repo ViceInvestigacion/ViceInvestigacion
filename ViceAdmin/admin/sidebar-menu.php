@@ -3,15 +3,15 @@
         <li class="header">MENU</li>
 
 	<?php 
-	// fungsi untuk pengecekan menu aktif
-	// jika menu home dipilih, menu home aktif
+	// Función para comprobar los menús activos.
+	// Si se selecciona el menú de inicio, el menú de inicio está activo.
 	if ($_GET["module"]=="home") { ?>
 		<li class="active">
 			<a href=""><i class="fa fa-home"></i> Inicio </a>
 	  	</li>
 	<?php
 	}
-	// jika tidak, menu home tidak aktif
+	// Si no, el menú de inicio no está activo.
 	else { ?>
 		<li>
 			<a href="?module=home"><i class="fa fa-home"></i> Inicio </a>
@@ -19,146 +19,141 @@
 	<?php
 	}
 
-	// jika menu about dipilih, menu about aktif
+	// Si el menú sobre seleccionado, el menú sobre activo
 if ($_GET["module"]=="about") { ?>
 		<li class="active">
-			<a href="?module=about"><i class="fa fa-leaf"></i> Nosotros </a>
+			<a href="?module=about"><i class="fa fa-envira"></i> Nosotros </a>
 	  	</li>
 	<?php
 	}
-	// jika tidak, menu about tidak aktif
+	// Si no, el menú home de no está activo
 	else { ?>
 		<li>
-			<a href="?module=about"><i class="fa fa-leaf"></i> Nosotros </a>
+			<a href="?module=about"><i class="fa fa-envira"></i> Nosotros </a>
 	  	</li>
 	<?php
 	}
 
 
-	// jika menu convocatoria dipilih, menu convocatoria aktif
+	// Si se selecciona el menú de convocatoria, el menú de convocatoria está activo.
 if ($_GET["module"]=="convocatoria") { ?>
 		<li class="active">
-			<a href="?module=convocatoria"><i class="fa fa-leaf"></i> Convocatoria </a>
+			<a href="?module=convocatoria"><i class="fa fa-list-ul"></i> Convocatoria </a>
 	  	</li>
 	<?php
 	}
-	// jika tidak, menu convocatoria tidak aktif
+	// Si no, el menú de convocatoria no está activo.
 	else { ?>
 		<li>
-			<a href="?module=convocatoria"><i class="fa fa-leaf"></i> Convocatoria</a>
+			<a href="?module=convocatoria"><i class="fa fa-list-ul"></i> Convocatoria</a>
 	  	</li>
 	<?php
 	}
-
-	// jika menu evento dipilih, menu evento aktif
+	/////////////////////////////////////////////////////
+	// Si el menú de eventos está seleccionado, el menú de eventos está activo
 if ($_GET["module"]=="evento") { ?>
 	  		<li class="active">
-			<a href="?module=evento"><i class="fa fa-leaf"></i> Evento </a>
+			<a href="?module=evento"><i class="fa fa-calendar-check-o"></i> Evento </a>
 	  		</li>
 
 	<?php
 	}
-	// jika tidak, menu evento tidak aktif
+	// Si no, el menú de eventos no está activo.
 	else { ?>
 			<li>
-			<a href="?module=evento"><i class="fa fa-leaf"></i> Evento</a>
+			<a href="?module=evento"><i class="fa fa-calendar-check-o"></i> Evento</a>
 	  	</li>
 
 		
 	<?php
 	}
-
 	/////////////////////////////////////////////////////
 
 
-	// jika menu resolucion dipilih, menu resolucion aktif
-if ($_GET["module"]=="resolucion") { ?>
+	// Si se selecciona el menú de resolución, el menú de resolución está activo.
+if ($_GET["module"]=="proyecto") { ?>
 		<li class="active">
-			<a href="?module=resolucion"><i class="fa fa-leaf"></i> Resoluciones </a>
+			<a href="?module=proyecto"><i class="fa fa-line-chart"></i> Proyectos </a>
 	  	</li>
 	<?php
 	}
-	// jika tidak, menu resolucion tidak aktif
+	// Si no, el menú de resolución no está activo.
 	else { ?>
 		<li>
-			<a href="?module=resolucion"><i class="fa fa-leaf"></i> Resoluciones</a>
+			<a href="?module=proyecto"><i class="fa fa-line-chart"></i> Proyectos</a>
 	  	</li>
 	<?php
 	}
 
 	////////////////////////////////////////////////////
 
-	// jika menu evento dipilih, menu evento aktif
+
+
+	// Si se selecciona el menú de resolución, el menú de resolución está activo.
+if ($_GET["module"]=="resolucion") { ?>
+		<li class="active">
+			<a href="?module=resolucion"><i class="fa fa-files-o"></i> Resoluciones </a>
+	  	</li>
+	<?php
+	}
+	// Si no, el menú de resolución no está activo.
+	else { ?>
+		<li>
+			<a href="?module=resolucion"><i class="fa fa-files-o"></i> Resoluciones</a>
+	  	</li>
+	<?php
+	}
+
+	////////////////////////////////////////////////////
+
+	// Si se selecciona el menú de noticia , el menú de noticia está activo.
 if ($_GET["module"]=="noticia") { ?>
 		<li class="active">
-			<a href="?module=noticia"><i class="fa fa-leaf"></i> Noticias </a>
+			<a href="?module=noticia"><i class="fa fa-newspaper-o"></i> Noticias </a>
 	  	</li>
 	<?php
 	}
-	// jika tidak, menu evento tidak aktif
+	//  Si no, el menú de noticia no está activo.
 	else { ?>
 		<li>
-			<a href="?module=noticia"><i class="fa fa-leaf"></i> Noticias</a>
+			<a href="?module=noticia"><i class="fa fa-newspaper-o"></i> Noticias</a>
 	  	</li>
 	<?php
 	}
+	////////////////////////////////////////////////////
 
-	// jika menu service dipilih, menu service aktif
-	if ("service") { ?>
+	// Si se selecciona el menú de suscriptor , el menú de suscriptor está activo.
+if ($_GET["module"]=="suscriptor") { ?>
 		<li class="active">
-			<a href=""><i class="fa fa-check-square-o"></i> Servicios </a>
+			<a href="?module=suscriptor"><i class="fa fa-users"></i> Suscriptores </a>
 	  	</li>
 	<?php
 	}
-	// jika tidak, menu service tidak aktif
+	//  Si no, el menú de suscriptor no está activo.
 	else { ?>
 		<li>
-			<a href=""><i class="fa fa-check-square-o"></i> Servicios </a>
+			<a href="?module=suscriptor"><i class="fa fa-users"></i> Suscriptores</a>
 	  	</li>
 	<?php
 	}
 
-	// jika menu portfolio dipilih, menu portfolio aktif
-	if ("portfolio") { ?>
-		<li class="active">
-			<a href=""><i class="fa fa-desktop"></i> Portafolio</a>
-	  	</li>
-	<?php
-	}
-	// jika tidak, menu portfolio tidak aktif
-	else { ?>
-		<li>
-			<a href=""><i class="fa fa-desktop"></i> Portafolio</a>
-	  	</li>
-	<?php
-	}
 
-	// jika menu revista dipilih, menu revista aktif
-	if ("revista") { ?>
-		<li class="active">
-			<a href=""><i class="fa fa-bell"></i> Revistas</a>
-	  	</li>
-	<?php
-	}
-	// jika tidak, menu revista tidak aktif
-	else { ?>
-		<li>
-			<a href=""><i class="fa fa-bell"></i> Revistas</a>
-	  	</li>
-	<?php
-	}
 
-	// jika menu message dipilih, menu message aktif
+////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////
+	// Si se selecciona el menú de mensajes , el menú de mensajes está activo.
 	if ($_GET["module"]=="message" || $_GET["module"]=="form_message") { ?>
 		<li class="active">
-			<a href="?module=message"><i class="fa fa-envelope"></i> Mensajes </a>
+			<a href="?module=message"><i class="fa fa-comments"></i> Mensajes </a>
 	  	</li>
 	<?php
 	}
-	// jika tidak, menu message tidak aktif
+	// Si no, el menú de mensajes no está activo.
 	else { ?>
 		<li>
-			<a href="?module=message"><i class="fa fa-envelope"></i> Mensajes </a>
+			<a href="?module=message"><i class="fa fa-comments"></i> Mensajes </a>
 	  	</li>
 	<?php
 	}

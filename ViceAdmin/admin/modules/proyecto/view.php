@@ -1,29 +1,21 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <style type="text/css">
-      
-      .esp{
-        margin:7px;
-}
-    </style>
     
-    <div  >
-      <i class="fa fa-calendar-check-o icon-title"></i> Evento
+    <div>
+      <i class="fa fa-line-chart icon-title"></i> Detalle Proyecto
 
-      <a style=" margin: 7px"class="btn btn-primary btn-social pull-right" href="?module=form_evento&form=add">
+      <a style=" margin: 7px" class="btn btn-primary btn-social pull-right" href="?module=form_proyecto&form=add">
       <i class="fa fa-plus"></i> Agregar
       </a>
-
-
-      <a style=" margin: 7px" class="btn btn-warning btn-social pull-right" href="?module=form_evento&form=addDet">
-      <i class="fa fa-list"></i> Detalle
+      
+      <a style=" margin: 7px" class="btn btn-success btn-social pull-right" href="?module=form_proyecto&form=addPro">
+      <i class="fa fa-plus-square"></i> Proyecto
       </a>
 
-      <a  class="btn btn-success btn-social pull-right esp" href="?module=form_evento&form=addPag">
-      <i class="fa fa-usd"></i> Detalle Pago
+      <a style=" margin: 7px" class="btn btn-info btn-social pull-right" href="?module=form_proyecto&form=addFproy">
+      <i class="fa fa-money"></i> Fondo Proyecto
       </a>
-
     </div>
     
 
@@ -62,7 +54,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Bien hecho!</h4>
-              El evento ha sido eliminado exitosamente.
+              El elemento ha sido eliminado exitosamente.
             </div>";
     }
     // Error de subida para mostrar el mensaje "Asegúrese de que el archivo que se sube es correcta"
@@ -86,7 +78,7 @@
       echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-times-circle'></i> Error!</h4>
-              Asegúrese de que el archivo cargado está en *.JPG / *.JPEG / *.PNG.
+              Se genero un error para eactualizar!!.
             </div>";
     }
     // Archivos permitidos  *.pdf,*.doc,*.docx,*.xls,*.xlxs
@@ -177,18 +169,15 @@
             <thead>
               <tr>
                 <th class="center">No.</th>
-                <th class="center">Nombre Evento</th>
+                <th class="center">Nombre Proyecto</th>
                 <th class="center">Descripcion</th>
-                <th class="center">Tipo Evento</th>
-                <th class="center">Duracion Evento</th>
-                <th class="center">Fec Inicio</th>
-                <th class="center">Fec Fin</th>
-                <th class="center">Hora Inicio</th>
-                <th class="center">Hora Fin</th>
-                <th class="center">Costo General SC</th>
-                <th class="center">Costo General CC</th>
-                <th class="center">Costo Alumn</th>
-                <th class="center">Imagen Evento</th>
+                <th class="center">Actividad</th>
+                <th class="center">Presupuesto</th>
+                <th class="center">Escuela</th>
+                <th class="center">Facultad</th>
+                <th class="center">Url</th>
+                <th class="center">Fec Ejecucion</th>
+                <th class="center">Estado</th>
                 <th class="center">Acciones</th>
               </tr>
             </thead>
@@ -198,38 +187,47 @@
 
             // funciones de consulta para mostrar los datos en la tabla 
             
-$query = sqlsrv_query($mysqli, "SELECT id_Evento as id,nombre_Evento,descripcion_Evento,duracion_Evento,fecInicio_Evento,fecFin_Evento,horaInicio_Evento,horaFin_Evento,cstGSnCertificado_Evento,cstGCnCertificado_Evento,cstFCnCertificado_Evento,imagen_Evento,eventoBE.id_Evento, tipoEventoBE.descripcion_TipoEv
-FROM eventoBE INNER JOIN tipoEventoBE ON eventoBE.tipo_Evento = tipoEventoBE.id_TipoEv ORDER BY id_Evento DESC")
-                                            or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
+$query = sqlsrv_query($mysqli, "SELECT * FROM fechaProyBE INNER JOIN proyectoBE ON fechaProyBE.proyecto_FP = proyectoBE.id_Proyecto 
+              INNER JOIN escuelaBE ON proyectoBE.escuelaId_Proyecto = escuelaBE.id_Escuela
+              INNER JOIN facultadBE ON escuelaBE.facultadId_Escuela = facultadBE.id_Facu
+              INNER JOIN fechaEjeBE ON fechaProyBE.fechaEje_FP = fechaEjeBE.id_FE order by id_FP desc") or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
             // almacena en un array data
-            while ($data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+            while ($data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) 
+            { 
+              //$result = $data['fecha']->format('Y-m-d H:i:s');
+              if ($data['estado_Proyecto']<1)
+                   {
+                        $cond='<b><span style="color: red; text-align: center">Desaprobado</apan>';
+                       
+                   }
+                   elseif ($data['estado_Proyecto']==1) {
+                        $cond='<b><span style="color: blue; text-align: center">Proceso</apan>';
+                       }
+                 elseif($data['estado_Proyecto']==2){
+                        $cond='<b><span style="color: green; text-align: center">Aprobado</apan>';
+                        
+                    }
               // mostrar los datos
               echo "<tr>
                       <td width='40' class='center'>$no</td>
-                      <td width='150'>$data[nombre_Evento]</td>
-                      <td width='150'>$data[descripcion_Evento]</td>
-                      <td width='150'>$data[descripcion_TipoEv]</td>
-                      <td width='150'>$data[duracion_Evento]</td>
-                      <td width='150'>$data[fecInicio_Evento]</td>
-                      <td width='150'>$data[fecFin_Evento]</td>
-                      <td width='150'>$data[horaInicio_Evento]</td>
-                      <td width='150'>$data[horaFin_Evento]</td>
-                      <td width='150'>$data[cstGSnCertificado_Evento]</td>
-                      <td width='150'>$data[cstGCnCertificado_Evento]</td>
-                      <td width='150'>$data[cstFCnCertificado_Evento]</td>
-
-                      <td width='200' class='center'>
-                        <img src='../images/evento/$data[imagen_Evento]' height='150' alt='$data[imagen_Evento]'>
-                      </td>
+                      <td width='150'>$data[titulo_Proyecto]</td>
+                      <td width='150'>$data[descripcion_Proyecto]</td>
+                      <td width='150'>$data[actividad_FE]</td>
+                      <td width='150'>$data[presupuesto_Proyecto]</td>
+                      <td width='150'>$data[nombre_Escuela]</td>
+                      <td width='150'class='center'>$data[nombre_Facu]</td>
+                      <td width='150' class='center'>$data[enlace_Proyecto]</td>
+                      <td width='80' class='center'>$data[fecha]</td>
+                      <td width='80' class='center'>$cond</td>
                       <td class='center' width='80'>
                         <div>
-                          <a data-toggle='tooltip' data-placement='top' title='Editar' style='margin-right:5px' class='btn btn-warning btn-sm' href='?module=form_evento&form=edit&id=$data[id_Evento]'>
+                          <a data-toggle='tooltip' data-placement='top' title='Editar' style='margin-right:5px' class='btn btn-warning btn-sm' href='?module=form_proyecto&form=edit&id=$data[id_FP]'>
                               <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
                           </a>
                           ";
             ?>
                           
-                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/evento/proses.php?act=delete&id_Evento=<?php echo $data['id_Evento'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
+                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/proyecto/proses.php?act=delete&id_FP=<?php echo $data['id_FP'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
                               <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                           </a>
             <?php

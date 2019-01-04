@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <i class="fa fa-envelope-o icon-title"></i> Mensajes
+    <i class="fa fa-comments icon-title"></i> Mensajes
   </h1>
   <ol class="breadcrumb">
     <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
@@ -31,9 +31,9 @@
 
       <div class="box box-primary">
         <div class="box-body">
-          <!-- tampilan tabel pesan -->
+          <!-- tabel pesan -->
           <table id="dataTables1" class="table table-bordered table-striped table-hover">
-            <!-- tampilan tabel header -->
+            <!--  tabel header -->
             <thead>
               <tr>
                 <th class="center">No.</th>
@@ -41,7 +41,7 @@
                 <th class="center">Email</th>
                 <th class="center">Mensaje</th>
                 <th class="center">Fecha</th>
-                <th></th>
+                <th class="center">Acciones</th>
               </tr>
             </thead>
             <tbody>

@@ -11,12 +11,12 @@ session_start();
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Perfil de la empresa">
     <meta name="keywords" content="FacturacionWeb.site" />
-    
     <!-- favicon -->
     <link rel="shortcut icon" href="../images/favicon.png" />
 
     <!-- Bootstrap 3.3.2 -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+    <link href="assets/css/estilo.css" rel="stylesheet" type="text/css" />    
     <!-- FontAwesome 4.3.0 -->
     <link href="assets/plugins/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />  
     <!-- DATA TABLES -->
@@ -76,12 +76,12 @@ session_start();
     </script>
 
   </head>
-  <body class="skin-red fixed">
+  <body class="skin-red fixed" >
     <div class="wrapper">
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="?module=home" class="logo"><b>Vicerrectorado</b> Web</a>
+        <a href="?module=home" class="logo"><b>Vicerrectorado Web</b></a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -107,10 +107,10 @@ session_start();
               sqlsrv_free_stmt( $query);
               
               ?>
-              <!-- Messages: style can be found in dropdown.less-->
+              <!-- Messages: estilo se encuentra en el menu desplegable-->
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-envelope-o"></i>
+                  <i class="fa fa-envelope"></i>
                   <span style="background:#dd4b39" class="label"><?php echo $jumlah; ?></span>
                 </a>
 
@@ -138,9 +138,9 @@ session_start();
       </header>
       <!-- Barra lateral -->
       <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
+        <!-- sidebar: estilo se encuentra en el menu desplegable -->
         <section class="sidebar">
-          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <!-- sidebar menu: : estilo se encuentra en el menu desplegable -->
             
             <!-- Llamar el archivo "sidebar-menu.php" para visualizar el menú  -->
             <?php include "sidebar-menu.php" ?>
@@ -149,7 +149,7 @@ session_start();
         <!-- /.sidebar -->
       </aside>
 
-      <!-- Content Wrapper. Contains page content -->
+      <!-- Content Wrapper. Contiene pagina de contenido -->
       <div class="content-wrapper">
 
         <!-- Llamar el archivo "content-menu.php" para visualizar el contenido -->
@@ -161,7 +161,7 @@ session_start();
               <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="fa fa-sign-out"> Cerrar sesión</i></h4>
+                    <h4 class="modal-title "><i class="fa fa-sign-out"> Cerrar sesión</i></h4>
                 </div>
                 <div class="modal-body">
                     <p>¿Seguro que quieres cerrar la sesión? </p>

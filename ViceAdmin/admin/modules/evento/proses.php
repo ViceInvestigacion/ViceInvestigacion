@@ -94,7 +94,6 @@ $query = sqlsrv_query($mysqli, "INSERT INTO
             $nombre                 = $_POST['nombre'];
             $descripcion            = $_POST['descripcion'];
            $tipo                   = $_POST['selectTipo'];
-            //$tipo='2';
             $duracion              = $_POST['duracion'];
             $fecha_Inicio           = $_POST['fecha_Inicio'];
             $fecha_Fin              = $_POST['fecha_Fin'];
@@ -185,7 +184,7 @@ $query = sqlsrv_query($mysqli, "INSERT INTO
             }
         }
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
     elseif ($_GET['act']=='delete') {
         if (isset($_GET['id_Evento'])) {
             $id_Evento = $_GET['id_Evento'];
@@ -205,7 +204,7 @@ $query = sqlsrv_query($mysqli, "INSERT INTO
             header("location: ../../main.php?module=evento&alert=9");
         }
     } 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
         elseif ($_GET['act']=='deleteTipo') {
         if (isset($_GET['id_TipoEv'])) {
             $id_TipoEv = $_GET['id_TipoEv'];
@@ -217,15 +216,16 @@ $query = sqlsrv_query($mysqli, "INSERT INTO
             // comprobar los resultados de la consulta
             if ($query) {
                 // si tiene éxito mensaje se indican los datos de eliminación con éxito
-                header("location: ../../main.php?module=evento&alert=12");
+                header("location: ../../main.php?module=form_evento&form=addTipo");
+
             }
         }
         else{
             // si no tiene éxito mensaje se indican los datos de eliminación no se realizo con éxito
-            header("location: ../../main.php?module=evento&alert=13");
+            header("location: ../../main.php?module=form_evento&form=addTipo");
         }
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
         if ($_GET['act']=='insertTipo') {
         if (isset($_POST['save'])) {
@@ -240,20 +240,58 @@ $query = sqlsrv_query($mysqli, "INSERT INTO
             descripcion_TipoEv, usuReg_TipoEv)
     VALUES('$descripcion ','$user_id')"  )
                                               or die('Hubo un error en la consulta de inserción : '.sqlsrv_errors($mysqli));
+
+
                         // comprobar consulta
                         if ($query) {
+
                             // si tiene éxito mensaje indican exitosa almacén de datos
-                            header("location: ../../main.php?module=evento&alert=10");
+                            header("location: ../../main.php?module=form_evento&form=addTipo");
+                            
+
                         }   
                    
             } 
             else {
                         // Si no se pudo registrar
-                        header("location: ../../main.php?module=evento&alert=11");
+                        header("location: ../../main.php?module=form_evento&form=addTipo");
                     }
          
     }
-/////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+    elseif ($_GET['act']=='updateTipo') {
+        if (isset($_POST['save'])) {
+            if (isset($_POST['id_TipoEv'])) {
+                // Captura de datos desde el formulario
+            $id_TipoEv           = $_POST['id_TipoEv'];
+            $descripcion             = $_POST['descripcion'];
+            //$tipo='2';
+
+                    // consultar comando para cambiar los datos de la tabla eventoBE
+                     $query = sqlsrv_query($mysqli, "UPDATE tipoEventoBE SET 
+                                                
+                                                    descripcion_TipoEv='$descripcion'
+                                                    
+                                                                      WHERE id_TipoEv = '$id_TipoEv'")
+                                                    or die('Datos acttualizados correctamente : '.sqlsrv_errors($mysqli));
+                    // ejecutar consulta
+                    if ($query) {
+                        // si tiene éxito mensaje indican exitosa actualización de datos
+                        header("location: ../../main.php?module=form_evento&form=addTipo");
+                    } 
+                    else
+                    {
+                        header("location: ../../main.php?module=form_evento&form=addTipo");
+                    }
+     
+            }
+        }
+    }
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
     if ($_GET['act']=='insertDet') {
         if (isset($_POST['save'])) {
             //capturA ID del usuario que inserto los datos
@@ -294,12 +332,12 @@ elseif ($_GET['act']=='deleteDet') {
             // comprobar los resultados de la consulta
             if ($query) {
                 // si tiene éxito mensaje se indican los datos de eliminación con éxito
-                header("location: ../../main.php?module=evento&alert=12");
+                header("location: ../../main.php?module=form_evento&form=addDet");
             }
         }
         else{
             // si no tiene éxito mensaje se indican los datos de eliminación no se realizo con éxito
-            header("location: ../../main.php?module=evento&alert=13");
+            header("location: ../../main.php?module=form_evento&form=addDet");
         }
     }
 ////////////////
@@ -311,7 +349,6 @@ elseif ($_GET['act']=='deleteDet') {
             $descripcion             = $_POST['descripcion'];
             $ponente                 = $_POST['selectPon'];
             $evento                  = $_POST['selectEvento'];
-            //$tipo='2';
 
                     // consultar comando para cambiar los datos de la tabla eventoBE
                      $query = sqlsrv_query($mysqli, "UPDATE eventoDetalleBE SET 
@@ -325,11 +362,11 @@ elseif ($_GET['act']=='deleteDet') {
                     // ejecutar consulta
                     if ($query) {
                         // si tiene éxito mensaje indican exitosa actualización de datos
-                        header("location: ../../main.php?module=evento&alert=2");
+                        header("location: ../../main.php?module=form_evento&form=addDet");
                     } 
                     else
                     {
-                        header("location: ../../main.php?module=evento&alert=11");
+                        header("location: ../../main.php?module=form_evento&form=addDet");
                     }
      
             }
@@ -360,16 +397,221 @@ if ($_GET['act']=='insertPon') {
                         // comprobar consulta
                         if ($query) {
                             // si tiene éxito mensaje indican exitosa almacén de datos
-                            header("location: ../../main.php?module=evento&alert=1");
+                            header("location: ../../main.php?module=form_evento&form=addPon");
                         }   
                    
             } 
             else {
                         // Si no se pudo registrar
-                        header("location: ../../main.php?module=evento&alert=11");
+                        header("location: ../../main.php?module=form_evento&form=addPon");
                     }
          
     }
+    //////////////////
+elseif ($_GET['act']=='deletePon') {
+        if (isset($_GET['id_Ponente'])) {
+            $id_Pon = $_GET['id_Ponente'];
 
+            // consultar comando para eliminar los datos de la tabla convocatoriaBE
+             $query = sqlsrv_query($mysqli, "DELETE FROM ponenteBE WHERE id_Ponente='$id_Pon'")
+                                            or die('Hubo un error en la consulta de eliminación : '.sqlsrv_errors($mysqli));
+
+            // comprobar los resultados de la consulta
+            if ($query) {
+                // si tiene éxito mensaje se indican los datos de eliminación con éxito
+                header("location: ../../main.php?module=form_evento&form=addPon");
+            }
+        }
+        else{
+            // si no tiene éxito mensaje se indican los datos de eliminación no se realizo con éxito
+            header("location: ../../main.php?module=form_evento&form=addPon");
+        }
+    }
+    ///////////////////////////////////////////
+        elseif ($_GET['act']=='updatePon') {
+        if (isset($_POST['save'])) {
+            if (isset($_POST['id_Ponente'])) {
+                // Captura de datos desde el formulario
+            $id_Ponente           = $_POST['id_Ponente'];
+            $nombre                 = $_POST['nombre'];
+            $apellido               = $_POST['apellido'];
+            $doc                    = $_POST['dni'];
+            $esp                    = $_POST['selectEsp'];
+            $uni                    = $_POST['selectUni'];
+            $fechNac                = $_POST['fech_nac'];
+            $correo                 = $_POST['correo'];
+            $telefono               = $_POST['telefono'];
+
+
+                    // consultar comando para cambiar los datos de la tabla eventoBE
+                     $query = sqlsrv_query($mysqli, "UPDATE ponenteBE SET 
+                                                    nombres_Ponente         ='$nombre',
+                                                    apellidos_Ponente       ='$apellido',
+                                                    dni_Ponente             ='$doc',
+                                                    especialidad_Ponente    ='$esp',
+                                                    univProc_Ponente        ='$uni',
+                                                    fecNac_Ponente          ='$fechNac',
+                                                    correo_Ponente          ='$correo',
+                                                    telefono_Ponente        ='$telefono'
+                                                                      WHERE id_Ponente = '$id_Ponente'")
+                                                    or die('Datos acttualizados correctamente : '.sqlsrv_errors($mysqli));
+                    // ejecutar consulta
+                    if ($query) {
+                        // si tiene éxito mensaje indican exitosa actualización de datos
+                        header("location: ../../main.php?module=form_evento&form=addPon");
+                    } 
+                    else
+                    {
+                        header("location: ../../main.php?module=form_evento&form=addPon");
+                    }
+     
+            }
+        }
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+if ($_GET['act']=='insertEsp') {
+        if (isset($_POST['save'])) {
+            //capturA ID del usuario que inserto los datos
+            $user_id = $_SESSION['user_id'];
+            // captura de datos desde un formulario 
+            
+            $descripcion                = $_POST['descripcion'];
+
+                $query = sqlsrv_query($mysqli, "INSERT INTO 
+                    especialidadBE(
+            descripcion_Espe)
+    VALUES('$descripcion')"  )
+                                              or die('Hubo un error en la consulta de inserción : '.sqlsrv_errors($mysqli));
+                        // comprobar consulta
+                        if ($query) {
+                            // si tiene éxito mensaje indican exitosa almacén de datos
+                            header("location: ../../main.php?module=form_evento&form=addEsp");
+                        }   
+                   
+            } 
+            else {
+                        // Si no se pudo registrar
+                        header("location: ../../main.php?module=form_evento&form=addEsp");
+                    }
+         
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+elseif ($_GET['act']=='deleteEsp') {
+        if (isset($_GET['id_Espe'])) {
+            $id_Espe = $_GET['id_Espe'];
+
+            // consultar comando para eliminar los datos de la tabla convocatoriaBE
+             $query = sqlsrv_query($mysqli, "DELETE FROM especialidadBE WHERE id_Espe='$id_Espe'")
+                                            or die('Hubo un error en la consulta de eliminación : '.sqlsrv_errors($mysqli));
+
+            // comprobar los resultados de la consulta
+            if ($query) {
+                // si tiene éxito mensaje se indican los datos de eliminación con éxito
+                header("location: ../../main.php?module=form_evento&form=addEsp");
+            }
+        }
+        else{
+            // si no tiene éxito mensaje se indican los datos de eliminación no se realizo con éxito
+            header("location: ../../main.php?module=form_evento&form=addEsp");
+        }
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+elseif ($_GET['act']=='updateEsp') {
+        if (isset($_POST['save'])) {
+            if (isset($_POST['id_Espe'])) {
+                // Captura de datos desde el formulario
+            $id_Espe           = $_POST['id_Espe'];
+            $descripcion                = $_POST['descripcion'];
+                    // consultar comando para cambiar los datos de la tabla eventoBE
+                     $query = sqlsrv_query($mysqli, "UPDATE especialidadBE SET 
+                                                    descripcion_Espe         ='$descripcion'
+                                                                      WHERE id_Espe= '$id_Espe'")
+                                                    or die('Datos acttualizados correctamente : '.sqlsrv_errors($mysqli));
+                    // ejecutar consulta
+                    if ($query) {
+                        // si tiene éxito mensaje indican exitosa actualización de datos
+                        header("location: ../../main.php?module=form_evento&form=addEsp");
+                    } 
+                    else
+                    {
+                        header("location: ../../main.php?module=form_evento&form=addEsp");
+                    }
+     
+            }
+        }
+    }
+///////////////////////////////////////////***UNIVERSIDAD***////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if ($_GET['act']=='insertUni') {
+        if (isset($_POST['save'])) {
+            //capturA ID del usuario que inserto los datos
+            $user_id = $_SESSION['user_id'];
+            // captura de datos desde un formulario 
+            
+            $nombre              = $_POST['nombre'];
+
+                $query = sqlsrv_query($mysqli, "INSERT INTO 
+                    universidadBE(nombre_Uni)
+                VALUES('$nombre')"  ) or die('Hubo un error en la consulta de inserción : '.sqlsrv_errors($mysqli));
+                        // comprobar consulta
+                        if ($query) {
+                            // si tiene éxito mensaje indican exitosa almacén de datos
+                            header("location: ../../main.php?module=form_evento&form=addUni");
+                        }   
+                   
+            } 
+            else {
+                        // Si no se pudo registrar
+                        header("location: ../../main.php?module=form_evento&form=addUni");
+                    }
+         
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    elseif ($_GET['act']=='deleteUni') {
+        if (isset($_GET['id_Uni'])) {
+            $id_Uni = $_GET['id_Uni'];
+
+            // consultar comando para eliminar los datos de la tabla convocatoriaBE
+             $query = sqlsrv_query($mysqli, "DELETE FROM universidadBE WHERE id_Uni='$id_Uni'")
+                                            or die('Hubo un error en la consulta de eliminación : '.sqlsrv_errors($mysqli));
+
+            // comprobar los resultados de la consulta
+            if ($query) {
+                // si tiene éxito mensaje se indican los datos de eliminación con éxito
+                header("location: ../../main.php?module=form_evento&form=addUni");
+            }
+        }
+        else{
+            // si no tiene éxito mensaje se indican los datos de eliminación no se realizo con éxito
+            header("location: ../../main.php?module=form_evento&form=addUni");
+        }
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    elseif ($_GET['act']=='updateUni') {
+        if (isset($_POST['save'])) {
+            if (isset($_POST['id_Uni'])) {
+                // Captura de datos desde el formulario
+  
+                    // consultar comando para cambiar los datos de la tabla eventoBE
+                     $query = sqlsrv_query($mysqli, "UPDATE universidadBE SET 
+                                                    nombre_Uni         ='$nombre'
+                                                    WHERE id_Uni= '$id_Uni'")
+                                                    or die('Datos acttualizados correctamente : '.sqlsrv_errors($mysqli));
+                    // ejecutar consulta
+                    if ($query) {
+                        // si tiene éxito mensaje indican exitosa actualización de datos
+                        header("location: ../../main.php?module=form_evento&form=addUni");
+                    } 
+                    else
+                    {
+                        header("location: ../../main.php?module=form_evento&form=addUni");
+                    }
+     
+            }
+        }
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }       
 ?>

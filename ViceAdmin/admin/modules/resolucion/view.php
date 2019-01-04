@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <i class="fa fa-bell icon-title"></i> Resoluciones
+    <i class="fa fa-files-o icon-title"></i> Resoluciones
     <a class="btn btn-primary btn-social pull-right" href="?module=form_resolucion&form=add">
       <i class="fa fa-plus"></i> Agregar
     </a>
@@ -90,13 +90,17 @@
                                             or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
             // almacenas los datos en la variable data
             while ($data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+
+              
               // agregas valores a los campos de la tabla
               echo "<tr>
                       <td width='40' class='center'>$no</td>
                       <td width='150'>$data[descripcion_Resolucion]</td>
                       <td width='150'>$data[fecha]</td>
-                      <td width='200' class='center'>
-                        <img src='../files/resolucion/$data[archivo_Resolucion]' height='150'>
+                      <td width='200' class='center' >
+                      <a href='../files/resolucion/$data[archivo_Resolucion]' target='ventana'>$data[archivo_Resolucion]</a>&nbsp;&nbsp;
+                      
+                        <img class='pull-right'  src='../files/resolucion/doc.png' height='30' alt='$data[archivo_Resolucion]'>
                       </td>
                       <td class='center' width='80'>
                         <div>

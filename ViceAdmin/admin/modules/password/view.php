@@ -7,7 +7,6 @@
   <ol class="breadcrumb">
     <li><a href="?module=home"><i class="fa fa-home"></i> Inicio</a></li>
     <li class="active">Contraseña</li>
-    <li class="active">Editar</li>
   </ol>
 </section>
 
@@ -42,7 +41,7 @@
             </div>";
     }
     ?>
-      <!-- form ubah password -->
+      <!-- form update password -->
       <div class="box box-primary">
         <!-- form start -->
         <form role="form" class="form-horizontal" method="POST" action="modules/password/proses.php">

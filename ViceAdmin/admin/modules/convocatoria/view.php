@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <i class="fa fa-bell icon-title"></i> Convocatoria
+    <i class="fa fa-list-ul icon-title"></i> Convocatoria
     <a class="btn btn-primary btn-social pull-right" href="?module=form_convocatoria&form=add">
       <i class="fa fa-plus"></i> Agregar
    </a>
@@ -113,7 +113,7 @@
                       <td width='150'>$data[descripcion_Conv]</td>
                       <td width='150'>$data[fecha_Conv]</td>
                       <td width='200' class='center'>
-                        <img src='../images/convocatoria/$data[imagen_Conv]' height='150'>
+                        <img src='../images/convocatoria/$data[imagen_Conv]' height='150' alt='$data[imagen_Conv]'>
                       </td>
                       <td class='center' width='80'>
                         <div>
@@ -133,8 +133,7 @@
                          
                          
             <?php
-            //btn-info    btn-succes   btn-warning
-            //class="glyphicon glyphicon-list-alt"
+
               echo "    </div>
                       </td>
                     </tr>";
