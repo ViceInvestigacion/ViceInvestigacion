@@ -89,7 +89,7 @@ class proyectoController extends Controller
         )
         ->groupBy('nombre_Facu')
         ->where([
-            ['estado_Proyecto',1]
+            ['estado_Proyecto',2]
         ])
         ->get(); 
 

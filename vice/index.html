@@ -7,8 +7,11 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Poppins" rel="stylesheet">
 	<link rel="stylesheet" href="css/estilos.css">
-	<!-- <script src="js/jquery.js"></script> -->
+	<link rel="stylesheet" href="css/blueberry.css" />
+	<link rel="stylesheet" href="css/calendar.css" />
+	<link rel="stylesheet" href="css/card.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<style>
 		.danger {
 		  padding: 20px;
@@ -35,6 +38,7 @@
 		.closebtn:hover {
 		  color: black;
 		}
+		.blueberry { max-width: 960px; }
 		</style>
 </head>
 <body>
@@ -53,7 +57,7 @@
 					<a href="#"><i class="fa fa-comments" aria-hidden="true"></i><span class="off">CONVOCATORIAS</span></a>
 					<a href="#"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i><span class="off">EVENTOS</span></a>
 					<a href="#"><i class="fa fa-file-text" aria-hidden="true"></i><span class="off">PUBLICACIONES</span></a>
-					<a href="resumen.html"><i class="fa fa-envelope" aria-hidden="true"></i><span class="off">INVESTIGACIONES</span></a>
+					<a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span class="off">INVESTIGACIONES</span></a>
 			</nav>
 
 			<div class="top-redes">
@@ -125,8 +129,7 @@
 				<div class="col">
 					<div class="titulo-seccion">
 						<h2>Nuestra Institución</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, fuga.</p>
-						<p>Blanditiis assumenda odit, sunt voluptatibus molestiae iure, beatae placeat laudantium non explicabo earum nesciunt nostrum adipisci consequatur amet</p>
+						<p style="text-align:justify">El Vicerrectorado de Investigación tiene entre una de sus funciones, el fomentar la investigación formativa, científica y tecnológica. En tal sentido requiere la colaboración no solamente de instituciones similares, sino también de académicos de alto nivel científico</p>
 					</div>
 				</div>
 			</div>
@@ -143,12 +146,12 @@
 				</div>
 				<div class="col der">
 					<div class="texto">
-						<p style="text-align:justify" id="id_mision">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, facere itaque voluptatibus in quasi aliquid reiciendis quidem quo. Laborum temporibus aut, velit soluta. Cum nostrum quam ipsam nisi. Aperiam cum ea beatae sit sapiente animi soluta adipisci vel suscipit voluptatem. Blanditiis assumenda odit, sunt voluptatibus molestiae iure, beatae placeat laudantium non explicabo earum nesciunt nostrum adipisci consequatur amet, voluptatum laborum aspernatur autem architecto quae dicta rem quisquam nemo repellat.</p>
+						<p style="text-align:justify" id="id_mision"></p>
 					</div>
 				</div>
 			</div>
 			<hr>
-			<div class="container1">
+			<div class="container">
 				<div class="col izq">
 					<div class="titulo-seccion">
 						<p>Nosotros</p>
@@ -157,7 +160,7 @@
 				</div>
 				<div class="col der">
 					<div class="texto">
-						<p style="text-align:justify" id ="id_vision">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, facere itaque voluptatibus in quasi aliquid reiciendis quidem quo. Laborum temporibus aut, velit soluta. Cum nostrum quam ipsam nisi. Aperiam cum ea beatae sit sapiente animi soluta adipisci vel suscipit voluptatem. Blanditiis assumenda odit, sunt voluptatibus molestiae iure, beatae placeat laudantium non explicabo earum nesciunt nostrum adipisci consequatur amet, voluptatum laborum aspernatur autem architecto quae dicta rem quisquam nemo repellat.</p>
+						<p style="text-align:justify" id="id_vision"></p>
 					</div>
 				</div>
 			</div>
@@ -166,34 +169,20 @@
 		<!-- convocatorias -->
 		<section class="convocatoria">
 			<div class="container">
-			<div class="slider" id="slider">
-					<div class="slide foto1" id ="foto1"></div>	
-			</div>
-			<div class="slider" id="slider">
-					<div class="slide foto1"></div>
-			</div>
-			<div class="slider" id="slider">
-					<div class="slide foto1"></div>
-			</div>
-			</div>
-		</section>
-		<section class="convocatoria">
-		<div class="container">	
-			<div class="concursos">
-					<h2>CONCURSOS</h2>
-					<p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, dicta atque illo ratione corporis molestias, nihil earum libero odit quod tempora, quaerat explicabo officiis magnam in pariatur ullam, ipsum accusantium?</p>
-			</div>
-			<div class="concursos">
-					<h2>CONCURSOS</h2>
-					<p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, nemo. Officia expedita ea, nulla, repellendus ducimus provident mollitia aut dignissimos optio deleniti aspernatur recusandae adipisci nostrum totam suscipit dolores tenetur.</p>
-			</div>
-			<div class="concursos">
-					<h2>CONCURSOS</h2>
-					<p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus culpa modi assumenda commodi distinctio recusandae a, voluptate maiores eaque illum. Ab dicta neque porro quibusdam nulla ipsa error repellat omnis.</p>
-			</div>
-		</div>	
+				<div class="titulo-seccion">
+					<h2>Convocatorias a Concursos</h2>
+				</div>
+				<div class="blueberry">
+					<ul class="slides" id="bby">
+					</ul>
+			  	</div>
+			</div>	
 		</section>
 		<!-- convocatorias -->
+		
+
+
+
 
 		<!-- Eventos -->
 		<section id="eventos" class="eventos">
@@ -210,88 +199,15 @@
 					<div class="contenido" id="contenido_evento">
 						<!-- Menu Evento1 -->
 						<div id="evento1" class="active">
-							<div class="item">
-								<div class="col izq">
-									<h3>Lorem ipsum dolor.</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, nostrum.</p>
-								</div>
-								<div class="col der">
-
-									<input type="date" name="decha">
-								</div>
-							</div>
-
-							<div class="item">
-								<div class="col izq">
-									<h3>Donec placerat dignissim.</h3>
-									<p>Maecenas iaculis aliquam lectus, in sodales ligula. Nulla facilisis magna.</p>
-								</div>
-								<div class="col der">
-									<input type="date" name="decha">
-								</div>
-							</div>
-
-							<div class="item">
-								<div class="col izq">
-									<h3>Nulla vestibulum.</h3>
-									<p>Nulla facilisis magna in malesuada dictum. Donec condimentum metus eros.</p>
-								</div>
-								<div class="col der">
-									<input type="date" name="decha">
-								</div>
-							</div>
-
-							<div class="item">
-								<div class="col izq">
-									<h3>Sed semper.</h3>
-									<p>Vestibulum euismod neque id est ultricies pretium. Sed rutrum risus at congue suscipit.</p>
-								</div>
-								<div class="col der">
-									<input type="date" name="decha">
-								</div>
-							</div>
+							<div class="item" id="even1">
+								
+							</div>				
 						</div> <!-- Menu Evento1 -->
 
 						<!-- Menu Evento2 -->
 						<div id="evento2">
-							<div class="item">
-								<div class="col izq">
-									<h3>Cafe ipsum dolor.</h3>
-									<p>Maecenas iaculis aliquam lectus, in sodales ligula. Nulla facilisis magna.</p>
-								</div>
-								<div class="col der">
-									<input type="date" name="decha">
-								</div>
-							</div>
-
-							<div class="item">
-								<div class="col izq">
-									<h3>Late dignissim.</h3>
-									<p>Vestibulum euismod neque id est ultricies pretium. Sed rutrum risus at congue suscipit.</p>
-								</div>
-								<div class="col der">
-									<input type="date" name="decha">
-								</div>
-							</div>
-
-							<div class="item">
-								<div class="col izq">
-									<h3>Cappuccino vestibulum.</h3>
-									<p>Etiam aliquet at mi in aliquet. Duis in arcu sodales, gravida lorem quis.</p>
-								</div>
-								<div class="col der">
-									<input type="date" name="decha">
-								</div>
-							</div>
-
-							<div class="item">
-								<div class="col izq">
-									<h3>Cafe semper.</h3>
-									<p>Praesent ac pellentesque urna, ut lacinia erat. Donec in euismod erat. Mauris eu.</p>
-								</div>
-								<div class="col der">
-									<input type="date" name="decha">
-								</div>
+							<div class="item" id="even2">
+							
 							</div>
 						</div> <!-- Menu Evento2 -->
 
@@ -303,76 +219,44 @@
 		<!-- Publicaciones -->
 		<section id="publicaciones" class="publicaciones">
 			<div class="container">
-			<div id="articulos" class="articulos">
-				<article class="article">
-					<div class="slider" id="slider">
-						<div class="slide foto1" id="id_fotoNoticia"></div>
-						<div class="slide foto2"></div>
-						<div class="slide foto3"></div>
-					</div>
-					<h3>PUBLICACIONES</h3>
-					<h2 id="id_tituloNoticia">Título de la noticia</h2>
-					<p id="id_Noticia">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quidem ipsam eum corporis, cum temporibus vitae odit a ut nesciunt expedita tempora molestias, ducimus nihil excepturi. Atque sint, quasi amet.</p>
-					<a href="#">Leer más...</a>
-				</article>
-				<article class="article">
-					<div class="slider" id="slider">
-						<div class="slide foto1"></div>
-						<div class="slide foto2"></div>
-						<div class="slide foto3"></div>
-					</div>
-					<h3>PUBLICACIONES</h3>
-					<h2>Título de la noticia</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quidem ipsam eum corporis, cum temporibus vitae odit a ut nesciunt expedita tempora molestias, ducimus nihil excepturi. Atque sint, quasi amet.</p>
-					<a href="#">Leer más...</a>
-				</article>
-				<article class="article">
-					<div class="slider" id="slider">
-						<div class="slide foto1"></div>
-						<div class="slide foto2"></div>
-						<div class="slide foto3"></div>
-					</div>
-					<h3>PUBLICACIONES</h3>
-					<h2>Título de la noticia</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quidem ipsam eum corporis, cum temporibus vitae odit a ut nesciunt expedita tempora molestias, ducimus nihil excepturi. Atque sint, quasi amet.</p>
-					<a href="#">Leer más...</a>
-				</article>
-				<article class="article">
-					<div class="slider" id="slider">
-						<div class="slide foto1"></div>
-						<div class="slide foto2"></div>
-						<div class="slide foto3"></div>
-					</div>
-					<h3>PUBLICACIONES</h3>
-					<h2>Título de la noticia</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quidem ipsam eum corporis, cum temporibus vitae odit a ut nesciunt expedita tempora molestias, ducimus nihil excepturi. Atque sint, quasi amet.</p>
-					<a href="#">Leer más...</a>
-				</article>
+					<div class="titulo-seccion">
+							<h2 >Noticias</h2>
+						</div>
+			<div id="idNoticias" class="articulos">
+				
 			</div>
 			</div>
 		</section>
-		<!-- Publicaciones -->
+		
+		<section style="align-content: center">
 			
-		<!-- investigaciones-->
-		<section id="publicaciones" class="investigacion">
-			<div class="container">
-			<div id="articulos" class="articulos">
-				<article class="article">
-					<div class="slider" id="slider">
-						<div class="slide foto1"></div>
-						<div class="slide foto2"></div>
-						<div class="slide foto3"></div>
-					</div>
-					<h3>INVESTIGACIONES</h3>
-					<h2>Título de la Investigación</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quidem ipsam eum corporis, cum temporibus vitae odit a ut nesciunt expedita tempora molestias, ducimus nihil excepturi. Atque sint, quasi amet.</p>
-					<a href="#">Leer más...</a>
-				</article>
-			</div>
-			</div>
+				<div class="wrapper">
+						<div class="card" style="cursor: pointer;" onclick="window.location='http://revistas.unjfsc.edu.pe/index.php/BIGBANG';"><img src="img/bigbang.jpg"/>
+						  <div class="info">
+							 <h2>BIGBANG</h2>
+						  </div>
+						</div>
+						<div class="card" style="cursor: pointer;" onclick="window.location='http://revistas.unjfsc.edu.pe/index.php/INFINITUM';"><img src="img/infinitum.jpg"/>
+						  <div class="info">
+								<h2>INFINITUM</h2>
+						  </div>
+						</div>
+						<div class="card" style="cursor: pointer;" onclick="window.location='http://revistas.unjfsc.edu.pe/index.php/GUARA';"><img src="img/guara.jpg"/>
+						  <div class="info">
+								<h2>GUARA</h2>
+						  </div>
+						</div>
+				</div>
+					
 		</section>
-		<!-- investigaciones-->
-
+<br/>
+<br/>
+	<section class="portada" id="portada"style="text-align:center">
+		<div class="titulo-seccion" style="font-size:10px">
+			<h2>FACULTADES Y FONDOS DEL GOBIERNO</h2>
+		</div>
+			<div id="barchart_div" style="width: 900px; height: 500px;display: inline-block" ></div>
+		</section> <!-- Grafica-->
 		<!-- Contacto -->
 		<section class="contacto" id="contacto">
 			<div class="datos parallax">
@@ -380,7 +264,7 @@
 				<div class="container">
 					<div class="blurb">
 						<h3>Escríbenos</h3>
-						<p>boli@gmail.com</p>
+						<p>VicerrectoradoInvestigacion@unjfsc.pe</p>
 					</div>
 
 					<div class="blurb">
@@ -454,6 +338,55 @@
 	<script src="js/slider.js"></script>
 	<script src="js/tabs.js"></script>
 	<script src="js/ajax.js"></script>
+	<script src="js/jquery.blueberry.js"></script>
+	<script src="js/calendar.js"></script>
+	<script type="text/javascript">
+
+		// Load the Visualization API and the corechart package.
+		google.charts.load('current', {'packages':['corechart']});
+  
+		// Set a callback to run when the Google Visualization API is loaded.
+		google.charts.setOnLoadCallback(drawChart);
+  
+		// Callback that creates and populates a data table,
+		// instantiates the pie chart, passes in the data and
+		// draws it.
+		function drawChart() {
+  
+		  // Create the data table.
+		var data = new google.visualization.DataTable();
+		$.ajax({
+		  url: "http://localhost:8000/api/estadisticas/proyectos",
+		  method: "GET",
+		}).done(function(datajs) {
+			//agregar columnas 
+			data.addColumn('string', 'Facultad');
+			data.addColumn('number', 'FOCAM');
+			data.addColumn('number', 'FEDU');
+			//data.addColumn('number', 'FEDU');
+		    $.each( datajs, function( key, value ) {
+			//agregar filas
+			var facu = datajs[key]["nombre_Facu"];
+			var FOCAM = datajs[key]["FOCAM"];
+			var FEDU = datajs[key]["FEDU"];
+				data.addRows([
+				[facu, parseInt(FOCAM),parseInt(FEDU)]
+			]);
+			});
+			// Set chart options
+			var barchart_options = {
+					title:'Gráfica Proyectos Financiados: ',
+                    vAxis: {title: 'Nro Proyectos',format: '0'},
+					hAxis: {title: 'Facultad'},
+					seriesType: 'bars',
+					series: {2: {type: 'line'}}
+			};
+		  // Instantiate and draw our chart, passing in some options.
+		  var barchart = new google.visualization.ComboChart(document.getElementById('barchart_div'));
+		  barchart.draw(data, barchart_options);
+		});
+		}
+	  </script>
 	
 		<!-- scripts -->
 </body>

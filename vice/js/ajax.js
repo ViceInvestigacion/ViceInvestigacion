@@ -6,9 +6,7 @@ $(document).ready(function(){
 			url: "http://localhost:8000/api/convocatorias",
 			method: "GET",
 		  }).done(function(data) {
-			
 			$.each( data, function( key, value ) {
-				  // $('.desc').html(value["descripcion_Conv"]);
 				  $(".slides").append('<li style="position: relative"><img src="../ViceAdmin/images/convocatoria/'+value["imagen_Conv"]+'"/><div style="position: absolute;bottom: 8px;left: 16px;color: white;">'+value["descripcion_Conv"] +'</div></li>');
 			  });
 		  })
@@ -20,20 +18,25 @@ $(document).ready(function(){
 		  url: "http://localhost:8000/api/nosotros",
 		  method: "GET",
 		}).done(function(data) {
-			
 				$('#id_mision').html(data["mision_Nos"]);
-				
 				$('#id_vision').html(data["vision_Nos"]);
-				
 		});
 
 		$.ajax({
 		  url: "http://localhost:8000/api/noticias",
 		  method: "GET",
-		}).done(function(data) {	
-				$('#id_tituloNoticia').html(data[0]["titulo_Noticia"]);
-				$('#id_Noticia').html(data[0]["descripcion_Noticia"]);
-				$("#id_fotoNoticia").css("background-image", "url('../ViceAdmin/images/noticia/"+data[0]["imagen_Noticia"]+"')");
+		}).done(function(data) {
+			$.each( data, function( key, value ) {
+				var h =
+				'<article class="article">'+
+				'<div id="slider">'+
+				'<img src="../ViceAdmin/images/noticia/'+value["imagen_Noticia"]+'" alt=""/>'+
+				'</div>'+
+				'<h2 style="text-align:center">'+value["titulo_Noticia"]+'</h2>'+
+				'<p style="text-align:justify">'+value["descripcion_Noticia"]+'</p>'+
+				'</article>';
+				$('#idNoticias').append(h);
+			});		
 		});
 
 		$("#formid").submit(function(event){
@@ -48,6 +51,7 @@ $(document).ready(function(){
 				else{
 					var datos = [{name,email,message}];
 					var dataToSend = JSON.stringify(datos);
+					alert(dataToSend);
 					$.ajax({
 						url: "http://localhost:8000/api/message",
 						method: "POST",
@@ -66,6 +70,7 @@ $(document).ready(function(){
 							$('#btn_enviar').show();
 						});
 					}).fail(function(data){
+						
 						$.when( 
 							$('#btn_enviar').hide(),
 							$('#danger').show(1500),
@@ -73,6 +78,7 @@ $(document).ready(function(){
 							
 						).then(function( data, textStatus, jqXHR ) {
 							$('#btn_enviar').show();
+							
 						});
 					});
 				}
