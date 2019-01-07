@@ -9,6 +9,6 @@ class suscriptorBE extends Model
     protected $table = 'suscriptorBE';
     public $timestamps = false;
     protected $primaryKey = 'id_Susc';
-    protected $fillable = ['nombres_Susc','apellidos_Susc','correo_Susc','estado_Susc','entidad_Susc','profesion_Susc'];
+    protected $fillable = ['nombres_Susc','apellidos_Susc','correo_Susc'];
 }
 

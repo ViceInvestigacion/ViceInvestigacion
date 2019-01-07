@@ -50,7 +50,7 @@ class helpers extends Controller
         $suscriptor->nombres_Susc      = $request[0]['nombres_Susc'];
         $suscriptor->apellidos_Susc    = $request[0]['apellidos_Susc'];
         $suscriptor->correo_Susc       = $request[0]['correo_Susc'];
-        $suscriptor->estado_Susc       = '1';
+        $suscriptor->estado_Susc       = 'n';
         $suscriptor->entidad_Susc      = '1';
         $suscriptor->profesion_Susc    = '1';//cambiar 
         return $suscriptor;

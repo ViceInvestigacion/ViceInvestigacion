@@ -7,7 +7,7 @@ $(document).ready(function(){
 			method: "GET",
 		  }).done(function(data) {
 			$.each( data, function( key, value ) {
-				  $(".slides").append('<li style="position: relative"><img src="../ViceAdmin/images/convocatoria/'+value["imagen_Conv"]+'"/><div style="position: absolute;bottom: 8px;left: 16px;color: white;">'+value["descripcion_Conv"] +'</div></li>');
+				  $(".slides").append('<li style="position: relative"><img style="" src="../ViceAdmin/images/convocatoria/'+value["imagen_Conv"]+'"/><div style="position: absolute;bottom: 8px;left: 16px;color: white;">'+value["descripcion_Conv"] +'</div></li>');
 			  });
 		  })
 	).then(function( data, textStatus, jqXHR ) {
@@ -51,7 +51,6 @@ $(document).ready(function(){
 				else{
 					var datos = [{name,email,message}];
 					var dataToSend = JSON.stringify(datos);
-					alert(dataToSend);
 					$.ajax({
 						url: "http://localhost:8000/api/message",
 						method: "POST",
@@ -83,5 +82,47 @@ $(document).ready(function(){
 					});
 				}
 		});
+		$("#formsusc").submit(function(event){
+			event.preventDefault(); //prevent default action
+			var nombres_Susc 	= $('#nomS').val();
+			var apellidos_Susc 	= $('#apeS').val();
+			var correo_Susc 	= $('#emailS').val();
+
+			if(nombres_Susc==''||apellidos_Susc==''||correo_Susc==''){
+				return false;
+			}
+			else{
+				var datos = [{nombres_Susc,apellidos_Susc,correo_Susc}];
+				var dataToSend = JSON.stringify(datos);
+				$.ajax({
+					url: "http://localhost:8000/api/suscriptores",
+					method: "POST",
+					dataType: 'json',
+					data: dataToSend   
+				}).done(function(data) {
+					$.when( 
+						$('.modal').hide(1000),
+						$('.float').css("background-color", "green"),
+						$('#msg').text('OK'),
+						$('#nomS').val(),
+						$('#apeS').val(),
+						$('#emailS').val(),
+						$('.float').show(1000)
+					).then(function( data, textStatus, jqXHR ) {
+						$('.float').css("background-color", "rgb(52, 217, 247)"),
+						$('#msg').text('Suscribirme'),
+						$('.float').show()
+					});
+				}).fail(function(data){
+					alert(data);
+					$('.float').show()
+					// $.when( 
+						
+					// ).then(function( data, textStatus, jqXHR ) {
+						
+					// });
+				});
+			}
+	});
 });
 

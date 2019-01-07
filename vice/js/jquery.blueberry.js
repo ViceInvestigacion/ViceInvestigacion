@@ -25,8 +25,8 @@
 
 			//default values for plugin options
 			var defaults = {
-				interval: 0,
-				duration: 0,
+				interval: 4000,
+				duration: 500,
 				lineheight: 1,
 				height: 'auto', //reserved
 				hoverpause: false,
@@ -95,7 +95,7 @@
 							//add rotateTimer function to end of animation queue
 							//this prevents animation buildup caused by requestAnimationFrame
 							//rotateTimer starts a timer for the next rotate
-							// rotateTimer();
+							rotateTimer();
 							$(this).dequeue()
 					});
 
@@ -118,7 +118,7 @@
 					}, o.interval);
 				};
 				//start the timer for the first time
-				// rotateTimer();
+				 rotateTimer();
 
 				//pause the slider on hover
 				//disabled by default due to bug

@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="css/blueberry.css" />
 	<link rel="stylesheet" href="css/calendar.css" />
 	<link rel="stylesheet" href="css/card.css" />
+	<link rel="stylesheet" href="css/susc.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<style>
@@ -111,7 +112,7 @@
 		</div>
 
 	</header> <!-- Encabezado -->
-
+<section>
 	<!-- Main -->
 	<section class="main">
 		
@@ -168,14 +169,19 @@
 
 		<!-- convocatorias -->
 		<section class="convocatoria">
+				
 			<div class="container">
-				<div class="titulo-seccion">
-					<h2>Convocatorias a Concursos</h2>
-				</div>
-				<div class="blueberry">
-					<ul class="slides" id="bby">
-					</ul>
-			  	</div>
+				
+					<div class="titulo-seccion">
+						<h2>Convocatorias a Concursos</h2>
+					</div>
+				
+				
+					<div class="blueberry">
+						<ul class="slides" id="bby">
+						</ul>
+					</div>
+				
 			</div>	
 		</section>
 		<!-- convocatorias -->
@@ -193,22 +199,18 @@
 
 				<div class="contenedor-evento">
 					<ul id="encabezado_evento" class="encabezado-evento">
-						<li class="active"><a href="#evento1">Evento1</a></li>
-						<li><a href="#evento2">Evento2</a></li>
+						<li class="active"><a href="#evento1">Ver eventos</a></li>
+						<li><a href="#evento2">Tengo un Evento</a></li>
 					</ul>
 					<div class="contenido" id="contenido_evento">
 						<!-- Menu Evento1 -->
 						<div id="evento1" class="active">
-							<div class="item" id="even1">
-								
-							</div>				
+									
 						</div> <!-- Menu Evento1 -->
 
 						<!-- Menu Evento2 -->
 						<div id="evento2">
-							<div class="item" id="even2">
 							
-							</div>
 						</div> <!-- Menu Evento2 -->
 
 					</div>
@@ -309,7 +311,7 @@
 				</div>
 			</div>
 		</section> <!-- Contacto -->
-
+		
 	</section> <!-- Main -->
 
 	<!-- Pie de página -->
@@ -328,7 +330,32 @@
 					<i class="fa fa-instagram" aria-hidden="true"></i>
 				</a>
 			</div>
-	</footer> <!-- Pie de página -->
+	</footer>
+	 <!-- Pie de página -->
+	<a href="#" class="float">
+		<i class="my-float" id="msg">Suscribirme</i>
+	</a>
+	<!--ssdasdasd-->
+	    <div class="modal" style="display: none" >
+		<a href="#" class="close">
+		<i class="mdi-navigation-close">x</i>
+		</a>
+		<div class="formulario" >
+			<form id="formsusc" action="" method="POST" >
+				<input class="input1" type="text" id="nomS" name="nomS" placeholder="Nombres">
+				<input class="input1" type="text" id="apeS" name="apeS" placeholder="Apellidos">
+				<input class="input1" type="email" id="emailS" name="emailS" placeholder="Correo">
+				<br/>
+				<br/>
+				<button class="btn1"  type="submit"style="text-align:center">Enviar</button>
+			</form>
+		</div>
+		</div>
+			
+</section>
+
+
+
 		<!-- scripts -->
 	<!-- <script src="js/lightbox.js"></script> -->
 	<script src="js/bgParallax.js"></script>
@@ -340,6 +367,7 @@
 	<script src="js/ajax.js"></script>
 	<script src="js/jquery.blueberry.js"></script>
 	<script src="js/calendar.js"></script>
+	<script src="js/susc.js"></script>
 	<script type="text/javascript">
 
 		// Load the Visualization API and the corechart package.

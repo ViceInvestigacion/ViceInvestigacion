@@ -26,12 +26,13 @@ $(document).ready(function () {
             var titulo      =  value["nombre_Evento"];
             var descripcion =  value["descripcion_Evento"];
             var h =setFecha(año,mes,dia,diaS,hora,segundo,minuto,titulo,descripcion);
-            $('#even1').append(h);
+            $('#evento1').append(h);
         });
               
       });
     function setFecha(año,mes,dia,diaS,hora,segundo,minuto,titulo,descripcion){
         var html = 
+        '<div class="item" id="even1">'+	
         '<div class="col izq">'+
             '<h3>'+titulo+'</h3>'+
             '<p>'+descripcion+'</p>'+
@@ -77,6 +78,7 @@ $(document).ready(function () {
             '</li>'+
             '</div>'+
             '</div>'+
+        '</div>'+
         '</div>'
         return html;
       }
