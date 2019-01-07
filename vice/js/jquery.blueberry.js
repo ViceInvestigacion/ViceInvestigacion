@@ -137,7 +137,7 @@
 					sliderWidth = $('.slides', obj).width();
 					cropHeight = Math.floor(((sliderWidth/imgRatio)/o.lineheight))*o.lineheight;
 
-					$('.slides', obj).css({height: cropHeight});
+					$('#bby', obj).css({height: cropHeight});
 				};
 				setsize();
 
