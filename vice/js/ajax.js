@@ -7,11 +7,11 @@ $(document).ready(function(){
 			method: "GET",
 		  }).done(function(data) {
 			$.each( data, function( key, value ) {
-				  $(".slides").append('<li style="position: relative"><img style="" src="../ViceAdmin/images/convocatoria/'+value["imagen_Conv"]+'"/><div style="position: absolute;bottom: 8px;left: 16px;color: white;">'+value["descripcion_Conv"] +'</div></li>');
+				  $("#bby").append('<li style="position: relative"><img style="" src="../ViceAdmin/images/convocatoria/'+value["imagen_Conv"]+'"/><div style="position: absolute;bottom: 8px;left: 16px;color: white;">'+value["descripcion_Conv"] +'</div></li>');
 			  });
 		  })
 	).then(function( data, textStatus, jqXHR ) {
-		$('.blueberry').blueberry();
+		$('#blueberry_Conv').blueberry();
 	});
 
 		$.ajax({
@@ -21,22 +21,29 @@ $(document).ready(function(){
 				$('#id_mision').html(data["mision_Nos"]);
 				$('#id_vision').html(data["vision_Nos"]);
 		});
-
-		$.ajax({
-		  url: "http://localhost:8000/api/noticias",
-		  method: "GET",
-		}).done(function(data) {
-			$.each( data, function( key, value ) {
-				var h =
-				'<article class="article">'+
-				'<div id="slider">'+
-				'<img src="../ViceAdmin/images/noticia/'+value["imagen_Noticia"]+'" alt=""/>'+
-				'</div>'+
-				'<h2 style="text-align:center">'+value["titulo_Noticia"]+'</h2>'+
-				'<p style="text-align:justify">'+value["descripcion_Noticia"]+'</p>'+
-				'</article>';
-				$('#idNoticias').append(h);
-			});		
+		$.when( 
+			$.ajax({
+				url: "http://localhost:8000/api/noticias",
+				method: "GET",
+			  }).done(function(data) {
+				$.each( data, function( key, value ) {
+					var h =
+					'<li style="position: relative">'+
+					'<div id="idNoticias" class="articulos">'+
+					'<article class="article">'+
+					'<div id="slider">'+
+					'<img style="width:100%;height:600px"src="../ViceAdmin/images/noticia/'+value["imagen_Noticia"]+'" alt=""/>'+
+					'</div>'+
+					'<h2 style="text-align:center">'+value["titulo_Noticia"]+'</h2>'+
+					'<p style="text-align:justify">'+value["descripcion_Noticia"]+'</p>'+
+					'</article>'
+					'</div>'
+					'</li>'
+					$("#bby_Noti").append(h);
+				  });
+			  })
+		).then(function( data, textStatus, jqXHR ) {
+			$('#blueberry_Noti').blueberry();
 		});
 
 		$("#formid").submit(function(event){

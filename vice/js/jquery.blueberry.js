@@ -22,7 +22,7 @@
 (function($){
 	$.fn.extend({
 		blueberry: function(options) {
-
+	
 			//default values for plugin options
 			var defaults = {
 				interval: 4000,
@@ -39,10 +39,12 @@
 			return this.each(function() {
 				var o = options;
 				var obj = $(this);
-
 				//store the slide and pager li
-				var slides = $('.slides li', obj);
-				var pager = $('.pager li', obj);
+				var slides 	= $('.slides li', obj);
+				var pager 	= $('.pager li', obj);
+				var slidesN = $('.slides li', obj);
+				var pagerN 	= $('.pager li', obj);
+				
 
 				//set initial current and next slide index values
 				var current = 0;
@@ -63,6 +65,7 @@
 
 				//build pager if it doesn't already exist and if enabled
 				if(pager.length) {
+
 					pager.eq(current).addClass('active');
 				} else if(o.pager){
 					obj.append('<ul class="pager"></ul>');
@@ -137,7 +140,7 @@
 					sliderWidth = $('.slides', obj).width();
 					cropHeight = Math.floor(((sliderWidth/imgRatio)/o.lineheight))*o.lineheight;
 
-					$('.slides', obj).css({height: cropHeight});
+					$('#bby', obj).css({height: cropHeight});
 				};
 				setsize();
 

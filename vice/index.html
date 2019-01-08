@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="css/calendar.css" />
 	<link rel="stylesheet" href="css/card.css" />
 	<link rel="stylesheet" href="css/susc.css" />
+	<link rel="stylesheet" href="css/even.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<style>
@@ -177,7 +178,7 @@
 					</div>
 				
 				
-					<div class="blueberry">
+					<div class="blueberry" id="blueberry_Conv">
 						<ul class="slides" id="bby">
 						</ul>
 					</div>
@@ -205,14 +206,20 @@
 					<div class="contenido" id="contenido_evento">
 						<!-- Menu Evento1 -->
 						<div id="evento1" class="active">
-									
 						</div> <!-- Menu Evento1 -->
-
 						<!-- Menu Evento2 -->
 						<div id="evento2">
-							
-						</div> <!-- Menu Evento2 -->
-
+							<div id="haveEvent">
+								<form>
+									<input type="email" placeholder="Email" required>
+									<br>
+									<input type="text" placeholder="DNI" required maxlength="8"> 
+										<br>
+									<button>Enviar</button>
+								</form>
+							</div>
+						</div>
+						 <!-- Menu Evento2 -->
 					</div>
 				</div>
 			</div>
@@ -221,12 +228,14 @@
 		<!-- Publicaciones -->
 		<section id="publicaciones" class="publicaciones">
 			<div class="container">
-					<div class="titulo-seccion">
-							<h2 >Noticias</h2>
-						</div>
-			<div id="idNoticias" class="articulos">
-				
-			</div>
+				<div class="titulo-seccion">
+					<h2 >Noticias</h2>
+				</div>
+				<div class="blueberry" id="blueberry_Noti">
+						<ul class="slides" id="bby_Noti" >
+								
+						</ul>
+				</div>
 			</div>
 		</section>
 		
