@@ -80,6 +80,10 @@ else {
 	elseif ($_GET['module'] == 'form_evento') {
 		include "modules/evento/form.php";
 	}
+	// Si el contenido es form_revista llamar la vista correspondiente
+	elseif ($_GET['module'] == 'form_evento') {
+		include "modules/evento/email.php";
+	}
 	// -----------------------------------------------------------------------------
 	// Si el contenido es message llamar la vista correspondiente
 	elseif ($_GET['module'] == 'message') {
