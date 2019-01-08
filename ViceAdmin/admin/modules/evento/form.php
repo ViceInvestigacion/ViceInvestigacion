@@ -1443,9 +1443,13 @@ elseif ($_GET['form']=='addPag') {
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
+        <a style='margin: 7px' class='btn btn-success btn-success pull-right'  href='modules/evento/email.php'>
+      <i class='fa fa-print'></i> Email</a>
+
       <i style="margin-right:7px" class="fa fa-money"></i> Detalle Pago
     </h1>
-    <ol class="breadcrumb">
+  
+    <ol class="breadcrumb" >
       <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
       <li><a href="?module=evento"> Evento </a></li>
       <li class="active">Detalle Pago </li>
