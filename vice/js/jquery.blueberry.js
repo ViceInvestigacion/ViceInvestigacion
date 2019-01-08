@@ -40,10 +40,10 @@
 				var o = options;
 				var obj = $(this);
 				//store the slide and pager li
-				var slidesC = $('.slides li', obj);
-				var pagerC = $('.pager li', obj);
+				var slides 	= $('.slides li', obj);
+				var pager 	= $('.pager li', obj);
 				var slidesN = $('.slides li', obj);
-				var pagerN = $('.pager li', obj);
+				var pagerN 	= $('.pager li', obj);
 				
 
 				//set initial current and next slide index values
@@ -51,8 +51,8 @@
 				var next = current+1;
 
 				//get height and width of initial slide image and calculate size ratio
-				var imgHeight = slidesC.eq(current).find('img').height();
-				var imgWidth = slidesC.eq(current).find('img').width();
+				var imgHeight = slides.eq(current).find('img').height();
+				var imgWidth = slides.eq(current).find('img').width();
 				var imgRatio = imgWidth/imgHeight;
 
 				//define vars for setsize function
@@ -60,25 +60,25 @@
 				var cropHeight = 0;
 
 				//hide all slides, fade in the first, add active class to first slide
-				slidesC.hide().eq(current).fadeIn(o.duration).addClass('active');
+				slides.hide().eq(current).fadeIn(o.duration).addClass('active');
 				
 
 				//build pager if it doesn't already exist and if enabled
-				if(pagerC.length) {
+				if(pager.length) {
 
-					pagerC.eq(current).addClass('active');
-				} else if(o.pagerC){
+					pager.eq(current).addClass('active');
+				} else if(o.pager){
 					obj.append('<ul class="pager"></ul>');
-					slidesC.each(function(index) {
+					slides.each(function(index) {
 						$('.pager', obj).append('<li><a href="#"><span>'+index+'</span></a></li>')
 					});
-					pagerC = $('.pager li', obj);
-					pagerC.eq(current).addClass('active');
+					pager = $('.pager li', obj);
+					pager.eq(current).addClass('active');
 				}
 
 				//rotate to selected slide on pager click
-				if(pagerC){
-					$('a', pagerC).click(function() {
+				if(pager){
+					$('a', pager).click(function() {
 						//stop the timer
 						clearTimeout(obj.play);
 						//set the slide index based on pager index
@@ -93,7 +93,7 @@
 				var rotate = function(){
 					//fade out current slide and remove active class,
 					//fade in next slide and add active class
-					slidesC.eq(current).fadeOut(o.duration).removeClass('active')
+					slides.eq(current).fadeOut(o.duration).removeClass('active')
 						.end().eq(next).fadeIn(o.duration).addClass('active').queue(function(){
 							//add rotateTimer function to end of animation queue
 							//this prevents animation buildup caused by requestAnimationFrame
@@ -103,8 +103,8 @@
 					});
 
 					//update pager to reflect slide change
-					if(pagerC){
-						pagerC.eq(current).removeClass('active')
+					if(pager){
+						pager.eq(current).removeClass('active')
 							.end().eq(next).addClass('active');
 					}
 
@@ -126,7 +126,7 @@
 				//pause the slider on hover
 				//disabled by default due to bug
 				if(o.hoverpause){
-					slidesC.hover(function(){
+					slides.hover(function(){
 						//stop the timer in mousein
 						clearTimeout(obj.play);
 					}, function(){
