@@ -19,9 +19,9 @@ class suscriptorController extends helpers
             return response()->json("OK",201);    
           }  
           else{
-            if($suscriptores->estado_Susc==0)
+            if($suscriptores->estado_Susc=='y')
             {
-              $suscriptores->estado_Susc =1;
+              $suscriptores->estado_Susc ='n';
               $suscriptores->save();
               return response()->json("OK",201);   
             }
