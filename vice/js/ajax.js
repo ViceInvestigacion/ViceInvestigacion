@@ -126,5 +126,26 @@ $(document).ready(function(){
 				});
 			}
 	});
+
+	$("#form-event").submit(function(event){
+		event.preventDefault(); //prevent default action
+		var email = $('#emailevnt').val();
+		var dni = $('#dnievnt').val();
+
+		if(dni==''||email==''){
+			return false;
+		}
+		else{
+			$.ajax({
+				url: "http://localhost:8000/api/asistentes/"+email+"/Pago",
+				method: "GET"
+			}).done(function(data) {
+				alert('ok');
+			}).fail(function(data){
+				
+				alert('fail');
+			});
+		}
+	});
 });
 
