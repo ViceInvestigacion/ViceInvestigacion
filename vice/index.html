@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="css/card.css" />
 	<link rel="stylesheet" href="css/susc.css" />
 	<link rel="stylesheet" href="css/even.css" />
+	<link rel="stylesheet" href="css/loading.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<style>
@@ -218,10 +219,22 @@
 									<button>Enviar</button>
 								</form>
 							</div>
-							<div id="events" >
-								<!-- style="display:none" -->
-								<p>No se encontró ningun evento pendiente</p>
-							</div>
+							<div class='app' id="loading">
+								<div class='loading-content'>
+								  <div class='loading-ico no-border'></div>
+								  <span>Loading...</span>
+								</div>
+								<!-- <div class='loading-content'>
+								  <div class='loading-ico'></div>
+								  <span>Loading...</span>
+								</div>
+								<div class='load-bar'>
+								  <div class='h-load-bar'>
+									<div class='load-step'></div>
+								  </div>
+								  <span>Loading...</span>
+								</div> -->
+							  </div>
 						</div>
 						 <!-- Menu Evento2 -->
 					</div>
