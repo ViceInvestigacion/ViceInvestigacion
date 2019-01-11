@@ -31,7 +31,7 @@ session_start();
     <link href="assets/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <!-- Custom CSS -->
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- Fungsi untuk membatasi karakter yang diinputkan -->
     <script language="javascript">
       function getkey(e)
