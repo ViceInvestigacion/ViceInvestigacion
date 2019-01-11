@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="css/card.css" />
 	<link rel="stylesheet" href="css/susc.css" />
 	<link rel="stylesheet" href="css/even.css" />
+	<link rel="stylesheet" href="css/loading.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<style>
@@ -211,14 +212,30 @@
 						<!-- Menu Evento2 -->
 						<div id="evento2">
 							<div id="haveEvent">
-								<form>
-									<input type="email" placeholder="Email" required>
+								<form id="form-event">
+									<input type="email" placeholder="Email" required id="emailevnt">
 									<br>
-									<input type="text" placeholder="DNI" required maxlength="8"> 
+									<input type="text" placeholder="DNI" required maxlength="8" id="dnievnt"> 
 										<br>
 									<button>Enviar</button>
 								</form>
 							</div>
+							<div class='app' id="loading">
+								<div class='loading-content'>
+								  <div class='loading-ico no-border'></div>
+								  <span>Loading...</span>
+								</div>
+								<!-- <div class='loading-content'>
+								  <div class='loading-ico'></div>
+								  <span>Loading...</span>
+								</div>
+								<div class='load-bar'>
+								  <div class='h-load-bar'>
+									<div class='load-step'></div>
+								  </div>
+								  <span>Loading...</span>
+								</div> -->
+							  </div>
 						</div>
 						 <!-- Menu Evento2 -->
 					</div>
@@ -342,24 +359,17 @@
 			</div>
 	</footer>
 	 <!-- Pie de página -->
-	<a href="#" class="float">
-		<i class="my-float" id="msg">Suscribirme</i>
-	</a>
+	 <button class="float" style="text-align:center" id="btn_susc">Suscribirme</button>
 	<!--ssdasdasd-->
-	    <div class="modal" style="display: none" >
-		<a href="#" class="close">
-		<i class="mdi-navigation-close">x</i>
-		</a>
-		<div class="formulario" >
+	    <div class="modal" style="display: none" id="modalS">
 			<form id="formsusc" action="" method="POST" >
-				<input class="input1" type="text" id="nomS" name="nomS" placeholder="Nombres">
-				<input class="input1" type="text" id="apeS" name="apeS" placeholder="Apellidos">
-				<input class="input1" type="email" id="emailS" name="emailS" placeholder="Correo">
+				<input class="input1" type="text" id="nomS" name="nomS" placeholder="Nombres" required>
+				<input class="input1" type="text" id="apeS" name="apeS" placeholder="Apellidos"required>
+				<input class="input1" type="email" id="emailS" name="emailS" placeholder="Correo"requiere>
 				<br/>
 				<br/>
 				<button class="btn1"  type="submit"style="text-align:center">Enviar</button>
 			</form>
-		</div>
 		</div>
 			
 </section>

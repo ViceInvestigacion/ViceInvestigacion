@@ -109,25 +109,14 @@ $(document).ready(function(){
 				}).done(function(data) {
 					$.when( 
 						$('.modal').hide(1000),
-						$('.float').css("background-color", "green"),
-						$('#msg').text('OK'),
-						$('#nomS').val(),
-						$('#apeS').val(),
-						$('#emailS').val(),
-						$('.float').show(1000)
+						$('#nomS').val(''),
+						$('#apeS').val(''),
+						$('#emailS').val(''),
 					).then(function( data, textStatus, jqXHR ) {
-						$('.float').css("background-color", "rgb(52, 217, 247)"),
-						$('#msg').text('Suscribirme'),
 						$('.float').show()
 					});
 				}).fail(function(data){
-					alert(data);
 					$('.float').show()
-					// $.when( 
-						
-					// ).then(function( data, textStatus, jqXHR ) {
-						
-					// });
 				});
 			}
 	});

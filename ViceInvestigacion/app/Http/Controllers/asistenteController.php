@@ -135,7 +135,9 @@ class asistenteController  extends helpers
         ->join('eventoBE','eventoAsistenteBE.evento_EventoAsis','=','eventoBE.id_Evento')
         ->select(
             'eventoBE.nombre_Evento',
+            'eventoBE.descripcion_Evento',
             'eventoBE.fecInicio_Evento', 
+            'eventoBE.horaInicio_Evento', 
             'asistenteBE.apellidos_Asis', 
             'asistenteBE.nombres_Asis', 
             'asistenteBE.dni_Asis', 
@@ -145,7 +147,7 @@ class asistenteController  extends helpers
         ->where([
             ['pagoBE.id_Pago',null],
             ['asistenteBE.correo_Asis', $correo],
-            ['eventoBE.fecInicio_Evento','<',date("Y-m-d")],
+            ['eventoBE.fecInicio_Evento','>',date("Y-m-d")],
         ])
         ->get();  
         }  catch (\Exception $e) {
