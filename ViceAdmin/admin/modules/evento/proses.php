@@ -612,6 +612,34 @@ elseif ($_GET['act']=='updateEsp') {
             }
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+elseif ($_GET['act']=='updatePag') {
+        if (isset($_POST['save'])) {
+            if (isset($_POST['id_Pago'])) {
+                // Captura de datos desde el formulario
+            $id_Pago           = $_POST['id_Pago'];
+            $estado                = $_POST['gender'];
+            $fechaAprov                = $_POST['fechaAprov'];
+                    // consultar comando para cambiar los datos de la tabla eventoBE
+                     $query = sqlsrv_query($mysqli, "UPDATE pagoBE SET 
+                                                    estado_Pago         ='$estado',
+                                                    fechaApr_Pago       ='$fechaAprov'
+                                                                      WHERE id_Pago= '$id_Pago'")
+                                                    or die('Datos acttualizados correctamente : '.sqlsrv_errors($mysqli));
+                    // ejecutar consulta
+                    if ($query) {
+                        // si tiene éxito mensaje indican exitosa actualización de datos
+                        header("location: ../../main.php?module=form_evento&form=addPag");
+                    } 
+                    else
+                    {
+                        header("location: ../../main.php?module=form_evento&form=addPag");
+                    }
+     
+            }
+        }
+    }
+///////////////////////////////////////////***UNIVERSIDAD***////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }       
 ?>

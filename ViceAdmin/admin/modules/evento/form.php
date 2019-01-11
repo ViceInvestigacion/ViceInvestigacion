@@ -3,7 +3,7 @@ if ($_GET['form']=='add') { ?>
 	<!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i style="margin-right:7px" class="fa fa-edit"></i> Agregar Evento
+      <i style="margin-right:7px" class="fa fa-plus"></i> Agregar Evento
     </h1>
     <ol class="breadcrumb">
       <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
@@ -31,9 +31,46 @@ if ($_GET['form']=='add') { ?>
               <br>
               <div class="form-group">
                 <label class="col-sm-1 control-label">Descripcion</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="descripcion" autocomplete="off" placeholder="Descripcion Evento" required>
+                <div class="col-sm-8" id="info">
+                  <textarea id="texto" class="form-control" onkeypress="return limita(event,300);" onkeyup="actualizaInfo(300)" placeholder="Maximo 300 caracteres..." maxlength="300" name="descripcion" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required></textarea>
                 </div>
+                                <div style="color: orange" id="info1"></div>
+                <script type="text/javascript">
+                                  function limita(elEvento, maximoCaracteres) {
+                                    var elemento = document.getElementById("texto");
+
+                                    // Obtener la tecla pulsada
+                                    var evento = elEvento || window.event;
+                                    var codigoCaracter = evento.charCode || evento.keyCode;
+                                    // Permitir utilizar las teclas con flecha horizontal
+                                    if(codigoCaracter == 37 || codigoCaracter == 39) {
+                                      return true;
+                                    }
+
+                                    // Permitir borrar con la tecla Backspace y con la tecla Supr.
+                                    if(codigoCaracter == 8 || codigoCaracter == 46) {
+                                      return true;
+                                    }
+                                    else if(elemento.value.length >= maximoCaracteres ) {
+                                      return false;
+                                    }
+                                    else {
+                                      return true;
+                                    }
+                                  }
+
+                                  function actualizaInfo(maximoCaracteres) {
+                                    var elemento = document.getElementById("texto");
+                                    var info = document.getElementById("info");
+
+                                    if(elemento.value.length >= maximoCaracteres ) {
+                                      info1.innerHTML = "Máximo "+maximoCaracteres+" caracteres";
+                                    }
+                                    else {
+                                     info1.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
+                                    }
+                                  }
+                            </script>
               </div>
               <br>
 
@@ -197,14 +234,50 @@ elseif ($_GET['form']=='edit') {
                 </div>
               </div>
               
-              <br>
               <div class="form-group">
                 <label class="col-sm-1 control-label">Descripcion</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="descripcion" value="<?php echo $data['descripcion_Evento']; ?>" autocomplete="off" placeholder="Descripcion Evento" required>
+                <div class="col-sm-8" id="info4">
+                  
+                  <textarea id="texto4" class="form-control" onkeypress="return limita4(event, 300);" onkeyup="actualizaInfo4(300)" placeholder="Maximo 300 caracteres..." maxlength="300" name="descripcion" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required><?php echo htmlspecialchars($data['descripcion_Evento']); ?></textarea>
                 </div>
+                                <div style="color: orange" id="info5"></div>
+                            <script type="text/javascript">
+                                              function limita4(elEvento, maximoCaracteres) {
+                                                var elemento = document.getElementById("texto4");
+
+                                                // Obtener la tecla pulsada
+                                                var evento = elEvento || window.event;
+                                                var codigoCaracter = evento.charCode || evento.keyCode;
+                                                // Permitir utilizar las teclas con flecha horizontal
+                                                if(codigoCaracter == 37 || codigoCaracter == 39) {
+                                                  return true;
+                                                }
+
+                                                // Permitir borrar con la tecla Backspace y con la tecla Supr.
+                                                if(codigoCaracter == 8 || codigoCaracter == 46) {
+                                                  return true;
+                                                }
+                                                else if(elemento.value.length >= maximoCaracteres ) {
+                                                  return false;
+                                                }
+                                                else {
+                                                  return true;
+                                                }
+                                              }
+
+                                              function actualizaInfo4(maximoCaracteres) {
+                                                var elemento = document.getElementById("texto4");
+                                                var info4 = document.getElementById("info4");
+
+                                                if(elemento.value.length >= maximoCaracteres ) {
+                                                  info5.innerHTML = "Máximo "+maximoCaracteres+" caracteres";
+                                                }
+                                                else {
+                                                 info5.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
+                                                }
+                                              }
+                                        </script>
               </div>
-              <br>
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Tipo Evento</label>
@@ -1374,6 +1447,7 @@ $query = sqlsrv_query($mysqli, "SELECT * FROM universidadBE ORDER BY id_Uni DESC
 <!--/. -->
 <?php
 }  
+//////////////////////////////////////////////////////////////////////////////////////
 elseif ($_GET['form']=='editUni') { 
   if (isset($_GET['id'])) {
 
@@ -1435,6 +1509,8 @@ elseif ($_GET['form']=='editUni') {
 }   
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//   <a style='margin: 7px' class='btn btn-success btn-success pull-right'  href='modules/evento/email.php'>
+//      <i class='fa fa-print'></i> Email</a>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 elseif ($_GET['form']=='addPag') { 
 
@@ -1443,8 +1519,7 @@ elseif ($_GET['form']=='addPag') {
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-        <a style='margin: 7px' class='btn btn-success btn-success pull-right'  href='modules/evento/email.php'>
-      <i class='fa fa-print'></i> Email</a>
+       
 
       <i style="margin-right:7px" class="fa fa-money"></i> Detalle Pago
     </h1>
@@ -1470,7 +1545,7 @@ elseif ($_GET['form']=='addPag') {
                 <th class="center">Telefono</th>
                 <th class="center">Evento</th>
                 <th class="center">Imagen Pago</th>
-                <th class="center">Fecha</th>
+                <th class="center">Fecha Pago</th>
                 <th class="center">Estado</th>
                 <th class="center">Fecha de Aprobacion</th>
                 <th class="center">Acciones</th>
@@ -1491,13 +1566,15 @@ $query = sqlsrv_query($mysqli, "SELECT * from pagoBE inner join eventoAsistenteB
 
                             if ($data['estado_Pago']<1)
                    {
-                        $cond='<span style="color: red; text-align: center">Desaprobado</apan>';
+                        $cond='<b><span style="color: red; text-align: center">Desaprobado</apan>';
                        
                    }
                    elseif ($data['estado_Pago']==1) {
                         $cond='<b><span style="color: blue; text-align: center">Aprobado</apan>';
                        }
-
+                       elseif ($data['estado_Pago']==2) {
+                        $cond='<b><span style="color: green; text-align: center">Validar</apan>';
+                       }
 
               // mostrar los datos
               echo "<tr>
@@ -1534,4 +1611,156 @@ $query = sqlsrv_query($mysqli, "SELECT * from pagoBE inner join eventoAsistenteB
   </section><!-- /.content -->
 <!--/. -->
 <?php
-}  
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+elseif ($_GET['form']=='editPag') { 
+  if (isset($_GET['id'])) {
+
+      // funcion de consulta para mostrar los datos de la tabla pago
+     $query = sqlsrv_query($mysqli, "SELECT * from pagoBE inner join eventoAsistenteBE 
+    on pagoBE.eventoAsis_Pago=eventoAsistenteBE.id_EventoAsis
+    inner join asistenteBE on eventoAsistenteBE.asistente_EventoAsis=asistenteBE.id_Asis
+    inner join eventoBE on eventoAsistenteBE.evento_EventoAsis=eventoBE.id_Evento where id_Pago='$_GET[id]';")
+                                            or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
+            // almacena en un array data
+          $data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
+    } 
+?>
+<!--  form add data -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i style="margin-right:7px" class="fa fa-check-square-o"></i> Validar Pago
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
+      <li><a href="?module=evento"> Evento</a></li>
+       <li><a href="?module=form_evento&form=addPag"> Detalle Pago </a></li>
+      <li class="active"> Validar Pago </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" class="form-horizontal" method="POST" action="modules/evento/proses.php?act=updatePag" method="POST" enctype="multipart/form-data">
+            <div class="box-body">
+              
+              <input type="hidden" name="id_Pago" value="<?php echo $data['id_Pago']; ?>">
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Asistente</label>
+                <div class="col-sm-8">
+                  <input type="text" disabled class="form-control" name="asistente" value="<?php echo $data['nombres_Asis'].$data['apellidos_Asis']?>" autocomplete="off" placeholder="Especialidad Ponente" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-1 control-label">DNI</label>
+                <div class="col-sm-8">
+                  <input type="text" disabled class="form-control" name="dni" value="<?php echo $data['dni_Asis']?>" autocomplete="off" placeholder="Especialidad Ponente" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Correo</label>
+                <div class="col-sm-8">
+                  <input type="text" disabled class="form-control" name="correo" value="<?php echo $data['correo_Asis']?>" autocomplete="off" placeholder="Especialidad Ponente" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Telefono</label>
+                <div class="col-sm-8">
+                  <input type="text" disabled class="form-control" name="telefono" value="<?php echo $data['telefono_Asis']?>" autocomplete="off" placeholder="Especialidad Ponente" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Evento</label>
+                <div class="col-sm-8">
+                  <input type="text" disabled class="form-control" name="evento" value="<?php echo $data['nombre_Evento']?>" autocomplete="off" placeholder="Especialidad Ponente" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Imagen Pago</label>
+                <div class="col-sm-8">
+                  <img id="myImg" src="../images/pago/<?php echo $data['imagen_Pago']; ?>" height="150">
+                  <br><b style="color: blue"> <?php echo " <a href='../images/pago/$data[imagen_Pago]' target='ventana'>$data[imagen_Pago]</a>"?></b>
+                </div>
+                            <div id="myModal" class="modal">
+                              <!-- The Close Button -->
+                              <span class="close">&times;</span>
+
+                              <!-- Modal Content (The Image) -->
+                              <img class="modal-content" id="img01">
+
+                              <!-- Modal Caption (Image Text) -->
+                              <div id="caption"></div>
+                            </div>
+                            <script type="text/javascript">
+                                    var modal = document.getElementById('myModal');
+
+                                  // Get the image and insert it inside the modal - use its "alt" text as a caption
+                                  var img = document.getElementById('myImg');
+                                  var modalImg = document.getElementById("img01");
+                                  var captionText = document.getElementById("caption");
+                                  img.onclick = function(){
+                                    modal.style.display = "block";
+                                    modalImg.src = this.src;
+                                    captionText.innerHTML = this.alt;
+                                  }
+
+                                  // Get the <span> element that closes the modal
+                                  var span = document.getElementsByClassName("close")[0];
+
+                                  // When the user clicks on <span> (x), close the modal
+                                  span.onclick = function() {
+                                    modal.style.display = "none";
+                                  } 
+                            </script>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Fecha Pago</label>
+                <div class="col-sm-8">
+                   <input type="date" disabled class="form-control" name="fecha" autocomplete="off" value="<?php echo $data['fecha_Pago']; ?>" required>
+                </div>
+              </div>
+
+               <div class="form-group">
+                <label class="col-sm-1 control-label">Estado  </label>
+                <div class="col-sm-8">
+                 
+              <fieldset id="group1">
+                <input type="radio" name="gender" value="1" <?php if ($data['estado_Pago']  == '1') echo 'checked="checked"'; ?> >    <b style="color: blue">Aprobado</b> <br>
+                <input type="radio" name="gender" value="1" <?php if ($data['estado_Pago']  == '2') echo 'checked="checked"'; ?> >      <b style="color: green">Validar</b><br>
+                <input type="radio" name="gender" value="0" <?php if ($data['estado_Pago'] == '0') echo 'checked="checked"'; ?> >   <b style="color: red">Desaprobado</b> <br>
+              </fieldset>
+                </div>                
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Fecha Aprovacion</label>
+                <div class="col-sm-8">
+                  <input type="date" class="form-control" name="fechaAprov" autocomplete="off"  required>
+                </div>
+              </div>
+
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-11">
+                  <input type="submit" class="btn btn-primary btn-submit" name="save" value="Guardar">
+                  <a href="?module=form_evento&form=addPag" class="btn btn-default btn-reset">Cancelar</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+  </section><!-- /.content -->
+<?php
+} 

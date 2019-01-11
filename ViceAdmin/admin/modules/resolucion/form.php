@@ -3,7 +3,7 @@ if ($_GET['form']=='add') { ?>
 	<!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i style="margin-right:7px" class="fa fa-edit"></i> Agregar Resolucion
+      <i style="margin-right:7px" class="fa fa-plus"></i> Agregar Resolucion
     </h1>
     <ol class="breadcrumb">
       <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>

@@ -120,6 +120,41 @@ if ($_GET["module"]=="noticia") { ?>
 	  	</li>
 	<?php
 	}
+
+
+	////////////////////////////////////////////////////
+
+	// Si se selecciona el menú de Revista , el menú de noticia está activo.
+if ($_GET["module"]=="revista") { ?>
+		<li class="active">
+			<a href="?module=revista"><i class="fa fa-bookmark"></i> Revista </a>
+	  	</li>
+	<?php
+	}
+	//  Si no, el menú de Revista no está activo.
+	else { ?>
+		<li>
+			<a href="?module=revista"><i class="fa fa-bookmark"></i> Revista</a>
+	  	</li>
+	<?php
+	}
+
+	////////////////////////////////////////////////////
+
+	// Si se selecciona el menú de Notificacion , el menú de noticia está activo.
+if ($_GET["module"]=="notificacion") { ?>
+		<li class="active">
+			<a href="?module=notificacion"><i class="fa fa-bell"></i> Notificaciones </a>
+	  	</li>
+	<?php
+	}
+	//  Si no, el menú de Notificacion no está activo.
+	else { ?>
+		<li>
+			<a href="?module=notificacion"><i class="fa fa-bell"></i> Notificaciones</a>
+	  	</li>
+	<?php
+	}
 	////////////////////////////////////////////////////
 
 	// Si se selecciona el menú de suscriptor , el menú de suscriptor está activo.

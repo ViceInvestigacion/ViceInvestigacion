@@ -3,7 +3,7 @@ if ($_GET['form']=='add') { ?>
 	<!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i style="margin-right:7px" class="fa fa-edit"></i> Agregar Convocatoria
+      <i style="margin-right:7px" class="fa fa-plus"></i> Agregar Convocatoria
     </h1>
     <ol class="breadcrumb">
       <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
@@ -23,9 +23,46 @@ if ($_GET['form']=='add') { ?>
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Descripcion</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="descripcion" autocomplete="off" required>
+                <div class="col-sm-8" id="info">
+                  <textarea id="texto" class="form-control" onkeypress="return limita(event, 255);" onkeyup="actualizaInfo(255)" placeholder="Maximo 255 caracteres..." maxlength="255" name="descripcion" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required></textarea>
                 </div>
+                                <div style="color: orange" id="info1"></div>
+                <script type="text/javascript">
+                                  function limita(elEvento, maximoCaracteres) {
+                                    var elemento = document.getElementById("texto");
+
+                                    // Obtener la tecla pulsada
+                                    var evento = elEvento || window.event;
+                                    var codigoCaracter = evento.charCode || evento.keyCode;
+                                    // Permitir utilizar las teclas con flecha horizontal
+                                    if(codigoCaracter == 37 || codigoCaracter == 39) {
+                                      return true;
+                                    }
+
+                                    // Permitir borrar con la tecla Backspace y con la tecla Supr.
+                                    if(codigoCaracter == 8 || codigoCaracter == 46) {
+                                      return true;
+                                    }
+                                    else if(elemento.value.length >= maximoCaracteres ) {
+                                      return false;
+                                    }
+                                    else {
+                                      return true;
+                                    }
+                                  }
+
+                                  function actualizaInfo(maximoCaracteres) {
+                                    var elemento = document.getElementById("texto");
+                                    var info = document.getElementById("info");
+
+                                    if(elemento.value.length >= maximoCaracteres ) {
+                                      info1.innerHTML = "Máximo "+maximoCaracteres+" caracteres";
+                                    }
+                                    else {
+                                     info1.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
+                                    }
+                                  }
+                            </script>
               </div>
               
               <br>
@@ -108,9 +145,46 @@ elseif ($_GET['form']=='edit') {
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Descripcion :</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="descripcion" autocomplete="off" value="<?php echo $data['descripcion_Conv']; ?>" required>
+                <div class="col-sm-8" id="info4">
+                  <textarea id="texto4" class="form-control" onkeypress="return limita4(event, 250);" onkeyup="actualizaInfo4(250)" placeholder="Maximo 250 caracteres..." maxlength="250" name="descripcion" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required><?php echo htmlspecialchars($data['descripcion_Conv']); ?></textarea>
                 </div>
+                                <div style="color: orange" id="info5"></div>
+                            <script type="text/javascript">
+                                              function limita4(elEvento, maximoCaracteres) {
+                                                var elemento = document.getElementById("texto4");
+
+                                                // Obtener la tecla pulsada
+                                                var evento = elEvento || window.event;
+                                                var codigoCaracter = evento.charCode || evento.keyCode;
+                                                // Permitir utilizar las teclas con flecha horizontal
+                                                if(codigoCaracter == 37 || codigoCaracter == 39) {
+                                                  return true;
+                                                }
+
+                                                // Permitir borrar con la tecla Backspace y con la tecla Supr.
+                                                if(codigoCaracter == 8 || codigoCaracter == 46) {
+                                                  return true;
+                                                }
+                                                else if(elemento.value.length >= maximoCaracteres ) {
+                                                  return false;
+                                                }
+                                                else {
+                                                  return true;
+                                                }
+                                              }
+
+                                              function actualizaInfo4(maximoCaracteres) {
+                                                var elemento = document.getElementById("texto4");
+                                                var info4 = document.getElementById("info4");
+
+                                                if(elemento.value.length >= maximoCaracteres ) {
+                                                  info5.innerHTML = "Máximo "+maximoCaracteres+" caracteres";
+                                                }
+                                                else {
+                                                 info5.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
+                                                }
+                                              }
+                                        </script>
               </div>
 
               <br>
@@ -135,8 +209,10 @@ elseif ($_GET['form']=='edit') {
                 </div>
               </div>
               <div>
-                <label  role="button" class="col-sm-1 control-label">Resultado :</label>
-                  <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger" href="modules/convocatoria/proses.php?act=deleteResult&id_Conv=<?php echo $data['id_Conv'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
+                <label  role="button" class="col-sm-1 control-label">Resultado:</label>
+                <BR><b style="color: blue"> <?php echo " <a href='../files/convocatoriaResultados/$data2[archivo_Resultado]' target='ventana'>$data2[archivo_Resultado]</a>"?>
+                <br>
+                 <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger" href="modules/convocatoria/proses.php?act=deleteResult&id_Conv=<?php echo $data['id_Conv'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
                               </i>
                   Quitar</a>
                   

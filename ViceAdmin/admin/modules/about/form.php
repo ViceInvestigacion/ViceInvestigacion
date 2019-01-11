@@ -3,7 +3,7 @@ if ($_GET['form']=='add') { ?>
 	<!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i style="margin-right:7px" class="fa fa-edit"></i> Agregar Nosotros
+      <i style="margin-right:7px" class="fa fa-plus"></i> Agregar Nosotros
     </h1>
     <ol class="breadcrumb">
       <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
@@ -23,36 +23,139 @@ if ($_GET['form']=='add') { ?>
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Descripcion</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="descripcion" autocomplete="off" required>
+                <div class="col-sm-8" id="info">
+                  <textarea id="texto" class="form-control" onkeypress="return limita(event, 500);" onkeyup="actualizaInfo(500)" placeholder="Maximo 500 caracteres..." maxlength="500" name="descripcion" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required></textarea>
                 </div>
+                <div style="color: orange" id="info1"></div>
+                <script type="text/javascript">
+                                  function limita(elEvento, maximoCaracteres) {
+                                    var elemento = document.getElementById("texto");
+
+                                    // Obtener la tecla pulsada
+                                    var evento = elEvento || window.event;
+                                    var codigoCaracter = evento.charCode || evento.keyCode;
+                                    // Permitir utilizar las teclas con flecha horizontal
+                                    if(codigoCaracter == 37 || codigoCaracter == 39) {
+                                      return true;
+                                    }
+
+                                    // Permitir borrar con la tecla Backspace y con la tecla Supr.
+                                    if(codigoCaracter == 8 || codigoCaracter == 46) {
+                                      return true;
+                                    }
+                                    else if(elemento.value.length >= maximoCaracteres ) {
+                                      return false;
+                                    }
+                                    else {
+                                      return true;
+                                    }
+                                  }
+
+                                  function actualizaInfo(maximoCaracteres) {
+                                    var elemento = document.getElementById("texto");
+                                    var info = document.getElementById("info");
+
+                                    if(elemento.value.length >= maximoCaracteres ) {
+                                      info1.innerHTML = "Máximo "+maximoCaracteres+" caracteres";
+                                    }
+                                    else {
+                                     info1.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
+                                    }
+                                  }
+                            </script>
               </div>
-              
-              <br>
-              
-              <br>
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Vision</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="vision" autocomplete="off" required>
+                <div class="col-sm-8" id="info2">
+                  <textarea id="texto2" class="form-control" onkeypress="return limita2(event, 500);" onkeyup="actualizaInfo2(500)" placeholder="Maximo 500 caracteres..." maxlength="500" name="vision" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required></textarea>
                 </div>
+                 <div style="color: green" id="infoo"></div>
+                            <script type="text/javascript">
+                                  function limita2(elEvento, maximoCaracteres) {
+                                    var elemento = document.getElementById("texto2");
+
+                                    // Obtener la tecla pulsada
+                                    var evento = elEvento || window.event;
+                                    var codigoCaracter = evento.charCode || evento.keyCode;
+                                    // Permitir utilizar las teclas con flecha horizontal
+                                    if(codigoCaracter == 37 || codigoCaracter == 39) {
+                                      return true;
+                                    }
+
+                                    // Permitir borrar con la tecla Backspace y con la tecla Supr.
+                                    if(codigoCaracter == 8 || codigoCaracter == 46) {
+                                      return true;
+                                    }
+                                    else if(elemento.value.length >= maximoCaracteres ) {
+                                      return false;
+                                    }
+                                    else {
+                                      return true;
+                                    }
+                                  }
+
+                                  function actualizaInfo2(maximoCaracteres) {
+                                    var elemento = document.getElementById("texto2");
+                                    var info2 = document.getElementById("info2");
+
+                                    if(elemento.value.length >= maximoCaracteres ) {
+                                      infoo.innerHTML = "Máximo "+maximoCaracteres+" caracteres";
+                                    }
+                                    else {
+                                     infoo.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
+                                    }
+                                  }
+                            </script>
+
+
               </div>
-              
-              <br>
-              
-              <br>
+
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Mision</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="mision" autocomplete="off" required>
+                <div class="col-sm-8" id="info3">
+                  <textarea id="texto3" class="form-control" onkeypress="return limita3(event, 500);" onkeyup="actualizaInfo3(500)" placeholder="Maximo 500 caracteres..." maxlength="500" name="mision" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required></textarea>
                 </div>
+                 <div style="color: skyblue" id="infooo"></div>
+                 <script type="text/javascript">
+                                  function limita3(elEvento, maximoCaracteres) {
+                                    var elemento = document.getElementById("texto3");
+
+                                    // Obtener la tecla pulsada
+                                    var evento = elEvento || window.event;
+                                    var codigoCaracter = evento.charCode || evento.keyCode;
+                                    // Permitir utilizar las teclas con flecha horizontal
+                                    if(codigoCaracter == 37 || codigoCaracter == 39) {
+                                      return true;
+                                    }
+
+                                    // Permitir borrar con la tecla Backspace y con la tecla Supr.
+                                    if(codigoCaracter == 8 || codigoCaracter == 46) {
+                                      return true;
+                                    }
+                                    else if(elemento.value.length >= maximoCaracteres ) {
+                                      return false;
+                                    }
+                                    else {
+                                      return true;
+                                    }
+                                  }
+
+                                  function actualizaInfo3(maximoCaracteres) {
+                                    var elemento = document.getElementById("texto3");
+                                    var info2 = document.getElementById("info3");
+
+                                    if(elemento.value.length >= maximoCaracteres ) {
+                                      infooo.innerHTML = "Máximo "+maximoCaracteres+" caracteres";
+                                    }
+                                    else {
+                                     infooo.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
+                                    }
+                                  }
+                            </script>
               </div>
-              
-              <br>
-              
-              <br>
+
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Directorio</label>
@@ -61,7 +164,7 @@ if ($_GET['form']=='add') { ?>
                 </div>
               </div>
               
-              <br>
+
 
 
               <div class="form-group">
@@ -70,8 +173,6 @@ if ($_GET['form']=='add') { ?>
                   <input type="date" class="form-control" name="fecha" autocomplete="off" required>
                 </div>
               </div>
-              
-              <br>
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Organigrama</label>
@@ -134,27 +235,135 @@ elseif ($_GET['form']=='edit') {
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Descripcion</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="descripcion" autocomplete="off" value="<?php echo $data['descripcion_Nos']; ?>" required>
+                <div class="col-sm-8" id="info4">
+                  <textarea id="texto4" class="form-control" onkeypress="return limita4(event, 500);" onkeyup="actualizaInfo4(500)" placeholder="Maximo 500 caracteres..." maxlength="500" name="descripcion" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required><?php echo htmlspecialchars($data['descripcion_Nos']); ?></textarea>
                 </div>
-              </div>
+                <div style="color: orange" id="info5"></div>
+                            <script type="text/javascript">
+                                              function limita4(elEvento, maximoCaracteres) {
+                                                var elemento = document.getElementById("texto4");
 
-              <br>
+                                                // Obtener la tecla pulsada
+                                                var evento = elEvento || window.event;
+                                                var codigoCaracter = evento.charCode || evento.keyCode;
+                                                // Permitir utilizar las teclas con flecha horizontal
+                                                if(codigoCaracter == 37 || codigoCaracter == 39) {
+                                                  return true;
+                                                }
+
+                                                // Permitir borrar con la tecla Backspace y con la tecla Supr.
+                                                if(codigoCaracter == 8 || codigoCaracter == 46) {
+                                                  return true;
+                                                }
+                                                else if(elemento.value.length >= maximoCaracteres ) {
+                                                  return false;
+                                                }
+                                                else {
+                                                  return true;
+                                                }
+                                              }
+
+                                              function actualizaInfo4(maximoCaracteres) {
+                                                var elemento = document.getElementById("texto4");
+                                                var info4 = document.getElementById("info4");
+
+                                                if(elemento.value.length >= maximoCaracteres ) {
+                                                  info5.innerHTML = "Máximo "+maximoCaracteres+" caracteres";
+                                                }
+                                                else {
+                                                 info5.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
+                                                }
+                                              }
+                                        </script>
+              </div>
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Vision</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="vision" autocomplete="off" value="<?php echo $data['vision_Nos']; ?>" required>
+                <div class="col-sm-8" id="info6">
+                  <textarea id="texto6" class="form-control" onkeypress="return limita5(event, 500);" onkeyup="actualizaInfo5(500)" placeholder="Maximo 500 caracteres..." maxlength="500" name="vision" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required><?php echo htmlspecialchars($data['vision_Nos']); ?></textarea>
                 </div>
+                                <div style="color: green" id="info7"></div>
+                            <script type="text/javascript">
+                                              function limita5(elEvento, maximoCaracteres) {
+                                                var elemento = document.getElementById("texto6");
+
+                                                // Obtener la tecla pulsada
+                                                var evento = elEvento || window.event;
+                                                var codigoCaracter = evento.charCode || evento.keyCode;
+                                                // Permitir utilizar las teclas con flecha horizontal
+                                                if(codigoCaracter == 37 || codigoCaracter == 39) {
+                                                  return true;
+                                                }
+
+                                                // Permitir borrar con la tecla Backspace y con la tecla Supr.
+                                                if(codigoCaracter == 8 || codigoCaracter == 46) {
+                                                  return true;
+                                                }
+                                                else if(elemento.value.length >= maximoCaracteres ) {
+                                                  return false;
+                                                }
+                                                else {
+                                                  return true;
+                                                }
+                                              }
+
+                                              function actualizaInfo5(maximoCaracteres) {
+                                                var elemento = document.getElementById("texto6");
+                                                var info6 = document.getElementById("info6");
+
+                                                if(elemento.value.length >= maximoCaracteres ) {
+                                                  info7.innerHTML = "Máximo "+maximoCaracteres+" caracteres";
+                                                }
+                                                else {
+                                                 info7.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
+                                                }
+                                              }
+                                        </script>
               </div>
 
-              <br>
               
               <div class="form-group">
                 <label class="col-sm-1 control-label">Mision</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" name="mision" autocomplete="off" value="<?php echo $data['mision_Nos']; ?>" required>
+                <div class="col-sm-8" id="info8">
+                  <textarea id="texto7" class="form-control" onkeypress="return limita6(event, 500);" onkeyup="actualizaInfo6(500)" placeholder="Maximo 500 caracteres..." maxlength="500" name="mision" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required><?php echo htmlspecialchars($data['mision_Nos']); ?></textarea>
                 </div>
+                                                <div style="color: skyblue" id="info9"></div>
+                            <script type="text/javascript">
+                                              function limita6(elEvento, maximoCaracteres) {
+                                                var elemento = document.getElementById("texto7");
+
+                                                // Obtener la tecla pulsada
+                                                var evento = elEvento || window.event;
+                                                var codigoCaracter = evento.charCode || evento.keyCode;
+                                                // Permitir utilizar las teclas con flecha horizontal
+                                                if(codigoCaracter == 37 || codigoCaracter == 39) {
+                                                  return true;
+                                                }
+
+                                                // Permitir borrar con la tecla Backspace y con la tecla Supr.
+                                                if(codigoCaracter == 8 || codigoCaracter == 46) {
+                                                  return true;
+                                                }
+                                                else if(elemento.value.length >= maximoCaracteres ) {
+                                                  return false;
+                                                }
+                                                else {
+                                                  return true;
+                                                }
+                                              }
+
+                                              function actualizaInfo6(maximoCaracteres) {
+                                                var elemento = document.getElementById("texto7");
+                                                var info8 = document.getElementById("info8");
+
+                                                if(elemento.value.length >= maximoCaracteres ) {
+                                                  info9.innerHTML = "Máximo "+maximoCaracteres+" caracteres";
+                                                }
+                                                else {
+                                                 info9.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
+                                                }
+                                              }
+                                        </script>
               </div>
 
               <br>

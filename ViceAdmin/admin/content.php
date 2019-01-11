@@ -70,6 +70,17 @@ else {
 	elseif ($_GET['module'] == 'form_noticia') {
 		include "modules/noticia/form.php";
 	}
+
+		// -----------------------------------------------------------------------------
+			// Si el contenido es revista llamar la vista correspondiente
+	elseif ($_GET['module'] == 'revista') {
+		include "modules/revista/view.php";
+	}
+
+	// Si el contenido es form_revista llamar la vista correspondiente
+	elseif ($_GET['module'] == 'form_revista') {
+		include "modules/revista/form.php";
+	}
 	// -----------------------------------------------------------------------------
 // Si el contenido es evento llamar la vista correspondiente
 	elseif ($_GET['module'] == 'evento') {
@@ -83,6 +94,16 @@ else {
 	// Si el contenido es form_revista llamar la vista correspondiente
 	elseif ($_GET['module'] == 'form_evento') {
 		include "modules/evento/email.php";
+	}
+// -----------------------------------------------------------------------------
+			// Si el contenido es notificacion llamar la vista correspondiente
+	elseif ($_GET['module'] == 'notificacion') {
+		include "modules/notificacion/view.php";
+	}
+
+	// Si el contenido es form_notificacion llamar la vista correspondiente
+	elseif ($_GET['module'] == 'form_notificacion') {
+		include "modules/notificacion/form.php";
 	}
 	// -----------------------------------------------------------------------------
 	// Si el contenido es message llamar la vista correspondiente
