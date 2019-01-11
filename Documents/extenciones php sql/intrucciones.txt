@@ -1,0 +1,4 @@
+#dentro del php ini
+#pegar al final de extensiones
+extension=php_pdo_sqlsrv_72_ts_x86.dll
+extension=php_sqlsrv_72_ts_x86.dll
