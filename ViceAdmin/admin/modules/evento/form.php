@@ -1686,11 +1686,12 @@ elseif ($_GET['form']=='editPag') {
                 <label class="col-sm-1 control-label">Imagen Pago</label>
                 <div class="col-sm-8">
                   <img id="myImg" src="../images/pago/<?php echo $data['imagen_Pago']; ?>" height="150">
-                  <br><b style="color: blue"> <?php echo " <a href='../images/pago/$data[imagen_Pago]' target='ventana'>$data[imagen_Pago]</a>"?></b>
+                  
                 </div>
-                            <div id="myModal" class="modal">
-                              <!-- The Close Button -->
-                              <span class="close">&times;</span>
+                            <div id="myModal"  class="modal">
+                              <!-- The Close Button 
+                             <span class="close">&times;</span>-->
+                             
 
                               <!-- Modal Content (The Image) -->
                               <img class="modal-content" id="img01">
@@ -1699,25 +1700,33 @@ elseif ($_GET['form']=='editPag') {
                               <div id="caption"></div>
                             </div>
                             <script type="text/javascript">
-                                    var modal = document.getElementById('myModal');
-
-                                  // Get the image and insert it inside the modal - use its "alt" text as a caption
+                            var v=0;
                                   var img = document.getElementById('myImg');
+                                  var modal = document.getElementById('myModal');
                                   var modalImg = document.getElementById("img01");
-                                  var captionText = document.getElementById("caption");
-                                  img.onclick = function(){
-                                    modal.style.display = "block";
-                                    modalImg.src = this.src;
-                                    captionText.innerHTML = this.alt;
-                                  }
-
-                                  // Get the <span> element that closes the modal
-                                  var span = document.getElementsByClassName("close")[0];
-
-                                  // When the user clicks on <span> (x), close the modal
-                                  span.onclick = function() {
-                                    modal.style.display = "none";
-                                  } 
+                                  $(document).click(function(event) {
+                                        if(v==0)
+                                        {
+                                            if ($(event.target).closest("#myImg").length) {
+                                                event.preventDefault();
+                                                $.when( 
+                                                 $("body").find("#myModal").css("display","block")
+                                                ).then(function( data, textStatus, jqXHR ) {
+                                                  modalImg.src = img.src;
+                                                });
+                                                v=1;
+                                            }
+                                          
+                                        }
+                                        else
+                                        {
+                                            if (!$(event.target).closest("#img01").length) {
+                                              $("body").find("#myModal").css("display","none")
+                                                v=0;
+                                            }
+                                        }
+         
+                                      });
                             </script>
               </div>
 
