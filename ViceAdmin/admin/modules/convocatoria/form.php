@@ -144,7 +144,7 @@ elseif ($_GET['form']=='edit') {
 
 
               <div class="form-group">
-                <label class="col-sm-1 control-label">Descripcion :</label>
+                <label class="col-sm-1 control-label">Descripcion:</label>
                 <div class="col-sm-8" id="info4">
                   <textarea id="texto4" class="form-control" onkeypress="return limita4(event, 250);" onkeyup="actualizaInfo4(250)" placeholder="Maximo 250 caracteres..." maxlength="250" name="descripcion" autocomplete="off" style="max-width: 100%; max-height : 150px;"  required><?php echo htmlspecialchars($data['descripcion_Conv']); ?></textarea>
                 </div>
@@ -208,16 +208,47 @@ elseif ($_GET['form']=='edit') {
                   <?php echo"<label style='color:red'><b> Tamaño maximo 1 MB !!</b></label>"?>
                 </div>
               </div>
-              <div>
-                <label  role="button" class="col-sm-1 control-label">Resultado:</label>
-                <BR><b style="color: blue"> <?php echo " <a href='../files/convocatoriaResultados/$data2[archivo_Resultado]' target='ventana'>$data2[archivo_Resultado]</a>"?>
-                <br>
-                 <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger" href="modules/convocatoria/proses.php?act=deleteResult&id_Conv=<?php echo $data['id_Conv'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
-                              </i>
-                  Quitar</a>
-                  
-              </div>
 
+
+           <div class='form-group'>
+                <label class='col-sm-1 control-label'>Resultado:</label>
+                   <div class='col-sm-8'>
+                    <b style='color: blue'> 
+                <?php 
+                $queryx = sqlsrv_query($mysqli, "SELECT count(concurso_Resultado) as registros from resultadoBE where concurso_Resultado ='$data[id_Conv]' ")
+                          or die('Se produjo un error en las actualizaciones de estado de consulta : '.sqlsrv_errors($mysqli));
+                          while ($datex = sqlsrv_fetch_array($queryx,SQLSRV_FETCH_ASSOC)) { 
+               //convertimos el datatime a string
+            $total_result=$datex['registros'];
+              
+                        if ($total_result=='0') {
+                           echo "
+                            No se encontraron Resultados!!
+                          ";
+                          }
+                          elseif ($total_result>'0')
+                          {
+                            echo "
+                             <img class='pull-left'  src='../files/convocatoriaResultados/doc.png' height='30'>&nbsp;&nbsp;
+                            <a href='../files/convocatoriaResultados/$data2[archivo_Resultado]' target='ventana'>$data2[archivo_Resultado]</a>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            ";
+                          }
+                  } 
+
+                ?>          
+              &nbsp;&nbsp;<a  data-toggle="tooltip" data-placement="top" title="Eliminar Resultado" class="btn btn-danger" href="modules/convocatoria/proses.php?act=deleteResult&id_Conv=<?php echo $data['id_Conv'];?>" onclick="setCookie();">
+                       <i style="color:#orange" class="glyphicon glyphicon-trash">&nbsp;</i>Quitar
+                      </a>
+
+                      </div>
+                    </div>
+
+              <script type="text/javascript">
+                function setCookie() {
+                      return confirm('Estas seguro que quieres eliminar ?');
+                  }
+              </script>
             </div><!-- /.box body -->
 
             <div class="box-footer">

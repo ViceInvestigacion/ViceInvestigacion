@@ -2,9 +2,33 @@
 <section class="content-header">
   <h1>
     <i class="fa fa-envira icon-title"></i> Nosotros
-    <a class="btn btn-primary btn-social pull-right" href="?module=form_about&form=add">
-      <i class="fa fa-plus"></i> Agregar
-    </a>
+    
+
+          <?php  
+    $query = sqlsrv_query($mysqli, "SELECT count(*) as registros from nosotrosBE ")
+                         or die('Se produjo un error en las actualizaciones de estado de consulta : '.sqlsrv_errors($mysqli));
+      while ($datex = sqlsrv_fetch_array($query,SQLSRV_FETCH_ASSOC)) { 
+         //convertimos el datatime a string
+        $total_result=$datex['registros'];
+    }  
+
+    if ($total_result=='0') {
+     // $total_result=document.getElementById("aea").disabled=true; 
+     echo "
+    <a  class='btn btn-primary btn-social pull-right' href='?module=form_about&form=add'>
+      <i class='fa fa-plus'></i> Agregar
+    </a>            
+    ";
+    }
+    elseif ($total_result>'0')
+    {
+
+  echo "
+      ";
+
+    }
+    ?>
+
   </h1>
 
 </section>

@@ -101,12 +101,17 @@
             <?php  
             $no = 1;
 
+
+
+            
             // funciones de consulta para mostrar los datos en la tabla 
             $query = sqlsrv_query($mysqli, "SELECT * FROM convocatoriaBE ORDER BY id_Conv DESC")
                                             or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
 
             // tampilkan data
-            while ($data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+            while ($data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) 
+
+            { 
               // menampilkan isi tabel dari database ke tabel di aplikasi
               echo "<tr>
                       <td width='40' class='center'>$no</td>
@@ -119,11 +124,35 @@
                         <div>
                           <a data-toggle='tooltip' data-placement='top' title='Editar' style='margin-right:5px' class='btn btn-warning btn-sm' href='?module=form_convocatoria&form=edit&id=$data[id_Conv]'>
                               <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
-                          </a>
-                          <a data-toggle='tooltip' data-placement='top' title='Resultado' style='margin-right:5px' class='btn btn-success btn-sm' href='?module=form_convocatoria&form=result&id=$data[id_Conv]'>
-                              <i style='color:#fff' class='glyphicon glyphicon-list-alt'></i>
-                          </a>
+                            </a>
+
+                       
                           ";
+
+                  
+            ?>            
+            <?php
+                        $queryx = sqlsrv_query($mysqli, "SELECT count(concurso_Resultado) as registros from resultadoBE where concurso_Resultado ='$data[id_Conv]' ")
+                         or die('Se produjo un error en las actualizaciones de estado de consulta : '.sqlsrv_errors($mysqli));
+            while ($datex = sqlsrv_fetch_array($queryx,SQLSRV_FETCH_ASSOC)) { 
+               //convertimos el datatime a string
+            $total_result=$datex['registros'];
+              
+                        if ($total_result=='0') {
+                           echo "
+                          <a data-toggle='tooltip'  data-placement='top' title='Subir Resultado' style='margin-right:5px' class='btn btn-info btn-sm' href='?module=form_convocatoria&form=result&id=$data[id_Conv]'>
+                              <i style='color:#fff' class='glyphicon glyphicon-upload'></i>
+                          </a>";
+                          }
+                          elseif ($total_result>'0')
+                          {
+                            echo "
+                            <a data-toggle='tooltip' disabled  data-placement='top' title='Subir Resultado' style='margin-right:5px' class='btn btn-success btn-sm' href='?module=form_convocatoria&form=result&id=$data[id_Conv]'>
+                              <i style='color:#fff' class='glyphicon glyphicon-upload'></i>
+                          </a>
+                            ";
+                          }
+          } 
             ?>
                           
                           <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/convocatoria/proses.php?act=delete&id_Conv=<?php echo $data['id_Conv'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">

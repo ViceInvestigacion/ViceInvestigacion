@@ -40,7 +40,7 @@ else {
             // Compruebe si el tipo de archivo que esté cargado de conformidad con las extensiones permitidas
             if(in_array($extension, $allowed_extensions)) {
                 // Si el tipo de archivo que esté cargado de conformidad con las extensiones permitidas:
-                if($ukuran_file <= 1000000) { // Comprueba si el tamaño del archivo subido menos igual a 1 MB
+                if($ukuran_file <= 6000000) { // Comprueba si el tamaño del archivo subido menos igual a 1 MB
                     //Si el tamaño del archivo es menor o igual a 1 MB, hacer:
                     //El proceso de carga
                     if(move_uploaded_file($tmp_file, $path)) { // Compruebe si la imagen fue subida o no con éxito
@@ -129,7 +129,7 @@ else {
                     //Compruebe si el tipo de archivo que esté cargado de conformidad con las extensiones permitidas
                     if(in_array($extension, $allowed_extensions)) {
                         // Si el tipo de archivo que esté cargado de conformidad con las extensiones permitidas, hacer:
-                        if($ukuran_file <= 1000000) { // Comprueba si el tamaño del archivo subido menos igual a 1 MB
+                        if($ukuran_file <= 6000000) { // Comprueba si el tamaño del archivo subido menos igual a 1 MB
                             // Si el tamaño del archivo es menor o igual a 1 MB, hacer:
                             // El proceso de carga
                             if(move_uploaded_file($tmp_file, $path)) { // Compruebe si la imagen subida o no con éxito
@@ -210,7 +210,7 @@ else {
             // Compruebe si el tipo de archivo que esté cargado de conformidad con las extensiones permitidas
             if(in_array($extension, $allowed_extensions)) {
                 // Si el tipo de archivo que esté cargado de conformidad con las extensiones permitidas:
-                if($ukuran_file <= 1000000) { // Comprueba si el tamaño del archivo subido menos igual a 1 MB
+                if($ukuran_file <= 6000000) { // Comprueba si el tamaño del archivo subido menos igual a 1 MB
                     //Si el tamaño del archivo es menor o igual a 1 MB, hacer:
                     //El proceso de carga
                     if(move_uploaded_file($tmp_file, $path)) { // Compruebe si la imagen fue subida o no con éxito
@@ -296,7 +296,7 @@ else {
                     //Compruebe si el tipo de archivo que esté cargado de conformidad con las extensiones permitidas
                     if(in_array($extension, $allowed_extensions)) {
                         // Si el tipo de archivo que esté cargado de conformidad con las extensiones permitidas, hacer:
-                        if($ukuran_file <= 1000000) { // Comprueba si el tamaño del archivo subido menos igual a 1 MB
+                        if($ukuran_file <= 6000000) { // Comprueba si el tamaño del archivo subido menos igual a 1 MB
                             // Si el tamaño del archivo es menor o igual a 1 MB, hacer:
                             // El proceso de carga
                             if(move_uploaded_file($tmp_file, $path)) { // Compruebe si la imagen subida o no con éxito
