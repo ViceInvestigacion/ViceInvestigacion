@@ -56,7 +56,7 @@ Route::get('escuelas/{facultad}', 'escuelaController@find_escuelas');//ok
 Route::get('especialidades','especialidadController@index');//ok
 //Rutas de eventoBE .
 Route::get('eventos', 'eventoController@index');//ok
-Route::get('eventos/{idEvento}','eventoController@index');//ok
+Route::get('eventos/{idEvento}','eventoController@find');//ok
 //Rutas de facultadBE
 Route::get('facultades', 'facultadController@index');//ok
 //Rutas Nosotros
