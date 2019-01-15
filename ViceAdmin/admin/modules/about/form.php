@@ -178,7 +178,32 @@ if ($_GET['form']=='add') { ?>
                 <label class="col-sm-1 control-label">Organigrama</label>
                 <div class="col-sm-8">
                   <input style="height:35px" type="file" name="image" autocomplete="off" >
-                  <?php echo"<label style='color:red'><b> Tamaño maximo 1 MB !!</b></label>"?>
+                  <?php echo"<label style='color:red'><b> Tamaño maximo 3 MB !!</b></label>"?>
+                </div>
+              </div>
+
+                            <div class="form-group">
+                <label class="col-sm-1 control-label">Port 1</label>
+                <div class="col-sm-8">
+                  <input style="height:35px" type="file" name="image1" autocomplete="off" >
+                  <?php echo"<label style='color:red'><b> Tamaño maximo 2 MB !!</b></label>"?>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Port 2</label>
+                <div class="col-sm-8">
+                  <input style="height:35px" type="file" name="image2" autocomplete="off" >
+                  <?php echo"<label style='color:red'><b> Tamaño maximo 2 MB !!</b></label>"?>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Port 3</label>
+                <div class="col-sm-8">
+                  <input style="height:35px" type="file" name="image3" autocomplete="off" >
+                  <?php echo"<label style='color:red'><b> Tamaño maximo 2 MB !!</b></label>"?>
                 </div>
               </div>
 
@@ -395,10 +420,50 @@ elseif ($_GET['form']=='edit') {
                   <img src="../images/about/<?php echo $data['organigrama_Nos']; ?>" height="150">
                   <br>
                 <?php echo $data['organigrama_Nos']; ?><br>
-                <?php echo"<label style='color:red'><b> Tamaño maximo 1 MB !!</b></label>"?>
+                <?php echo"<label style='color:red'><b> Tamaño maximo 3 MB !!</b></label>"?>
                 </div>
 
               </div>
+
+                             <div class="form-group">
+                <label class="col-sm-1 control-label">Portada 1</label>
+                <div class="col-sm-8">
+                  <input style="height:35px" type="file" name="image1" autocomplete="off">
+                  <br>
+                  <img src="../images/about/portada/<?php echo $data['portada_Unos']; ?>" height="150">
+                  <br>
+                <?php echo $data['portada_Unos']; ?><br>
+                <?php echo"<label style='color:red'><b> Tamaño maximo 2 MB !!</b></label>"?>
+                </div>
+
+              </div>
+
+               <div class="form-group">
+                <label class="col-sm-1 control-label">Portada 2</label>
+                <div class="col-sm-8">
+                  <input style="height:35px" type="file" name="image2" autocomplete="off">
+                  <br>
+                  <img src="../images/about/portada/<?php echo $data['portada_Dnos']; ?>" height="150">
+                  <br>
+                <?php echo $data['portada_Dnos']; ?><br>
+                <?php echo"<label style='color:red'><b> Tamaño maximo 2 MB !!</b></label>"?>
+                </div>
+
+              </div>
+
+               <div class="form-group">
+                <label class="col-sm-1 control-label">Portada 3</label>
+                <div class="col-sm-8">
+                  <input style="height:35px" type="file" name="image3" autocomplete="off">
+                  <br>
+                  <img src="../images/about/portada/<?php echo $data['portada_Tnos']; ?>" height="150">
+                  <br>
+                <?php echo $data['portada_Tnos']; ?><br>
+                <?php echo"<label style='color:red'><b> Tamaño maximo 2 MB !!</b></label>"?>
+                </div>
+
+              </div>
+
 
             </div><!-- /.box body -->
 

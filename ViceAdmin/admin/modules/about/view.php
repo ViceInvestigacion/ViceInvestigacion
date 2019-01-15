@@ -105,6 +105,9 @@
                 <th class="center">Directorio</th>
                 <th class="center">Fecha</th>
                 <th class="center">Organigrama</th>
+                <th class="center">Port1</th>
+                <th class="center">Port2</th>
+                <th class="center">Port3</th>
                 <th class="center">Acciones</th>
               </tr>
             </thead>
@@ -126,7 +129,16 @@
                       <td width='150'>$data[directorio_Nos]</td>
                       <td width='150'>$data[fecMod_Nos]</td>
                       <td width='200' class='center'>
-                        <img  src='../images/about/$data[organigrama_Nos]' height='150' alt='$data[organigrama_Nos]'>
+                        <img  src='../images/about/$data[organigrama_Nos]' width='100' height='100' alt='$data[organigrama_Nos]'>
+                      </td>
+                       <td width='200' class='center'>
+                        <img  src='../images/about/portada/$data[portada_Unos]' width='100' height='100' alt='$data[portada_Unos]'>
+                      </td>
+                      <td width='200' class='center'>
+                        <img  src='../images/about/portada/$data[portada_Dnos]' width='100' height='100' alt='$data[portada_Dnos]'>
+                      </td>
+                      <td width='200' class='center'>
+                        <img  src='../images/about/portada/$data[portada_Tnos]' width='100' height='100' alt='$data[portada_Tnos]'>
                       </td>
                       <td class='center' width='80'>
                         <div>

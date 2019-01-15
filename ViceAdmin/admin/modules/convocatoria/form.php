@@ -84,6 +84,7 @@ if ($_GET['form']=='add') { ?>
                 </div>
               </div>
 
+
             </div><!-- /.box body -->
 
             <div class="box-footer">
