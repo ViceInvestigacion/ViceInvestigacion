@@ -51,8 +51,6 @@
                             <li class="user-header">
                                 <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                      class="img-circle" alt="User Image"/>
-
-                                     <!-- The user image in the menu -->
                                 <p>
                                     {!! Auth::user()->name !!}
                                     <small>Member since {!! Auth::user()->created_at->format('M. Y') !!}</small>
