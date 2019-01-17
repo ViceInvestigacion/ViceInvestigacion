@@ -131,6 +131,9 @@ $(document).ready(function(){
 			}
 		});
 
+		//$('.slide foto1').css('background-image',"url('../img/chef-1.jpg')");
+		//$('.slide foto1').css("background-image:url('../img/1.jpg')");
+		//$(".foto1").css("background-image", "url(../img/chef-1.jpg)");
 		
 });
 

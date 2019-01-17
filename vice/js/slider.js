@@ -6,6 +6,7 @@ var propSlider = {
 	slider: document.getElementById('slider'),
 	primerSlide: null
 
+
 }
 
 // Metodos slide
@@ -33,3 +34,4 @@ var metSlider = {
 }
 
 metSlider.inicio();
+

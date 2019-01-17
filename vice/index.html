@@ -55,12 +55,12 @@
 			</a>
 
 			<nav class="menu-principal">
-				<a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="off">INICIO</span></a>
+				<a href="http://localhost:8181/ViceInvestigacion/ViceInvestigacion/vice/index"><i class="fa fa-home" aria-hidden="true"></i><span class="off">INICIO</span></a>
 					<a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="off">NOSOTROS</span></a>
 					<a href="#"><i class="fa fa-comments" aria-hidden="true"></i><span class="off">CONVOCATORIAS</span></a>
 					<a href="#"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i><span class="off">EVENTOS</span></a>
-					<a href="#"><i class="fa fa-file-text" aria-hidden="true"></i><span class="off">PUBLICACIONES</span></a>
-					<a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span class="off">INVESTIGACIONES</span></a>
+					<a href="revistas.unjfsc.edu.pe"><i class="fa fa-file-text" aria-hidden="true"></i><span class="off">PUBLICACIONES</span></a>
+					
 					<a href="http://repositorio.unjfsc.edu.pe/"  target="_blank"><i class="fa fa-archive" aria-hidden="true"></i><span  class="off" style="size:1px">REPOSITORIO</span></a>
 			</nav>
 
@@ -123,11 +123,14 @@
 		<section class="portada" id="portada">
 			<div class="container">
 				<div class="col izq">
-					<div class="slider" id="slider">
-						<div class="slide foto1"></div>
+					<div  class="slider" id="slider">
+						<div id="fot1"  class="slide foto1"></div>
 						<div class="slide foto2"></div>
 						<div class="slide foto3"></div>
 					</div>
+					<script type="text/javascript">
+						document.getElementById('fot1').style.backgroundImage = 'url(../img/chef-1.jpg)';
+					</script>
 				</div>
 
 				<div class="col">
@@ -211,7 +214,9 @@
 							<div id="event1container">
 
 							</div>
-						</div> <!-- Menu Evento1 -->
+						</div> 
+			
+						<!-- Menu Evento1 -->
 						<!-- Menu Evento2 -->
 						<div id="evento2">
 							<div id="haveEvent">

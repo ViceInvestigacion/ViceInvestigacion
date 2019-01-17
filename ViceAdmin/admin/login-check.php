@@ -9,8 +9,6 @@ $password = trim($_POST['password']);
 
 // asegúrese de que el nombre de usuario y la contraseña es en forma de letras o números.
 
-
-
 	if (!ctype_alnum($username) OR !ctype_alnum($password)) {
 	header("Location: main.php.php?alert=1");
 	}

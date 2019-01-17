@@ -15,16 +15,15 @@ function inicio(){
 
 $(document).click(function(event) {
     if ($(event.target).closest(".button2").length) {
-     var id =  event.target.parentNode.parentElement.childNodes[3].innerHTML;
+     var id =  event.target.parentNode.parentElement.childNodes[2].innerHTML;
      carga_evento(id); 
-     $('#event1container').remove();
-     $('#evento1').append('<div id="event1container">'+h+'</div>');
     }
 });
 
 $('#enc_even').on("click",function(){
 	 carga_eventos();
 });
+
 $("#form-event").submit(function(event){
     event.preventDefault(); //prevent default action
     $('#events').remove();
@@ -90,7 +89,6 @@ function setFecha(año,mes,dia,diaS,hora,segundo,minuto,titulo,descripcion,btn,i
     '<div class="item" id="even1">'+	
     '<div class="col izq">'+
         '<h3>'+titulo+'</h3>'+
-        '<p>'+descripcion+'</p>'+
         '<p>'+descripcion+'</p>'+
         '<p style="display : none" >'+id_Evento+'</p>'+
         btn+
@@ -174,29 +172,40 @@ function setFecha(año,mes,dia,diaS,hora,segundo,minuto,titulo,descripcion,btn,i
 
 
 function carga_evento(id){
-    // var nombre_Evento,tipo_Evento,duracion_Evento, fecInicio_Evento,horaInicio_Evento,cstGSnCertificado_Evento,
-    // cstGCnCertificado_Evento,cstFCnCertificado_Evento,imagen_Evento,capacidadD_Evento;
-    var h="holi";
-    var url = "http://localhost:8000/api/eventos/1"
+     var nombre_Evento;
+     var tipo_Evento;
+     var duracion_Evento;
+     var fecInicio_Evento;
+     var horaInicio_Evento;
+     var cstGSnCertificado_Evento;
+     var cstGCnCertificado_Evento;
+     var cstFCnCertificado_Evento;
+     var imagen_Evento;
+     var capacidadD_Evento;
+    var url = "http://localhost:8000/api/eventos/"+id;
     $.ajax({
         url: url,
         method: "GET",
       }).done(function(data) {
-        alert("ok");
-        // alert(data["nombre_Evento"]);
-            // nombre_Evento              = data[0]['nombre_Evento']; 
-            // tipo_Evento                = data[0]['tipo_Evento'];
-            // duracion_Evento            = data[0]['duracion_Evento'];
-            // fecInicio_Evento           = data[0]['fecInicio_Evento'];
-            // horaInicio_Evento          = data[0]['horaInicio_Evento'];
-            // cstGSnCertificado_Evento   = data[0]['cstGSnCertificado_Evento'];
-            // cstGCnCertificado_Evento   = data[0]['cstGCnCertificado_Evento'];
-            // cstFCnCertificado_Evento   = data[0]['cstFCnCertificado_Evento'];
-            // imagen_Evento              = data[0]['imagen_Evento'];
-            // capacidadD_Evento          = data[0]['capacidadD_Evento'];
+            nombre_Evento              = data[0]['nombre_Evento'];
+             tipo_Evento               = data[0]['tipo_Evento'];
+             duracion_Evento            = data[0]['duracion_Evento'];
+             fecInicio_Evento           = data[0]['fecInicio_Evento'];
+            horaInicio_Evento          = data[0]['horaInicio_Evento'];
+             cstGSnCertificado_Evento   = data[0]['cstGSnCertificado_Evento'];
+            cstGCnCertificado_Evento   = data[0]['cstGCnCertificado_Evento'];
+             cstFCnCertificado_Evento   = data[0]['cstFCnCertificado_Evento'];
+             imagen_Evento              = data[0]['imagen_Evento'];
+             capacidadD_Evento          = data[0]['capacidadD_Evento'];
+             h='<p>'+nombre_Evento+'</p>'+
+             '<p>'+cstGSnCertificado_Evento+'</p>'+
+             '<img style="" src="../ViceAdmin/images/evento/'+imagen_Evento+'"/>';
+            $('#event1container').remove();
+            $('#evento1').append('<div id="event1container">'+h+'</div>');
         
       }).fail(function(data){
             alert("falla");
     });
+      
       
 }   
