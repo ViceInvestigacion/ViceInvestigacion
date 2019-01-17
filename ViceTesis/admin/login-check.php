@@ -34,7 +34,7 @@ else {
 
 	// Sino existen los datos entonces envio de nuevo al login mostrando un error alert=1
 	else {
-		header("Location: hola.php?alert=1");
+		header("Location: index.php?alert=1");
 	}
 }
 ?>
