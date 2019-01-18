@@ -23,14 +23,14 @@
 	// jika menu tesis dipilih, menu tesisaktif
 	if ($_GET["module"]=="tesis" || $_GET["module"]=="form_tesis") { ?>
 		<li class="active">
-			<a href="?module=tesis"><i class="fa fa-desktop"></i> SISTEMA TESIS</a>
+			<a href="?module=tesis"><i class="fa fa-desktop"></i> TESIS</a>
 	  	</li>
 	<?php
 	}
 	// jika tidak, menu tesis tidak aktif
 	else { ?>
 		<li>
-			<a href="?module=tesis"><i class="fa fa-desktop"></i> SISTEMA TESIS</a>
+			<a href="?module=tesis"><i class="fa fa-desktop"></i> TESIS</a>
 	  	</li>
 	<?php
 	}
