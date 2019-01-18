@@ -45,6 +45,7 @@
 		</style>
 </head>
 <body>
+	
 	<!-- Encabezado -->
 	<header>
 		
@@ -64,15 +65,15 @@
 			</nav>
 
 			<div class="top-redes">
-				<a href="https://web.facebook.com/"  target="_blank">
+				<a href="#">
 					<i class="fa fa-facebook" aria-hidden="true"></i>
 				</a>
 
-				<a href="https://twitter.com/?lang=es"  target="_blank">
+				<a href="#">
 					<i class="fa fa-twitter" aria-hidden="true"></i>
 				</a>
 
-				<a href="https://www.instagram.com/?hl=es-la"  target="_blank">
+				<a href="#">
 					<i class="fa fa-instagram" aria-hidden="true"></i>
 				</a>
 			</div>
@@ -123,12 +124,12 @@
 			<div class="container">
 				<div class="col izq">
 					<div  class="slider" id="slider">
-						<div  class="slide foto1"></div>
+						<div id="fot1"  class="slide foto1"></div>
 						<div class="slide foto2"></div>
 						<div class="slide foto3"></div>
 					</div>
 					<script type="text/javascript">
-						document.getElementById('fot1').style.backgroundImage = 'url(../img/1.jpg)';
+						document.getElementById('fot1').style.backgroundImage = 'url(../img/chef-1.jpg)';
 					</script>
 				</div>
 
@@ -174,15 +175,19 @@
 
 		<!-- convocatorias -->
 		<section class="convocatoria">
+				
 			<div class="container">
 				
-						<div class="titulo-seccion">
-							<h2>Convocatorias</h2>
-						</div>
-						<div class="blueberry" id="blueberry_Conv">
-						<ul style=" width: 100%;list-style: none;margin:0px 0px 0px 0px; font-size: 0%;padding-top: : 460px" class="slides" id="bby">
+					<div class="titulo-seccion">
+						<h2>Convocatorias a Concursos</h2>
+					</div>
+				
+				
+					<div class="blueberry" id="blueberry_Conv">
+						<ul class="slides" id="bby">
 						</ul>
-						</div>
+					</div>
+				
 			</div>	
 		</section>
 		<!-- convocatorias -->
@@ -203,13 +208,12 @@
 						<li class="active"><a id="enc_even" href="#evento1">Ver eventos</a></li>
 						<li><a  href="#evento2">Tengo un Evento</a></li>
 					</ul>
-					<div style="background-color: white" class="contenido" id="contenido_evento">
+					<div class="contenido" id="contenido_evento">
 						<!-- Menu Evento1 -->
 						<div id="evento1" class="active">
-							<div  id="event1container">
+							<div id="event1container">
 
 							</div>
-
 						</div> 
 			
 						<!-- Menu Evento1 -->
@@ -242,9 +246,6 @@
 							  </div>
 						</div>
 						 <!-- Menu Evento2 -->
-
-		
-
 					</div>
 				</div>
 			</div>
@@ -257,7 +258,7 @@
 					<h2 >Noticias</h2>
 				</div>
 				<div class="blueberry" id="blueberry_Noti">
-						<ul style="width: 1000px;height: 900px;margin: 10px 10px 10px 0px" class="slides" id="bby_Noti" >
+						<ul class="slides" id="bby_Noti" >
 								
 						</ul>
 				</div>
@@ -295,8 +296,8 @@
 		</section> <!-- Grafica-->
 		<!-- Contacto -->
 		<section class="contacto" id="contacto">
-	<!-- 		<div class="datos parallax">
-				<div class="overlay">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+			<div class="datos parallax">
+				<div class="overlay"></div>
 				<div class="container">
 					<div class="blurb">
 						<h3>Escríbenos</h3>
@@ -313,17 +314,8 @@
 						<p>Lunes a Viernes<br>8am - 4pm</p>
 					</div>
 				</div>
-			</div> -->
-			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15659.551306246198!2d-77.6067852!3d-11.1217315!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xbd6ef754e61fed3e!2sUniversidad+Nacional+Jos%C3%A9+Faustino+S%C3%A1nchez+Carri%C3%B3n!5e0!3m2!1ses-419!2spe!4v1540181303205" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+			</div>
 			<div class="formulario">
-								<div class="alert" style="display:none" id="alert">
-						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-						<strong>OK!</strong> Mensaje enviado 
-					  </div>
-				<div class="danger" style="display:none" id="danger">
-					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-					<strong>ALGO VA MAL</strong> Intentalo en un momento 
-				</div>
 				<form id="formid" action="" method="POST" class="formulario_contacto" name="formulario_contacto">
 					<div>
 						<div class="input-group">
@@ -341,34 +333,35 @@
 							<label class="label" for="mensaje">Mensaje</label>
 						</div>
 
-						<input class="button2" id = "btn_enviar" type="submit" value="Enviar">
+						<input id = "btn_enviar" type="submit" value="Enviar">
 					</div>
 				</form>
+				<div class="alert" style="display:none" id="alert">
+						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+						<strong>OK!</strong> Mensaje enviado 
+					  </div>
+				<div class="danger" style="display:none" id="danger">
+					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+					<strong>ALGO VA MAL</strong> Intentalo en un momento 
+				</div>
 			</div>
-							
-				               
-				 
-
-
-
 		</section> <!-- Contacto -->
 		
 	</section> <!-- Main -->
 
 	<!-- Pie de página -->
 	<footer>
-		<br>
-		 <p>Copyright &copy; 2019 - <a style="color: #FFDB58" href="http://unjfsc.edu.pe/">unjfsc.edu.pe</a></p>
+		<p class="copyright">Todos los derechos reservados Vicerrectorado de Investigación</p>
 		<div class="bottom-redes">
-				<a href="https://web.facebook.com/" target="_blank">
+				<a href="#">
 					<i class="fa fa-facebook" aria-hidden="true"></i>
 				</a>
 
-				<a href="https://twitter.com/?lang=es" target="_blank">
+				<a href="#">
 					<i class="fa fa-twitter" aria-hidden="true"></i>
 				</a>
 
-				<a href="https://www.instagram.com/?hl=es-la" target="_blank">
+				<a href="#">
 					<i class="fa fa-instagram" aria-hidden="true"></i>
 				</a>
 			</div>

@@ -146,7 +146,7 @@ function setFecha(año,mes,dia,diaS,hora,segundo,minuto,titulo,descripcion,btn,i
         url: "http://localhost:8000/api/eventos",
         method: "GET",
       }).done(function(data) {
-        var btn = '<span ><a style="color: white" class="button2" target="_blank">Me Interesa</a></span>';
+        var btn = '<span><a class="button2" target="_blank">Me Interesa</a></span>';
         $.each( data, function( key, value ) {
             
             var fechaE = value["fecInicio_Evento"];
@@ -197,23 +197,20 @@ function carga_evento(id){
              cstFCnCertificado_Evento   = data[0]['cstFCnCertificado_Evento'];
              imagen_Evento              = data[0]['imagen_Evento'];
              capacidadD_Evento          = data[0]['capacidadD_Evento'];
-             h='<br>'+
-            '<div align="center" class="form-group">'+'<b>'+
-                     '<tr>'+nombre_Evento+'</tr>'+'<br>'+'<br>'+
-                     '<img with="100" height="400" style="" src="../ViceAdmin/images/evento/'+imagen_Evento+'"/>'+'<br>'+'<br>'+
-             '</div>'+
-             '<div align="left" class="form-group">'+
-                    '<label class="col-sm-1 control-label">'+'Duracion : '+duracion_Evento+'</label>'+'<br>'+'<br>'+
-                    '<label class="col-sm-1 control-label">'+'Fecha de Inicio : '+fecInicio_Evento+'</label>'+'<br>'+'<br>'+
-                    '<label class="col-sm-1 control-label">'+'Capacidad Evento : '+capacidadD_Evento+' Personas'+'</label>'+'<br>'+'<br>'+
-            '</div>'+
-            '<div align="left" class="form-group">'+
-                    '<label align="left" class="col-sm-1 control-label">'+'Costo :'+'</label>'+'<br>'+
-                    ' &nbsp'+' &nbsp'+'<label  class="col-sm-1 control-label">'+'Costo General Sin Certificado: S/.'+cstGSnCertificado_Evento+'</label>'+'<br>'+
-                    ' &nbsp'+' &nbsp'+'<label  class="col-sm-1 control-label">'+'Costo General Con Certificado: S/.'+cstGCnCertificado_Evento+'</label>'+'<br>'+
-                    ' &nbsp'+' &nbsp'+'<label  class="col-sm-1 control-label">'+'Costo Alumno Con Certificado: S/.'+cstFCnCertificado_Evento+'</label>'+'<br>'+
-            '</div>'+'</b>'+'<br>'+'<br>'+
-                 '<button class="btn1" style="text-align:center" id="btn_pagar">'+'Pagar'+'</button>'
+             h='<div align="center"  class="form-group">'+
+             '<label class="col-sm-1 control-label">'+nombre_Evento+'</label>'+'<br>'+'<br>'+
+             '<img with="100" height="400" style="" src="../ViceAdmin/images/evento/'+imagen_Evento+'"/>'+'<br>'+'<br>'
+             +'</div>'+
+             '<div class="form-group">'+
+            '<label class="col-sm-1 control-label">'+'Duracion :'+duracion_Evento+'</label>'+'<br>'+'<br>'+
+            '<label class="col-sm-1 control-label">'+'Fecha de Inicio :'+fecInicio_Evento+'</label>'+'<br>'+'<br>'+
+            '<label class="col-sm-1 control-label">'+'Capacidad Evento :'+capacidadD_Evento+'</label>'+'<br>'+'<br>'+
+            '<div class="form-group">'+
+            '<label align="center" class="col-sm-1 control-label">'+'Costo :'+'</label>'+'<br>'+
+            '<label  class="col-sm-1 control-label">'+'Costo General Sin Certificado:'+cstGSnCertificado_Evento+'</label>'+'<br>'+
+            '<label  class="col-sm-1 control-label">'+'Costo General Con Certificado:'+cstGCnCertificado_Evento+'</label>'+'<br>'+
+            '<label  class="col-sm-1 control-label">'+'Costo Alumno Con Certificado:'+cstFCnCertificado_Evento+'</label>'+'<br>'+
+            '</div>'+'</div>'
              ;
             $('#event1container').remove();
             $('#evento1').append('<div id="event1container">'+h+'</div>');
@@ -224,4 +221,3 @@ function carga_evento(id){
       
       
 }   
-                    
