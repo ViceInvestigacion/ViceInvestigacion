@@ -82,7 +82,7 @@
 	text-transform: uppercase;
 	color: rgb(8, 3, 3);
 	letter-spacing: 3px;
-	font-family: "Open Sans";
+	font-family: sans-serif;
 	font-weight: lighter;
 	font-size: 14px;
 	display: inline-block;
@@ -107,7 +107,7 @@
 	transition: all 0.4s cubic-bezier(0.25, 0.1, 0.2, 1);
 	-webkit-transform: skew(70deg);
 			transform: skew(70deg);
-	background: #06e7af;
+	background: #fac762;
   }
   .button2:after {
 	top: 0;
@@ -116,8 +116,10 @@
 	width: calc(100% - 2px);
 	height: calc(100% - 2px);
 	border: 1px solid rgb(0, 133, 18);
+	background: #3685e9;
   }
   .button2:hover:before {
 	left: -50px;
 	top: -20px;
   }
+

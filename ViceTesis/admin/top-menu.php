@@ -14,7 +14,7 @@
       <img src="../images/user/admin.png" class="img-circle" alt="User Image"/>
 
       <p>
-        <?php echo $_SESSION['fullname']; ?>
+        <?php echo $_SESSION['username']; ?>
       </p>
     </li>
     

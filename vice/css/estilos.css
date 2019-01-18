@@ -61,7 +61,7 @@ header .menu-bar-movil .slideMenu .menu-principal a{display:block;padding:0.625r
 .main .portada .container .col .titulo-seccion p:last-child{padding-bottom:0}
 .main .portada .container .col .slider{width:300%;display:-webkit-box;display:-ms-flexbox;display:flex}
 .main .portada .container .col .slider .slide{width:100%;min-height:400px;background-size:cover;background-position:center}
-/*.main .portada .container .col .slider .slide.foto1{background-image:url('../img/1.jpg')}*/
+.main .portada .container .col .slider .slide.foto1{background-image:url('../img/1.jpg')}
 .main .portada .container .col .slider .slide.foto2{background-image:url('../img/2.jpg')}
 .main .portada .container .col .slider .slide.foto3{background-image:url('../img/3.jpg')}
 .main .nosotros{padding:5.625rem 0}
