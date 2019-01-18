@@ -3,7 +3,7 @@
   <h1>
     <i class="fa fa-desktop icon-title"></i> Tesis
 
-    <a class="btn btn-primary btn-social pull-right" href="?module=form_portfolio&form=add">
+    <a class="btn btn-primary btn-social pull-right" href="?module=form_tesis&form=add">
       <i class="fa fa-plus"></i> Agregar
     </a>
   </h1>
@@ -26,7 +26,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Bien hecho!</h4>
-              El nuevo portafolio se ha guardado con éxito.
+               La nueva tesis se ha guardado con éxito.
             </div>";
     }
     // Mensaje para Editar portafolio
@@ -34,7 +34,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Bien hecho</h4>
-              El portafolio ha sido actualizado exitosamente.
+              La tesis ha sido actualizado exitosamente.
             </div>";
     }
     // Mensaje para Eliminar portafolio
@@ -42,7 +42,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Bien hecho!</h4>
-              El portafolio ha sido eliminado exitosamente.
+              La tesis ha sido eliminado exitosamente.
             </div>";
     }
     // Error de subida para mostrar el mensaje "Asegúrese de que el archivo que se sube es correcta"
@@ -50,7 +50,7 @@
       echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-times-circle'></i> Error!</h4>
-              Asegúrese de que el archivo subido es correcto.
+             No se pudo actualizar.
             </div>";
     }
      // Error de subida para mostrar el mensaje "Asegúrese de que el tamaño de la imagen no es más que 1 MB"
@@ -58,7 +58,7 @@
       echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-times-circle'></i> Error!</h4>
-             Asegúrese de que el tamaño de la imagen no sea superior a 1 Mb.
+             No se pudo eliminar.
             </div>";
     }
     // Archivos permitidos *.JPG, *.JPEG, *.PNG"
@@ -66,7 +66,7 @@
       echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-times-circle'></i> Error!</h4>
-              Asegúrese de que el archivo cargado está en *.JPG / *.JPEG / *.PNG.
+              No se pudo registrar.
             </div>";
     }
     ?>
@@ -86,12 +86,20 @@
             </thead>
             <tbody>
             <?php  
+            $nombre=$_SESSION['username'];
+            $id       = $_SESSION['user_id'] ;
+            $esc       = $_SESSION['escuela'] ;
             $no = 1;
+            ////////////////////////////////////////////////////////////////////////////////////////////////////77
+            
+
+
             // funciones de consulta para mostrar los datos en la tabla 
             $query = sqlsrv_query($mysqli, "SELECT t.id_Tesis,t.titulo_Tesis,t.fecha_Tesis,t.fechaReg_Tesis,e.nombre_Escuela,f.nombre_Facu from tesisBE t
               inner join usuarioTesisBE u on t.usuRegTesis = u.id_UsuTesis
               inner join escuelaBE e on u.idEscuela=e.id_Escuela
               inner join facultadBE f on e.facultadId_Escuela = f.id_Facu
+              where t.usuRegTesis='$id' and e.id_Escuela='$esc'
               order by id_Tesis desc")
                                             or die('Hubo un error en la consulta de los datos: '.sqlsrv_errors($mysqli));
 
@@ -114,7 +122,7 @@
                               <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
                           </a>";
             ?>
-                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/tesis/proses.php?act=delete&id=<?php echo $data['id_Tesis'];?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
+                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/tesis/proses.php?act=delete&id_Tesis=<?php echo $var;?>" onclick="return confirm('Estas seguro que quieres eliminar ?');">
                               <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                           </a>
             <?php
