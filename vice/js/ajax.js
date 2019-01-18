@@ -13,10 +13,7 @@ $(document).ready(function(){
 				method: "GET",
 			  }).done(function(data) {
 				$.each( data, function( key, value ) {
-					  $("#bby").append('<li style="position: initial;margin: 1px;">'+
-					  	'<img style="width: 495px; height: 495px ;border-radius: 50%" src="../ViceAdmin/images/convocatoria/'+value["imagen_Conv"]
-					  	+'"/>'+'</li>'+'<div style="text-align:left">'
-					  	+value["descripcion_Conv"] +'</div>');
+					  $("#bby").append('<li style="position: relative"><img style="" src="../ViceAdmin/images/convocatoria/'+value["imagen_Conv"]+'"/><div style="position: absolute;bottom: 8px;left: 16px;color: white;">'+value["descripcion_Conv"] +'</div></li>');
 				  });
 			  })
 		).then(function( data, textStatus, jqXHR ) {
@@ -44,12 +41,12 @@ $(document).ready(function(){
 					'<div id="idNoticias" class="articulos">'+
 					'<article class="article">'+
 					'<div id="slider">'+
-					'<img style="width:900px;height:600px;border-radius:25px"src="../ViceAdmin/images/noticia/'+value["imagen_Noticia"]+'" alt="Imagen Noticia"/>'+
+					'<img style="width:100%;height:600px"src="../ViceAdmin/images/noticia/'+value["imagen_Noticia"]+'" alt=""/>'+
 					'</div>'+
 					'<h2 style="text-align:center">'+value["titulo_Noticia"]+'</h2>'+
 					'<p style="text-align:justify">'+value["descripcion_Noticia"]+'</p>'+
-					'</article>'+
-					'</div>'+
+					'</article>'
+					'</div>'
 					'</li>'
 					$("#bby_Noti").append(h);
 				  });
