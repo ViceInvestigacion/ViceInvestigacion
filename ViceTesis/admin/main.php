@@ -11,7 +11,6 @@ session_start();
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Perfil de la empresa">
     <meta name="keywords" content="FacturacionWeb.site" />
-    <link rel="stylesheet" href="./css/main.css">
     
     <!-- favicon -->
     <link rel="shortcut icon" href="../images/favicon.png" />
@@ -32,6 +31,9 @@ session_start();
     <link href="assets/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <!-- Custom CSS -->
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css"> 
+    <link href="assets/css/hoja.css" rel="stylesheet" type="text/css" />
+
     
     <!-- Fungsi untuk membatasi karakter yang diinputkan -->
     <script language="javascript">
