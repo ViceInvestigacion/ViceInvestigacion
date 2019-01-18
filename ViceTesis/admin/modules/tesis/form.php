@@ -3,11 +3,11 @@ if ($_GET['form']=='add') { ?>
 	<!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i style="margin-right:7px" class="fa fa-edit"></i> Agregar tesis
+      <i style="margin-right:7px" class="fa fa-edit"></i> Agregar Portafolio
     </h1>
     <ol class="breadcrumb">
       <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
-      <li><a href="?module=tesis"> tesis </a></li>
+      <li><a href="?module=portfolio"> Portafolio </a></li>
       <li class="active"> Agregar </li>
     </ol>
   </section>
@@ -18,7 +18,7 @@ if ($_GET['form']=='add') { ?>
       <div class="col-md-12">
         <div class="box box-primary">
           <!-- form start -->
-          <form role="form" class="form-horizontal" method="POST" action="modules/tesis/proses.php?act=insert" method="POST" enctype="multipart/form-data">
+          <form role="form" class="form-horizontal" method="POST" action="modules/portfolio/proses.php?act=insert" method="POST" enctype="multipart/form-data">
             <div class="box-body">
 
               <div class="form-group">
@@ -28,14 +28,14 @@ if ($_GET['form']=='add') { ?>
                 </div>
               </div>
               
+              <br>
+
               <div class="form-group">
-                <label class="col-sm-1 control-label">Fecha Publicacion</label>
+                <label class="col-sm-1 control-label">Imagen</label>
                 <div class="col-sm-8">
-                  <input type="date" class="form-control" name="fecha" autocomplete="off" required>
+                  <input style="height:35px" type="file" name="image" autocomplete="off" required>
                 </div>
               </div>
-
-              
 
             </div><!-- /.box body -->
 
@@ -43,7 +43,7 @@ if ($_GET['form']=='add') { ?>
               <div class="form-group">
                 <div class="col-sm-offset-1 col-sm-11">
                   <input type="submit" class="btn btn-primary btn-submit" name="save" value="Guardar">
-                  <a href="?module=tesis" class="btn btn-default btn-reset">Cancelar</a>
+                  <a href="?module=portfolio" class="btn btn-default btn-reset">Cancelar</a>
                 </div>
               </div>
             </div><!-- /.box footer -->
@@ -57,7 +57,7 @@ if ($_GET['form']=='add') { ?>
 elseif ($_GET['form']=='edit') { 
   if (isset($_GET['id'])) {
       // funcion de consulta para mostrar los datos de la tabla is_portfolio
-      $query = sqlsrv_query($mysqli, "SELECT * FROM tesisBE WHERE id_Tesis='$_GET[id]'") 
+      $query = sqlsrv_query($mysqli, "SELECT * FROM is_portfolio WHERE portfolio_id='$_GET[id]'") 
                                       or die('Hubo un error en la consulta de los datos : '.sqlsrv_errors($mysqli));
       $data  = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
     }
@@ -66,11 +66,11 @@ elseif ($_GET['form']=='edit') {
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i style="margin-right:7px" class="fa fa-edit"></i> Editar tesis
+      <i style="margin-right:7px" class="fa fa-edit"></i> Editar portafolio
     </h1>
     <ol class="breadcrumb">
       <li><a href="?module=home"><i class="fa fa-home"></i> Inicio </a></li>
-      <li><a href="?module=tesis"> tesis </a></li>
+      <li><a href="?module=portfolio"> Portafolio </a></li>
       <li class="active"> Editar </li>
     </ol>
   </section>
@@ -81,26 +81,28 @@ elseif ($_GET['form']=='edit') {
       <div class="col-md-12">
         <div class="box box-primary">
           <!-- form start -->
-          <form role="form" class="form-horizontal" method="POST" action="modules/tesis/proses.php?act=update" method="POST" enctype="multipart/form-data">
+          <form role="form" class="form-horizontal" method="POST" action="modules/portfolio/proses.php?act=update" method="POST" enctype="multipart/form-data">
             <div class="box-body">
               
-              <input type="hidden" name="id_Tesis" value="<?php echo $data['id_Tesis']; ?>">
+              <input type="hidden" name="portfolio_id" value="<?php echo $data['portfolio_id']; ?>">
 
               <div class="form-group">
                 <label class="col-sm-1 control-label">Título</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="title" autocomplete="off" value="<?php echo $data['titulo_Tesis']; ?>" required>
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label class="col-sm-1 control-label">Fecha</label>
-                <div class="col-sm-8">
-                  <input type="date" class="form-control" name="fecha" autocomplete="off" value="<?php echo $data['fecha_Tesis']; ?>" required>
+                  <input type="text" class="form-control" name="title" autocomplete="off" value="<?php echo $data['title']; ?>" required>
                 </div>
               </div>
 
-              
+              <br>
+
+              <div class="form-group">
+                <label class="col-sm-1 control-label">Imagen</label>
+                <div class="col-sm-8">
+                  <input style="height:35px" type="file" name="image" autocomplete="off">
+                  <br>
+                  <img src="../images/portfolio/<?php echo $data['image']; ?>" height="150">
+                </div>
+              </div>
 
             </div><!-- /.box body -->
 
@@ -108,7 +110,7 @@ elseif ($_GET['form']=='edit') {
               <div class="form-group">
                 <div class="col-sm-offset-1 col-sm-11">
                   <input type="submit" class="btn btn-primary btn-submit" name="save" value="Guardar">
-                  <a href="?module=tesis" class="btn btn-default btn-reset">Cancelar</a>
+                  <a href="?module=portfolio" class="btn btn-default btn-reset">Cancelar</a>
                 </div>
               </div>
             </div><!-- /.box footer -->

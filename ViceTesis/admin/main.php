@@ -142,7 +142,7 @@ session_start();
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-        <strong>Copyright &copy; 2019 - <a href="http://unjfsc.edu.pe//">unjfsc.edu.pe</a>.</strong>
+        <strong>Copyright &copy; 2018 - <a href="http://unjfsc.edu.pe//">unjfsc.edu.pe</a>.</strong>
       </footer>
     </div><!-- ./wrapper -->
 
