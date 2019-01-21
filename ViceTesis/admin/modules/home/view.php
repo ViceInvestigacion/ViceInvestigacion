@@ -1,6 +1,7 @@
 
   <!-- Content Header (Page header) -->
   <section class="content-header">
+    
     <h1>
       <i class="fa fa-home icon-title"></i> Inicio
     </h1>
@@ -20,7 +21,15 @@
           </p>  
         </div>
       </div>
+
       <div>
+
+
+
+
+
+
+
 <!--
     <div class="full-box text-center" style="padding: 30px 10px;">
       <article class="full-box tile">
