@@ -4,8 +4,7 @@
    <head>
       <title>Vicerrectorado de Investigacion</title>
       <meta charset="utf-8">
-      <meta name="description" content="Traveling HTML5 Template" />
-      <meta name="author" content="Design Hooks" />
+      <meta name="description" content="Verificacion Titulo Tesis"/>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Raleway:400,700" rel="stylesheet" />
       <link href="./assets/img/favicon.png" type="image/x-icon" rel="shortcut icon" />
@@ -39,18 +38,14 @@
                      <h1 style="color:#1469EC";>VICERRECTORADO DE INVESTIGACIÓN</h1>    
                   </div>
 
-                  <font face="Comic Sans MS">
-                           <center>
-                           <b>
-                              <p style="color:#FF9292  ";>Verifique si ya existe el título de su tesis en la base  de datos de la UNJFSC<br> antes de entregarlo, para poder ganar tiempo en la verificación de su tesis.</p>
-                           </b>
-                           </cente>
-                   </font>
+   
 
                   <form class="destinations-form" >
                      <div class="input-line">
-                        <input type="text" name="destination" value="" class="form-input check-value" placeholder="Escribre aqui el Título de tu Tesis..." />
-                        <button type="button" name="destination-submit" class="form-submit btn btn-special no-icon size-2x">BUSCAR</button>
+                        <b>
+                        <input type="text" name="destination" value="" class="form-input check-value" placeholder="Escriba aquí el Título de su Tesis para poder verificar si existe..." />
+                        <button type="button" name="destination-submit" class="form-submit btn btn-special no-icon size-3x">BUSCAR</button>
+                        </b>
                      </div>
                   </form>
 

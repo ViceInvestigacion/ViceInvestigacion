@@ -9,8 +9,8 @@ session_start();
     <title>Panel de administración | Vicerrectorado Web</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Perfil de la empresa">
-    <meta name="keywords" content="FacturacionWeb.site" />
+    <meta name="description" content="Login">
+    <meta name="keywords" content="Vicerectorado de Investigacion.site" />
     <link rel="stylesheet" href="./css/main.css">
     
     <!-- favicon -->
@@ -183,6 +183,7 @@ session_start();
         });
       });
     </script>
+
 
     <script src="assets/plugins/ckeditor/ckeditor.js"></script>
 
